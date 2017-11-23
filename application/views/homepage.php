@@ -8,8 +8,8 @@
     <title>setClass</title>
 
     <!-- CSS  -->
-    <link href="<?php echo base_url('assets/min/plugin-min.css'); ?>" type="text/css" rel="stylesheet">
-    <link href="<?php echo base_url('assets/min/custom-min.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/landingPage/css/plugin-min.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/landingPage/css/custom-min.css'); ?>" type="text/css" rel="stylesheet">
 </head>
 <body id="top" class="scrollspy">
 
@@ -116,8 +116,8 @@
 
 
 <!--  Scripts-->
-<script src="<?php echo base_url('assets/min/plugin-min.js'); ?>"></script>
-<script src="<?php echo base_url('assets/min/custom-min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/landingPage/js/plugin-min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/landingPage/js/custom-min.js'); ?>"></script>
 
 </body>
 </html>

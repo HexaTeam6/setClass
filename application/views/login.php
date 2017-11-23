@@ -14,11 +14,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
     <title>Material Pro Admin Template - The Most Complete & Trusted Bootstrap 4 Admin Template</title>
     <!-- Bootstrap Core CSS -->
-    <link href="<?php echo base_url('/assets/css/plugins/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('/assets/materialPro/plugins/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="<?php echo base_url('/assets/css/css/style.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('/assets/materialPro/css/style.css') ?>" rel="stylesheet">
     <!-- You can change the theme colors from here -->
-    <link href="<?php echo base_url('/assets/css/css/colors/blue.css') ?>" id="theme" rel="stylesheet">
+    <link href="<?php echo base_url('/assets/msterialPro/css/colors/blue.css') ?>" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -120,24 +120,24 @@
 <!-- ============================================================== -->
 <!-- All Jquery -->
 <!-- ============================================================== -->
-<script src="<?php echo base_url('/assets/css/plugins/jquery/jquery.min.js') ?>"></script>
+<script src="<?php echo base_url('/assets/materialPro/plugins/jquery/jquery.min.js') ?>"></script>
 <!-- Bootstrap tether Core JavaScript -->
-<script src="<?php echo base_url('/assets/css/plugins/bootstrap/js/popper.min.js') ?>"></script>
-<script src="<?php echo base_url('/assets/css/plugins/bootstrap/js/bootstrap.min.js') ?>"></script>
+<script src="<?php echo base_url('/assets/materialPro/plugins/bootstrap/js/popper.min.js') ?>"></script>
+<script src="<?php echo base_url('/assets/materialPro/plugins/bootstrap/js/bootstrap.min.js') ?>"></script>
 <!-- slimscrollbar scrollbar JavaScript -->
-<script src="<?php echo base_url('/assets/css/js/jquery.slimscroll.js') ?>"></script>
+<script src="<?php echo base_url('/assets/materialPro/js/jquery.slimscroll.js') ?>"></script>
 <!--Wave Effects -->
-<script src="<?php echo base_url('/assets/css/js/waves.js') ?>"></script>
+<script src="<?php echo base_url('/assets/materialPro/js/waves.js') ?>"></script>
 <!--Menu sidebar -->
-<script src="<?php echo base_url('/assets/css/js/sidebarmenu.js') ?>"></script>
+<script src="<?php echo base_url('/assets/materialPro/js/sidebarmenu.js') ?>"></script>
 <!--stickey kit -->
-<script src="<?php echo base_url('/assets/css/plugins/sticky-kit-master/dist/sticky-kit.min.js') ?>"></script>
-<script src="<?php echo base_url('/assets/css/plugins/sparkline/jquery.sparkline.min.js') ?>"></script>
+<script src="<?php echo base_url('/assets/materialPro/plugins/sticky-kit-master/dist/sticky-kit.min.js') ?>"></script>
+<script src="<?php echo base_url('/assets/materialPro/plugins/sparkline/jquery.sparkline.min.js') ?>"></script>
 <!--Custom JavaScript -->
-<script src="<?php echo base_url('/assets/css/js/custom.min.js') ?>"></script>
+<script src="<?php echo base_url('/assets/materialPro/js/custom.min.js') ?>"></script>
 <!-- ============================================================== -->
 <!-- Style switcher -->
 <!-- ============================================================== -->
-<script src="<?php echo base_url('/assets/css/plugins/styleswitcher/jQuery.style.switcher.js') ?>"></script>
+<script src="<?php echo base_url('/assets/materialPro/plugins/styleswitcher/jQuery.style.switcher.js') ?>"></script>
 </body>
 </html>
