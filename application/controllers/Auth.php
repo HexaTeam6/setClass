@@ -12,17 +12,17 @@ class Auth extends CI_Controller {
 
     public function index()
     {
-        $this->load->view('homepage');
+        $this->load->view('pages/homepage');
     }
 
     public function masuk()
     {
-        $this->load->view('login');
+        $this->load->view('pages/masuk');
     }
 
     public function daftar()
     {
-        $this->load->view('daftar');
+        $this->load->view('pages/daftar');
     }
 
     public function login()
