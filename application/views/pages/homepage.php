@@ -11,7 +11,7 @@
     <link href="<?php echo base_url('assets/landingPage/css/plugin-min.css'); ?>" type="text/css" rel="stylesheet">
     <link href="<?php echo base_url('assets/landingPage/css/custom-min.css'); ?>" type="text/css" rel="stylesheet">
 </head>
-<body id="top" class="scrollspy">
+<body>
 
 <!-- Pre Loader -->
 <div id="loader-wrapper">
@@ -32,14 +32,14 @@
                                 width="50px" style="position: relative; margin-bottom: -5px;"/> set<b>C</b>lass
                     </div>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="#intro">Tentang</a></li>
+                        <li><a href="#intro" id="tentang">Tentang</a></li>
                         <li><a href="<?php echo site_url('Auth/masuk') ?>">Masuk</a></li>
-                        <li><a href="<?php echo site_url('Auth/daftar')?>">Daftar</a></li>
+                        <li><a href="<?php echo site_url('Daftar/daftar')?>">Daftar</a></li>
                     </ul>
                     <ul id="nav-mobile" class="side-nav">
                         <li><a href="#intro">Tentang</a></li>
                         <li><a href="<?php echo site_url('Auth/masuk') ?>">Masuk</a></li>
-                        <li><a href="<?php echo site_url('Auth/daftar')?>">Daftar</a></li>
+                        <li><a href="<?php echo site_url('Daftar/daftar')?>">Daftar</a></li>
                     </ul>
                     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
                 </div>
@@ -47,7 +47,7 @@
         </nav>
     </div>
 
-    <!--Hero-->
+    <!--Typing Text-->
     <div class="section no-pad-bot" id="index-banner" style="background-color: transparent;">
         <div style="margin-left: 80px;">
             <h1 class="text_h left header cd-headline letters type" style="font-size: 50px">
@@ -108,8 +108,7 @@
 <footer id="contact" class="page-footer default_color scrollspy">
     <div class="footer-copyright default_color">
         <div class="container">
-            Made by <a class="white-text" href="http://joashpereira.com">Joash Pereira</a>. Thanks to <a
-                    class="white-text" href="http://materializecss.com/">materializecss</a>
+            <b>Copyright &copy; 2017 setClass.</b> All rights reserved.
         </div>
     </div>
 </footer>
@@ -118,5 +117,16 @@
 <!--  Scripts-->
 <script src="<?php echo base_url('assets/landingPage/js/plugin-min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/landingPage/js/custom-min.js'); ?>"></script>
+<script>
+    $(document).ready(function () {
+
+        $('#tentang').click(function () {
+            $('html, body').animate({
+                scrollTop: $('#intro').offset().top
+            }, 500)
+        });
+
+    });
+</script>
 </body>
 </html>

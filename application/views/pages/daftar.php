@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>setClass | Daftar</title>
-    <!-- Wizard Step and SweetAlert CSS -->
-    <?php $this->load->view('partials/_css');?>
+    <title>setClass</title>
+    <!-- Wizard Step, SweetAlert, and Select2 CSS -->
+    <?php $this->load->view('partials/_css'); ?>
+
+    <style>
+        .wizard-content .wizard{
+            overflow: visible;
+        }
+        .wizard-content .wizard>.content{
+            overflow: visible;
+        }
+    </style>
 </head>
 
 <body>
-<?php $this->load->view('partials/_preloader');?>
+<?php $this->load->view('partials/_preloader'); ?>
 
 <!-- ============================================================== -->
 <!-- Main wrapper - style you can find in pages.scss -->
@@ -31,198 +40,163 @@
                     <div class="col-12">
                         <div class="card wizard-content">
                             <div class="card-body">
-                                <h4 class="card-title">Step wizard with validation</h4>
-                                <h6 class="card-subtitle">You can us the validation like what we did</h6>
+                                <h2 class="card-title">Sign Up</h2>
+                                <h6 class="card-subtitle">Daftar sebagai Wali Kelas</h6>
                                 <form action="#" class="validation-wizard wizard-circle">
                                     <!-- Step 1 -->
-                                    <h6>Step 1</h6>
+                                    <h6>Data pribadi</h6>
                                     <section>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="wfirstName2"> First Name : <span class="danger">*</span>
-                                                    </label>
-                                                    <input type="text" class="form-control required" id="wfirstName2"
-                                                           name="firstName"></div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="wlastName2"> Last Name : <span class="danger">*</span>
-                                                    </label>
-                                                    <input type="text" class="form-control required" id="wlastName2"
-                                                           name="lastName"></div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="wemailAddress2"> Email Address : <span
-                                                                class="danger">*</span> </label>
-                                                    <input type="email" class="form-control required"
-                                                           id="wemailAddress2" name="emailAddress"></div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="wphoneNumber2">Phone Number :</label>
-                                                    <input type="tel" class="form-control" id="wphoneNumber2"></div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="wlocation2"> Select City : <span class="danger">*</span>
-                                                    </label>
-                                                    <select class="custom-select form-control required" id="wlocation2"
-                                                            name="location">
-                                                        <option value="">Select City</option>
-                                                        <option value="India">India</option>
-                                                        <option value="USA">USA</option>
-                                                        <option value="Dubai">Dubai</option>
-                                                    </select>
+                                                    <label for="wnip">NIP :</label>
+                                                    <input type="text" class="form-control required" id="wnip"
+                                                           name="nip">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="wdate2">Date of Birth :</label>
-                                                    <input type="date" class="form-control" id="wdate2"></div>
+                                                    <label for="wnama">Nama : </label>
+                                                    <input type="text" class="form-control required" id="wnama"
+                                                           name="nama">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wemail"> Email : </label>
+                                                    <input type="email" class="form-control required"
+                                                           id="wemail" name="email"></div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wjenisKelamin"> Jenis Kelamin :</label>
+                                                    <select class="custom-select form-control required"
+                                                            id="wjenisKelamin"
+                                                            name="jenisKelamin">
+                                                        <option value="">Pilih Jenis Kelamin</option>
+                                                        <option value="Laki Laki">Laki Laki</option>
+                                                        <option value="Perempuan">Perempuan</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wtempatLahir"> Kota Kelahiran : </label>
+                                                    <input type="text" class="form-control required"
+                                                           id="wtempatLahir" name="tempatLahir">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wtanggalLahir">Tanggal Lahir : </label>
+                                                    <input type="date" class="form-control required" id="wtanggalLahir"
+                                                           name="tanggalLahir">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="walamat">Alamat : </label>
+                                                    <input type="text" class="form-control required"
+                                                           id="walamat" name="alamat">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wtelepon">Nomor Telepon : </label>
+                                                    <input type="text" class="form-control required" id="wtelepon"
+                                                           name="telepon">
+                                                </div>
                                             </div>
                                         </div>
                                     </section>
                                     <!-- Step 2 -->
-                                    <h6>Step 2</h6>
+                                    <h6>Data Kelas</h6>
                                     <section>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="jobTitle2">Company Name :</label>
-                                                    <input type="text" class="form-control required" id="jobTitle2">
+                                                    <label for="wkodeKelas">Kode Kelas :</label>
+                                                    <input type="text" class="form-control required" id="wkodeKelas"
+                                                           name="kodeKelas">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="webUrl3">Company URL :</label>
-                                                    <input type="url" class="form-control required" id="webUrl3"
-                                                           name="webUrl3"></div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="shortDescription3">Short Description :</label>
-                                                    <textarea name="shortDescription" id="shortDescription3" rows="6"
-                                                              class="form-control"></textarea>
+                                            <div class="col-md-5">
+                                                <div class="form-group" style="padding-top: 34px;">
+                                                    <button class="btn btn-success">Generate</button>
+                                                    <label style="float: right;" class="label label-light-warning">
+                                                        Jangan sebarkan<br> kode kelas ini secara bebas</label>
                                                 </div>
                                             </div>
                                         </div>
-                                    </section>
-                                    <!-- Step 3 -->
-                                    <h6>Step 3</h6>
-                                    <section>
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="wint1">Interview For :</label>
-                                                    <input type="text" class="form-control required" id="wint1"></div>
-                                                <div class="form-group">
-                                                    <label for="wintType1">Interview Type :</label>
-                                                    <select class="custom-select form-control required" id="wintType1"
-                                                            data-placeholder="Type to search cities" name="wintType1">
-                                                        <option value="Banquet">Normal</option>
-                                                        <option value="Fund Raiser">Difficult</option>
-                                                        <option value="Dinner Party">Hard</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="wLocation1">Location :</label>
-                                                    <select class="custom-select form-control required" id="wLocation1"
-                                                            name="wlocation">
-                                                        <option value="">Select City</option>
-                                                        <option value="India">India</option>
-                                                        <option value="USA">USA</option>
-                                                        <option value="Dubai">Dubai</option>
-                                                    </select>
+                                                    <label for="wnamaSekolah">Nama Sekolah : </label>
+                                                    <input type="text" class="form-control required"
+                                                           id="wnamaSekolah" name="namaSekolah">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="wjobTitle2">Interview Date :</label>
-                                                    <input type="date" class="form-control required" id="wjobTitle2">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Requirements :</label>
-                                                    <div class="c-inputs-stacked">
-                                                        <label class="inline custom-control custom-checkbox block">
-                                                            <input type="checkbox" class="custom-control-input"> <span
-                                                                    class="custom-control-indicator"></span> <span
-                                                                    class="custom-control-description ml-0">Employee</span>
-                                                        </label>
-                                                        <label class="inline custom-control custom-checkbox block">
-                                                            <input type="checkbox" class="custom-control-input"> <span
-                                                                    class="custom-control-indicator"></span> <span
-                                                                    class="custom-control-description ml-0">Contract</span>
-                                                        </label>
-                                                    </div>
+                                                    <label for="walamatSekolah">Alamat Sekolah : </label>
+                                                    <input type="text" class="form-control required" id="walamatSekolah"
+                                                           name="alamatSekolah">
                                                 </div>
                                             </div>
                                         </div>
-                                    </section>
-                                    <!-- Step 4 -->
-                                    <h6>Step 4</h6>
-                                    <section>
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="behName1">Behaviour :</label>
-                                                    <input type="text" class="form-control required" id="behName1">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="participants1">Confidance</label>
-                                                    <input type="text" class="form-control required" id="participants1">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="participants1">Result</label>
-                                                    <select class="custom-select form-control required"
-                                                            id="participants1" name="location">
-                                                        <option value="">Select Result</option>
-                                                        <option value="Selected">Selected</option>
-                                                        <option value="Rejected">Rejected</option>
-                                                        <option value="Call Second-time">Call Second-time</option>
-                                                    </select>
+                                                    <label for="wteleponSekolah">Nomor Telepon Sekolah : </label>
+                                                    <input type="text" class="form-control required"
+                                                           id="wteleponSekolah" name="teleponSekolah">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="decisions1">Comments</label>
-                                                    <textarea name="decisions" id="decisions1" rows="4"
-                                                              class="form-control"></textarea>
+                                                    <label for="wkelas"> Kelas : </label>
+                                                    <select class="selectpicker form-control required" id="wkelas" name="kelas">
+                                                        <option></option>
+                                                        <optgroup label="Sekolah Dasar">
+                                                            <option value="1 SD">Kelas 1 SD</option>
+                                                            <option value="2 SD">Kelas 2 SD</option>
+                                                            <option value="3 SD">Kelas 3 SD</option>
+                                                            <option value="4 SD">Kelas 4 SD</option>
+                                                            <option value="5 SD">Kelas 5 SD</option>
+                                                            <option value="6 SD">Kelas 6 SD</option>
+                                                        </optgroup>
+                                                        <optgroup label="Sekolah Menengah Pertama">
+                                                            <option value="1 SMP">Kelas 1 SMP</option>
+                                                            <option value="2 SMP">Kelas 2 SMP</option>
+                                                            <option value="3 SMP">Kelas 3 SMP</option>
+                                                        </optgroup>
+                                                        <optgroup label="Sekolah Menengah Atas">
+                                                            <option value="1 SMA/SMK">Kelas 1 SMA/SMK</option>
+                                                            <option value="2 SMA/SMK">Kelas 2 SMA/SMA</option>
+                                                            <option value="3 SMA/SMK">Kelas 3 SMA/SMK</option>
+                                                        </optgroup>
+                                                    </select>
                                                 </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" id="jurusan">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Rate Interviwer :</label>
-                                                    <div class="c-inputs-stacked">
-                                                        <label class="inline custom-control custom-checkbox block">
-                                                            <input type="checkbox" class="custom-control-input"> <span
-                                                                    class="custom-control-indicator"></span> <span
-                                                                    class="custom-control-description ml-0">1 star</span>
-                                                        </label>
-                                                        <label class="inline custom-control custom-checkbox block">
-                                                            <input type="checkbox" class="custom-control-input"> <span
-                                                                    class="custom-control-indicator"></span> <span
-                                                                    class="custom-control-description ml-0">2 star</span>
-                                                        </label>
-                                                        <label class="inline custom-control custom-checkbox block">
-                                                            <input type="checkbox" class="custom-control-input"> <span
-                                                                    class="custom-control-indicator"></span> <span
-                                                                    class="custom-control-description ml-0">3 star</span>
-                                                        </label>
-                                                        <label class="inline custom-control custom-checkbox block">
-                                                            <input type="checkbox" class="custom-control-input"> <span
-                                                                    class="custom-control-indicator"></span> <span
-                                                                    class="custom-control-description ml-0">4 star</span>
-                                                        </label>
-                                                        <label class="inline custom-control custom-checkbox block">
-                                                            <input type="checkbox" class="custom-control-input"> <span
-                                                                    class="custom-control-indicator"></span> <span
-                                                                    class="custom-control-description ml-0">5 star</span>
-                                                        </label>
-                                                    </div>
+                                                    <label for="wjurusan">Jurusan :</label>
+                                                    <input type="text" class="form-control" id="wjurusan"
+                                                           name="jurusan">
                                                 </div>
                                             </div>
                                         </div>
@@ -243,8 +217,23 @@
     <!-- ============================================================== -->
 </div>
 
-<!--Moment, Wizard, SweetAlert, and Style Switcher JS-->
-<?php $this->load->view('partials/_javascripts');?>
-</body>
+<!--Moment, Wizard, SweetAlert, and Select2 JS-->
+<?php $this->load->view('partials/_javascripts'); ?>
+<script>
+    $(document).ready(function () {
+        $('#jurusan').hide();
+        $('.selectpicker').selectpicker();
 
+        $('.selectpicker').change(function () {
+            if ($('.selectpicker').val() == '1 SMA/SMK' || $('.selectpicker').val() == '2 SMA/SMK' || $('.selectpicker').val() == '3 SMA/SMK'){
+                $('#jurusan').show();
+                console.log($('.selectpicker').val());
+            }else{
+                $('#jurusan').hide();
+                console.log($('.selectpicker').val());
+            }
+        });
+    });
+</script>
+</body>
 </html>

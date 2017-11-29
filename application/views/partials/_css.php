@@ -16,3 +16,7 @@
 <link href="<?php echo base_url('/assets/materialPro/plugins/wizard/steps.css') ?>" rel="stylesheet">
 <!--SweetAlerts CSS -->
 <link href="<?php echo base_url('/assets/materialPro/plugins/sweetalert/sweetalert.css') ?>" rel="stylesheet">
+<!--Animate CSS -->
+<link href="<?php echo base_url('/assets/css/Animate/animate.min.css') ?>" rel="stylesheet">
+<!--Bootstrap Select CSS-->
+<link href="<?php echo base_url('/assets/materialPro/plugins/bootstrap-select/bootstrap-select.min.css') ?>" rel="stylesheet"></link>

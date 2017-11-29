@@ -24,5 +24,5 @@
 <!--SweetAlert JS-->
 <script src="<?php echo base_url('/assets/materialPro/plugins/sweetalert/sweetalert.min.js') ?>"></script>
 <script src="<?php echo base_url('/assets/materialPro/plugins/wizard/steps.js') ?>"></script>
-<!--Style Switcher JS-->
-<script src="<?php echo base_url('/assets/materialPro/plugins/styleswitcher/jQuery.style.switcher.js') ?>"></script>
+<!--Bootstrap Select JS-->
+<script src="<?php echo base_url('/assets/materialPro/plugins/bootstrap-select/bootstrap-select.min.js') ?>"></script>

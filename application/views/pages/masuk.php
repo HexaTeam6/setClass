@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>setClass | Masuk</title>
+    <title>setClass</title>
     <?php $this->load->view('partials/_css');?>
 </head>
 
@@ -16,8 +16,7 @@
          style="background-image: url('<?php echo base_url('/assets/img/blurred-classroom.jpg') ?>');">
         <div class="login-box card">
             <div class="card-body">
-                <form class="form-horizontal form-material" id="loginform"
-                      action="https://wrappixel.com/demos/admin-templates/material-pro/material/index.html">
+                <form class="form-horizontal form-material" id="loginform" action="#">
                     <h3 class="box-title m-b-20">Sign In</h3>
                     <div class="form-group ">
                         <div class="col-xs-12">
@@ -34,34 +33,25 @@
                                 <label for="checkbox-signup"> Remember me </label>
                             </div>
                             <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i
-                                        class="fa fa-lock m-r-5"></i> Forgot pwd?</a></div>
+                                        class="fa fa-lock m-r-5"></i> Lupa password?</a></div>
                     </div>
                     <div class="form-group text-center m-t-20">
                         <div class="col-xs-12">
                             <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light"
-                                    type="submit">Log In
+                                    type="submit">Masuk
                             </button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
-                            <div class="social">
-                                <a href="javascript:void(0)" class="btn  btn-facebook" data-toggle="tooltip"
-                                   title="Login with Facebook"> <i aria-hidden="true" class="fa fa-facebook"></i> </a>
-                                <a href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip"
-                                   title="Login with Google"> <i aria-hidden="true" class="fa fa-google-plus"></i> </a>
-                            </div>
                         </div>
                     </div>
                     <div class="form-group m-b-0">
                         <div class="col-sm-12 text-center">
-                            <p>Don't have an account? <a href="register.html" class="text-info m-l-5"><b>Sign Up</b></a>
+                            <p>Tidak memiliki akun? <a href="<?php echo site_url('Daftar/')?>" class="text-info m-l-5"><b>Daftar</b></a>
                             </p>
                         </div>
                     </div>
                 </form>
-                <form class="form-horizontal" id="recoverform"
-                      action="https://wrappixel.com/demos/admin-templates/material-pro/material/index.html">
+                <form class="form-horizontal" id="recoverform" action="#">
+                    <a href="javascript:void(0)" id="to-login" style="margin-top: -15px;" class="text-dark pull-right"><i
+                                class="fa fa-close m-r-5"></i></a>
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <h3>Recover Password</h3>
@@ -78,6 +68,7 @@
                                     type="submit">Reset
                             </button>
                         </div>
+                    </div>
                     </div>
                 </form>
             </div>

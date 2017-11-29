@@ -20,11 +20,6 @@ class Auth extends CI_Controller {
         $this->load->view('pages/masuk');
     }
 
-    public function daftar()
-    {
-        $this->load->view('pages/daftar');
-    }
-
     public function login()
     {
         //$this->output->enable_profiler(TRUE);
