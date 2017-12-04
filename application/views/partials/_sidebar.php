@@ -10,18 +10,18 @@
             <div class="profile-img"><img src="<?php echo base_url('/assets/img/default-profile.png')?>" alt="user"/></div>
             <!-- User profile text-->
             <div class="profile-text"><span
-                        style="color: white !important; width: 100%; padding: 6px 30px; background: rgba(0, 0, 0, 0.5); display: block;"
-                >Markarn Doe</span>
+                        style="color: white !important; width: 100%; padding: 6px 30px; background: rgba(0, 0, 0, 0.5); display: block; font-size: 15px;"
+                ><?php echo $_SESSION['nama'];?></span>
             </div>
         </div>
         <!-- End User profile text-->
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li class="nav-small-cap">PERSONAL</li>
+                <li class="nav-small-cap">MENU</li>
                 <li>
-                    <a href="starter-kit.html" aria-expanded="false"><i class="fa fa-circle"></i><span
-                                class="hide-menu">Starter Kit</span></a>
+                    <a href="#" aria-expanded="false"><i class="fa fa-dashboard"></i><span
+                                class="hide-menu">Dasboard</span></a>
                 </li>
                 <li>
                     <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-map-marker"></i><span

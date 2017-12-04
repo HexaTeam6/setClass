@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>setClass | Home</title>
+    <title>setClass</title>
     <?php $this->load->view('partials/_css'); ?>
 </head>
 

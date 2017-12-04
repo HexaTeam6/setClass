@@ -6,8 +6,8 @@ class Auth extends CI_Controller {
     public function __construct()
     {
         parent::__construct();		
-//        $this->load->model('User_model');
-//        $this->load->model('Menu_model');
+        $this->load->model('User_model');
+        $this->load->model('Menu_model');
     }
 
     public function index()
@@ -23,28 +23,29 @@ class Auth extends CI_Controller {
     public function login()
     {
         //$this->output->enable_profiler(TRUE);
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        $query = $this->User_model->process_login($username,$password,$kode_cabang,$kode_akses);
+        $kode_user = $this->input->post("username");
+        $password = $this->input->post("password");
+        $query = $this->User_model->getLogin($kode_user, $password);
         
         if (count($query->result())>0){ 
             foreach ($query->result() as $row)
-            {                   
-                $this->session->set_userdata("username",$row->username);
+            {
                 $this->session->set_userdata("kode_user",$row->kode_user);
-                $this->session->set_userdata("nama",$row->nama);
-                $this->session->set_userdata("kode_cabang",$row->kode_cabang);
                 $this->session->set_userdata("kode_akses",$row->kode_akses);
-				$this->session->set_userdata("menu",$this->generatemenu());
-                redirect('home');
+                $this->session->set_userdata("kode_kelas",$row->kode_kelas);
+                $this->session->set_userdata("kode_jabatan",$row->kode_jabatan);
+                $this->session->set_userdata("email",$row->email);
+                $this->session->set_userdata("nama",$row->nama);
+                $this->session->set_userdata("status",$row->status);
+//				$this->session->set_userdata("menu",$this->generateMenu());
+                echo site_url('Home');
             }
         }else{
-            $data['msg'] = "Username atau password salah";
-            $this->load->view('login',$data);
+            echo "false";
         }
     }
 	
-	public function generatemenu(){
+	public function generateMenu(){
 		$data = $this->Menu_model->select_header()->result();
 		$html = "";
 		//print_r($html);
@@ -71,7 +72,7 @@ class Auth extends CI_Controller {
     public function logout()
     {
         $this->session->sess_destroy();
-        $data['msg'] = "Silahkan Login";
-        $this->load->view('login',$data); 
+//        $data['msg'] = "Silahkan Login";
+        $this->load->view('pages/masuk');
     }
 }

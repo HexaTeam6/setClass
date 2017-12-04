@@ -119,7 +119,7 @@
                             $this.data("validationMaxlengthMaxlength", $this.attr("maxlength"));
                         }
                         if ($this.attr("minlength") !== undefined) {
-                            message = "Too short: Minimum of '" + $this.attr("minlength") + "' characters<!-- data-validation-minlength-message to override -->";
+                            message = "Minimal '" + $this.attr("minlength") + "' karakter<!-- data-validation-minlength-message to override -->";
                             if ($this.data("validationMinlengthMessage")) {
                                 message = $this.data("validationMinlengthMessage");
                             }
@@ -326,7 +326,7 @@
                                 $helpBlock.html(errorsFound[0] + (settings.options.prependExistingHelpBlock ? $helpBlock.data("original-contents") : ""));
                             }
                             else {
-                                $helpBlock.html("<ul role=\"alert\"><li>" + errorsFound.join("</li><li>") + "</li></ul>" + (settings.options.prependExistingHelpBlock ? $helpBlock.data("original-contents") : ""));
+                                $helpBlock.html("<ul role=\"alert\"><li class='label label-light-warning'>&blacksquare; " + errorsFound.join("</li><li class='label label-light-warning'>&blacksquare; ") + "</li></ul>" + (settings.options.prependExistingHelpBlock ? $helpBlock.data("original-contents") : ""));
                             }
                         }
                         else {
@@ -563,7 +563,7 @@
                     if ($element.length === 0) {
                         $.error("Can't find field '" + elementName + "' to match '" + $this.attr("name") + "' against in '" + name + "' validator");
                     }
-                    var message = "Must match";
+                    var message = "Tidak sesuai";
                     var $label = null;
                     if (($label = $form.find("label[for=\"" + elementName + "\"]")).length) {
                         message += " '" + $label.text() + "'";
@@ -633,7 +633,7 @@
                 , init: function ($this, name) {
                     var result = {};
                     result.minlength = $this.data("validation" + name + "Minlength");
-                    result.message = "Too short: Minimum of '" + result.minlength + "' characters";
+                    result.message = "Minimal '" + result.minlength + "' karakter";
                     if ($this.data("validation" + name + "Message")) {
                         result.message = $this.data("validation" + name + "Message");
                     }

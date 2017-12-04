@@ -1,16 +1,16 @@
-$(".tab-wizard").steps({
-    headerTag: "h6"
-    , bodyTag: "section"
-    , transitionEffect: "fade"
-    , titleTemplate: '<span class="step">#index#</span> #title#'
-    , labels: {
-        finish: "Submit"
-    }
-    , onFinished: function (event, currentIndex) {
-       swal("Form Submitted!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.");
-            
-    }
-});
+// $(".tab-wizard").steps({
+//     headerTag: "h6"
+//     , bodyTag: "section"
+//     , transitionEffect: "fade"
+//     , titleTemplate: '<span class="step">#index#</span> #title#'
+//     , labels: {
+//         finish: "Submit"
+//     }
+//     , onFinished: function (event, currentIndex) {
+//        swal("Form Submitted!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.");
+//
+//     }
+// });
 
 
 var form = $(".validation-wizard").show();
@@ -30,7 +30,25 @@ $(".validation-wizard").steps({
         return form.validate().settings.ignore = ":disabled", form.valid()
     }
     , onFinished: function (event, currentIndex) {
-         swal("Form Submitted!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.");
+        var formS = form; // storing the form
+        swal({
+                title: "Apakah data sudah benar?",
+                text: "Pastikan data yang anda isikan benar dan sesuai.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#26C6DA",
+                confirmButtonText: "Ya, simpan!",
+                cancelButtonText: "Tidak, batalkan!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    formS.submit();          // submitting the form when user press yes
+                } else {
+                    swal("Dibatalkan", "Data yang anda isikan belum tersimpan", "error");
+                }
+            });
     }
 }), $(".validation-wizard").validate({
     ignore: "input[type=hidden]"

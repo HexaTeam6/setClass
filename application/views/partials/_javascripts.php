@@ -16,6 +16,7 @@
 <script src="<?php echo base_url('/assets/materialPro/plugins/sparkline/jquery.sparkline.min.js') ?>"></script>
 <!--Custom JavaScript -->
 <script src="<?php echo base_url('/assets/materialPro/js/custom.min.js') ?>"></script>
+<script src="<?php echo base_url('/assets/materialPro/js/validation.js') ?>"></script>
 <!--Moment JS-->
 <script src="<?php echo base_url('/assets/materialPro/plugins/moment/min/moment.min.js') ?>"></script>
 <!--Wizard JS-->
@@ -26,3 +27,9 @@
 <script src="<?php echo base_url('/assets/materialPro/plugins/wizard/steps.js') ?>"></script>
 <!--Bootstrap Select JS-->
 <script src="<?php echo base_url('/assets/materialPro/plugins/bootstrap-select/bootstrap-select.min.js') ?>"></script>
+<!--Jquery InputMask JS-->
+<script src="<?php echo base_url('/assets/materialPro/plugins/jquery-inputmask/jquery.inputmask.bundle.js') ?>"></script>
+<!--Dropify JS-->
+<!--<script src="--><?php //echo base_url('/assets/materialPro/plugins/dropify/dist/js/dropify.min.js') ?><!--"></script>-->
+<!--Toast JS-->
+<script src="<?php echo base_url('/assets/materialPro/plugins/toast-master/js/jquery.toast.js') ?>"></script>
