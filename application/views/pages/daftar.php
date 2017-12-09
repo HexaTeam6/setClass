@@ -322,7 +322,7 @@
                     success: function (result) {
                         console.log(result);
                         if (result == "true"){
-                            console.log("200 OK");
+//                            console.log("200 OK");
                             $('#formGroupNip').removeClass("validate");
                             $('#formGroupNip').addClass("has-danger");
                             $('#wnip').addClass("form-control-danger");

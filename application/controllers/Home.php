@@ -10,12 +10,12 @@ class Home extends CI_Controller {
 
     public function index()
     {
-//        if(isset($_SESSION['username'])){
+        if(isset($_SESSION['kode_user'])){
 			$this->load->view('home');
-//		}
-//		else{
-//			redirect(site_url().'/Auth/logout');
-//		}
+		}
+		else{
+			redirect(site_url().'/Auth/logout');
+		}
     }
 
 }

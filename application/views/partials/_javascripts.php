@@ -33,3 +33,5 @@
 <!--<script src="--><?php //echo base_url('/assets/materialPro/plugins/dropify/dist/js/dropify.min.js') ?><!--"></script>-->
 <!--Toast JS-->
 <script src="<?php echo base_url('/assets/materialPro/plugins/toast-master/js/jquery.toast.js') ?>"></script>
+<!--Datatables JS-->
+<script src="<?php echo base_url('/assets/materialPro/plugins/datatables/jquery.dataTables.min.js') ?>"></script>

@@ -9,7 +9,7 @@ class Menu_model extends CI_Model{
     }
 
     function select_header(){
-        return $this->db->query('select distinct mh.kode_menu_header, mh.menu_header
+        return $this->db->query('select distinct mh.kode_menu_header, mh.menu_header, mh.icon
 								from menu_header mh, menu_child mc, menu_level ml
 								where mh.kode_menu_header = mc.kode_menu_header
 								and mc.kode_menu_child = ml.kode_menu_child

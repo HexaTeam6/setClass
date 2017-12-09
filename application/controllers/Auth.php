@@ -37,7 +37,7 @@ class Auth extends CI_Controller {
                 $this->session->set_userdata("email",$row->email);
                 $this->session->set_userdata("nama",$row->nama);
                 $this->session->set_userdata("status",$row->status);
-//				$this->session->set_userdata("menu",$this->generateMenu());
+				$this->session->set_userdata("menu",$this->generateMenu());
                 echo site_url('Home');
             }
         }else{
@@ -47,23 +47,21 @@ class Auth extends CI_Controller {
 	
 	public function generateMenu(){
 		$data = $this->Menu_model->select_header()->result();
-		$html = "";
+		$html = '';
 		//print_r($html);
 		foreach ($data as $row):
 			///echo $row->menu_header;
-			$html .= "<li class='treeview'>
-                                  <a href='#'><i class='fa fa-link'></i> <span>".$row->menu_header."</span>
-                                          <span class='pull-right-container'>
-                                            <i class='fa fa-angle-left pull-right'></i>
-                                          </span>
-                                  </a>
-                                  <ul class='treeview-menu'>";
+            $html .= '<li>
+                    <a class="has-arrow" href="#" aria-expanded="false"><i class="'.$row->icon.'"></i>
+                        <span class="hide-menu">'.$row->menu_header.'</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">';
 			$submenu = $this->Menu_model->select_child($row->kode_menu_header)->result();
 			foreach ($submenu as $rows):
-			$html .= "<li><a href='".site_url('/'.$rows->file_php.'')."'>".$rows->menu_name."</a></li>";
+			$html .= '<li><a href="'.site_url('/'.$rows->file_php.'').'">'.$rows->menu_name.'</a></li>';
 			endforeach;
-			$html .= "</ul>
-                                  </li>";
+			$html .= '</ul>
+                                  </li>';
 			//print_r($submenu);
 		endforeach;
 		return $html;
