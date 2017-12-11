@@ -17,6 +17,7 @@
 <!--Custom JavaScript -->
 <script src="<?php echo base_url('/assets/materialPro/js/custom.min.js') ?>"></script>
 <script src="<?php echo base_url('/assets/materialPro/js/validation.js') ?>"></script>
+<script src="<?php echo base_url('/assets/materialPro/js/jasny-bootstrap.js') ?>"></script>
 <!--Moment JS-->
 <script src="<?php echo base_url('/assets/materialPro/plugins/moment/min/moment.min.js') ?>"></script>
 <!--Wizard JS-->
