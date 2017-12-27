@@ -65,6 +65,7 @@
                                                 <option value="3">Ketua Kelas</option>
                                                 <option value="4">Sekertaris</option>
                                                 <option value="5">Bendahara</option>
+                                                <option value="6">Anggota</option>
                                         </optgroup>
                                     </select>
                                 </div>

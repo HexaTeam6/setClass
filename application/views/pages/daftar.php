@@ -43,7 +43,7 @@
                                 <h2 class="card-title">Sign Up</h2>
                                 <h6 class="card-subtitle">Daftar sebagai Wali Kelas</h6>
                                 <form action="<?php echo site_url('Daftar/insert') ?>"
-                                      class="validation-wizard wizard-circle" method="post" id="form">
+                                      class="validation-wizard wizard-circle" method="post" id="form" enctype="multipart/form-data">
                                     <!-- Step 1 -->
                                     <h6>Data pribadi</h6>
                                     <section>
@@ -148,6 +148,14 @@
                                                     <input type="text" class="form-control" id="wtelepon"
                                                            name="telepon" required>
                                                 </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-bottom: 20px;">
+                                            <div class="col-md-12">
+                                                <label for="input-file-now">Foto Profil</label>
+                                                <input type="file" id="input-file-now" name="foto" class="dropify"
+                                                       data-allowed-file-extensions="jpg png" required>
                                             </div>
                                         </div>
                                     </section>
@@ -307,6 +315,7 @@
             }
         });
 
+        //Masking
         $("#wnip").inputmask("9{1,12}");
         $("#wtelepon").inputmask("+628-9{1,3}-9{1,3}-9{1,4}");
 //        $("#wemail").inputmask("a{1,20}@a{1,20}.a{3}[.{2}]");
@@ -340,15 +349,19 @@
             }
         });
 
-//        alert password validation
-//        $("#password").keypress(function () {
-//            var alert = $("#alertPassword ul li").text().split(",");
-//            $("#alertPassword ul li").remove();
-//            $("#alertPassword ul li").append("<li>tastasta</li>");
-//            console.log(alert);
-//        });
-//        $('#password').not("[type=submit]").jqBootstrapValidation();
-//        $('#cpassword').not("[type=submit]").jqBootstrapValidation();
+
+        //File Upload
+        $('.dropify').dropify({
+            messages: {
+                'default': 'Seret gambar kesini atau klik untuk menambahkan gambar',
+                'replace': 'Seret gambar kesini atau klik untuk mengganti gambar',
+                'remove':  'Hapus',
+                'error':   'Ada kesalahan dalam file.'
+            },
+            tpl: {
+                message:'<div class="dropify-message"><span class="file-icon" /> <p style="text-align: center">{{ default }}</p></div>'
+            }
+        });
 
     });
 </script>

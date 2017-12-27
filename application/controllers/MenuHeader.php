@@ -30,9 +30,9 @@ class MenuHeader extends CI_Controller{
         );
 
         $this->Menu_header_model->input_data('menu_header', $data);
-        $this->session->set_flashdata('msg', 'Berhasil disimpan!');
+//        $this->session->set_flashdata('msg', 'Berhasil disimpan!');
 
-        redirect(site_url().'/MenuHeader');
+        redirect(site_url().'/Auth/refreshMenu/MenuHeader');
     }
 
     public function update()
@@ -46,17 +46,17 @@ class MenuHeader extends CI_Controller{
         );
 
         $this->Menu_header_model->update_data('menu_header', $kode_menu_header, $data);
-        $this->session->set_flashdata('msg', 'Berhasil diupdate!');
+//        $this->session->set_flashdata('msg', 'Berhasil diupdate!');
 
-        redirect(site_url().'/MenuHeader');
+        redirect(site_url().'/Auth/refreshMenu/MenuHeader');
     }
 
     public function delete($kode_menu_header)
     {
         $this->Menu_header_model->delete_data('menu_header', $kode_menu_header);
-        $this->session->set_flashdata('msg', 'Berhasil dihapus!');
+//        $this->session->set_flashdata('msg', 'Berhasil dihapus!');
 
-        echo site_url('MenuHeader');
+        echo site_url('/Auth/refreshMenu/MenuHeader');
     }
 
 }

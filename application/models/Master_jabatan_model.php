@@ -9,12 +9,20 @@ class Master_jabatan_model extends CI_Model{
     }
 
     function tampil_data(){
-        return $this->db->query("
-        SELECT *
-		FROM master_jabatan
-		WHERE kode_kelas = '".$_SESSION['kode_kelas']."'
-		AND kode_jabatan NOT IN(1,2)
-		ORDER BY kode_jabatan DESC");
+        if ($_SESSION['kode_kelas']==24101999)
+        {
+            return $this->db->query("
+            SELECT *
+		    FROM master_jabatan
+		    ORDER BY kode_jabatan DESC");
+        }else{
+            return $this->db->query("
+            SELECT *
+		    FROM master_jabatan
+		    WHERE kode_kelas = '".$_SESSION['kode_kelas']."'
+		    AND kode_jabatan NOT IN(1,2)
+		    ORDER BY kode_jabatan DESC");
+        }
     }
 
     function input_data($table,$data){

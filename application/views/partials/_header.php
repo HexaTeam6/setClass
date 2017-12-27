@@ -116,14 +116,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                                src="<?php echo base_url('/assets/img/default-profile.png') ?>" alt="user"
+                                src="<?php echo base_url('/assets/img/userProfile/').$_SESSION['foto'] ?>" alt="user"
                                 class="profile-pic"/></a>
                     <div class="dropdown-menu dropdown-menu-right scale-up">
                         <ul class="dropdown-user">
                             <li>
                                 <div class="dw-user-box">
                                     <div class="u-img"><img
-                                                src="<?php echo base_url('/assets/img/default-profile.png') ?>"
+                                                src="<?php echo base_url('/assets/img/userProfile/').$_SESSION['foto'] ?>"
                                                 alt="user"></div>
                                     <div class="u-text">
                                         <h4><?php echo $_SESSION['nama']; ?></h4>

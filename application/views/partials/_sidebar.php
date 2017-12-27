@@ -7,7 +7,7 @@
         <!-- User profile -->
         <div class="user-profile" style="background: url('<?php echo base_url('/assets/img/user-info.jpg')?>') no-repeat;">
             <!-- User profile image -->
-            <div class="profile-img"><img src="<?php echo base_url('/assets/img/default-profile.png')?>" alt="user"/></div>
+            <div class="profile-img"><img src="<?php echo base_url('/assets/img/userProfile/').$_SESSION['foto'] ?>" alt="user"/></div>
             <!-- User profile text-->
             <div class="profile-text"><span
                         style="color: white !important; width: 100%; padding: 7px 30px; background: rgba(0, 0, 0, 0.5); display: block; font-size: 15px;"

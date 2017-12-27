@@ -22,9 +22,14 @@ class MenuLevel extends CI_Controller {
 
     public function setting($kode_akses){
         //$this->output->enable_profiler(TRUE);
-        $data['data'] = $this->Menu_level_model->get_data($kode_akses)->result();
-        $data['kode_akses'] = $kode_akses;
-        $this->load->view('menu/pengaturan/menu_level_edit',$data);
+        if(isset($_SESSION['kode_user'])){
+            $data['data'] = $this->Menu_level_model->get_data($kode_akses)->result();
+            $data['kode_akses'] = $kode_akses;
+            $this->load->view('menu/pengaturan/menu_level_edit', $data);
+        }
+        else{
+            redirect(site_url().'/Auth/logout');
+        }
     }
 
     public function update()
@@ -48,8 +53,8 @@ class MenuLevel extends CI_Controller {
             );
             $this->Menu_level_model->input_data('menu_level', $data);
         endforeach;
-        $this->session->set_flashdata('msg', 'Berhasil disimpan!');
-        redirect(site_url() . '/MenuLevel/setting/'.$kode_akses);
+//        $this->session->set_flashdata('msg', 'Berhasil disimpan!');
+        redirect(site_url().'/Auth/refreshMenu/'.$kode_akses);
     }
 
 }

@@ -18,6 +18,12 @@
             <table align="center" width="60%" style="margin-bottom: 20px; text-align: left;">
                 <?php foreach ($user as $row): ?>
                     <tr>
+                        <td align="center" colspan="2">
+                            <img width="100px" src="<?php echo base_url('/assets/img/userProfile/').$row->foto?>" alt="User Picture"
+                            style="border-radius: 100%;">
+                        </td>
+                    </tr>
+                    <tr>
                         <td width="30%"><b>Nama </b></td>
                         <td align="left"><?php echo $row->nama; ?></td>
                     </tr>
@@ -31,7 +37,7 @@
                     </tr>
                     <tr>
                         <td width="30%"><b>Jabatan </b></td>
-                        <td align="left"><?php echo $row->kode_jabatan; ?></td>
+                        <td align="left"><?php echo $row->jabatan; ?></td>
                     </tr>
                     <tr>
                         <td width="30%"><b>Kode Kelas </b></td>

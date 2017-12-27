@@ -37,6 +37,7 @@ class Auth extends CI_Controller {
                 $this->session->set_userdata("email",$row->email);
                 $this->session->set_userdata("nama",$row->nama);
                 $this->session->set_userdata("status",$row->status);
+                $this->session->set_userdata("foto",$row->foto);
 				$this->session->set_userdata("menu",$this->generateMenu());
                 echo site_url('Home');
             }
@@ -66,6 +67,15 @@ class Auth extends CI_Controller {
 		endforeach;
 		return $html;
 	}
+
+	public function refreshMenu($link){
+        $this->session->set_userdata("menu",$this->generateMenu());
+        if ($link > 0 ){
+            redirect(site_url().'/MenuLevel/setting/'.$link);
+        }else{
+            redirect(site_url().'/'.$link);
+        }
+    }
 
     public function logout()
     {

@@ -17,7 +17,11 @@ class Daftar extends CI_Controller {
 
     public function insert()
     {
+        //upload file and get the name
+        $foto = $this->uploadFile();
+
         //$this->output->enable_profiler(TRUE);
+//        $fileName = date("d-m-Y H:i:s")."_".@$_FILES['foto']['name'];
        $kode_user = $this->input->post('nip');
        $nama = $this->input->post('nama');
        $password = $this->input->post('password');
@@ -37,11 +41,12 @@ class Daftar extends CI_Controller {
            'kode_user' => $kode_user,
            'kode_akses' => '2',
            'kode_kelas' => $kode_kelas,
-           'kode_jabatan' => '1',
+           'kode_jabatan' => '2',
            'email' => $email,
            'nama' => $nama,
            'password' => md5($password),
            'status' => 'Confirm',
+           'foto' => $foto
        );
        $dataWaliKelas = array(
            'NIP' => $kode_user,
@@ -54,6 +59,7 @@ class Daftar extends CI_Controller {
            'tanggal_lahir' => $tanggalLahir,
            'alamat' => $alamat,
            'no_telp' => $telepon,
+           'foto' => $foto
        );
        $dataKelas = array(
            'kode_kelas' => $kode_kelas,
@@ -63,11 +69,17 @@ class Daftar extends CI_Controller {
            'kelas' => $kelas,
            'jurusan' => $jurusan
        );
+       $dataJabatan = array(
+           'kode_jabatan' => 2,
+           'kode_kelas' => $kode_kelas,
+           'jabatan' => 'Wali Kelas',
+           'keterangan' => 'Wali Kelas'
+       );
 
        $this->Daftar_model->input_data('master_kelas', $dataKelas);
        $this->Daftar_model->input_data('master_wali_kelas', $dataWaliKelas);
+       $this->Daftar_model->input_data('master_jabatan', $dataJabatan);
        $this->Daftar_model->input_data('master_login', $dataLogin);
-
        redirect(site_url() . '/Daftar/show/'. $kode_user);
     }
 
@@ -95,6 +107,29 @@ class Daftar extends CI_Controller {
 //            return false;
             echo "false";
         }
+    }
+
+    public function uploadFile()
+    {
+        //Make directory
+        if(!file_exists("assets/img/userProfile")){
+            mkdir("assets/img/userProfile");
+        }
+
+        $config['upload_path'] = './assets/img/userProfile/';
+        $config['allowed_types'] = 'jpg|png';
+        $config['encrypt_name'] = TRUE;
+
+        $this->load->library('upload', $config);
+
+        $this->upload->do_upload('foto');
+
+        $upload_data = $this->upload->data();
+
+        $file_name = $upload_data['file_name'];
+
+        return $file_name;
+
     }
 
 }

@@ -34,9 +34,9 @@ class MenuChild extends CI_Controller{
         );
 
         $this->Menu_child_model->input_data('menu_child', $data);
-        $this->session->set_flashdata('msg', 'Berhasil disimpan!');
+//        $this->session->set_flashdata('msg', 'Berhasil disimpan!');
 
-        redirect(site_url().'/MenuChild');
+        redirect(site_url().'/Auth/refreshMenu/MenuChild');
     }
 
     public function update()
@@ -52,17 +52,17 @@ class MenuChild extends CI_Controller{
         );
 
         $this->Menu_child_model->update_data('menu_child', $kode_menu_child, $data);
-        $this->session->set_flashdata('msg', 'Berhasil diupdate!');
+//        $this->session->set_flashdata('msg', 'Berhasil diupdate!');
 
-        redirect(site_url().'/MenuChild');
+        redirect(site_url().'/Auth/refreshMenu/MenuChild');
     }
 
     public function delete($kode_menu_child)
     {
         $this->Menu_child_model->delete_data('menu_child', $kode_menu_child);
-        $this->session->set_flashdata('msg', 'Berhasil dihapus!');
+//        $this->session->set_flashdata('msg', 'Berhasil dihapus!');
 
-        echo site_url('MenuChild');
+        echo site_url('/Auth/refreshMenu/MenuChild');
     }
 
 }

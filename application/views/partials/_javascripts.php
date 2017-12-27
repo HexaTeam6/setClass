@@ -31,7 +31,7 @@
 <!--Jquery InputMask JS-->
 <script src="<?php echo base_url('/assets/materialPro/plugins/jquery-inputmask/jquery.inputmask.bundle.js') ?>"></script>
 <!--Dropify JS-->
-<!--<script src="--><?php //echo base_url('/assets/materialPro/plugins/dropify/dist/js/dropify.min.js') ?><!--"></script>-->
+<script src="<?php echo base_url('/assets/materialPro/plugins/dropify/dist/js/dropify.min.js') ?>"></script>
 <!--Toast JS-->
 <script src="<?php echo base_url('/assets/materialPro/plugins/toast-master/js/jquery.toast.js') ?>"></script>
 <!--Datatables JS-->

@@ -23,4 +23,4 @@
 <!--Bootstrap Select CSS-->
 <link href="<?php echo base_url('/assets/materialPro/plugins/bootstrap-select/bootstrap-select.min.css') ?>" rel="stylesheet">
 <!--Dropify CSS-->
-<!--<link href="--><?php //echo base_url('/assets/materialPro/plugins/dropify/dist/css/dropify.min.css') ?><!--" rel="stylesheet">-->
+<link href="<?php echo base_url('/assets/materialPro/plugins/dropify/dist/css/dropify.min.css') ?>" rel="stylesheet">
