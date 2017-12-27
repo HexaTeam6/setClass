@@ -7,12 +7,15 @@ class HakAkses extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('Hak_akses_model');
+        $this->load->model('Logs_model');
     }
 
     public function index()
     {
         if(isset($_SESSION['kode_user'])){
             $data['data'] = $this->Hak_akses_model->tampil_data()->result();
+            $data['notif'] = $this->Logs_model->getNotification()->result();
+            $data['new'] = $this->Logs_model->newNotification()->num_rows();
             $this->load->view('menu/pengaturan/hak_akses', $data);
         }
         else{

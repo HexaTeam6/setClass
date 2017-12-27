@@ -12,7 +12,11 @@
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
 <div id="main-wrapper">
-    <?php $this->load->view('partials/_header'); ?>
+    <?php
+    $header['notif'] = $notif;
+    $header['new'] = $new;
+    $this->load->view('partials/_header', $header);
+    ?>
 
     <?php $this->load->view('partials/_sidebar'); ?>
     <!-- ============================================================== -->
@@ -231,12 +235,12 @@
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {
             var $item = $(this).closest("tr");
-            var kode = $item.find("input[id$='kode_menu_child']:hidden:first").val();
-            var nama = $.trim($item.find(".menu_child").text());
+            var kode = $item.find("input[id$='id']:hidden:first").val();
+            var nama = $.trim($item.find(".jabatan").text());
 
             swal({
                     title: "Apakah yakin akan dihapus?",
-                    text: "Menu Child dengan nama " + nama,
+                    text: "Data dengan jabatan " + nama,
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#26C6DA",
@@ -248,7 +252,7 @@
                 function(isConfirm){
                     if (isConfirm) {
                         $.ajax({
-                            url: "<?php echo site_url("/MenuChild/delete/");?>" + kode,
+                            url: "<?php echo site_url("/MasterJabatan/delete/");?>" + kode + "/" + nama,
                             success: function (result) {
                                 window.location.href = result;
                             }

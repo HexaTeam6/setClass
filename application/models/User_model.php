@@ -35,6 +35,11 @@ class User_model extends CI_Model
         return $result;
     }
 
+    public function input_data($table, $data)
+    {
+        return $this->db->insert($table, $data);
+    }
+
     function update_data($id,$table,$where,$data){
         $this->db->where($id,$where);
         $this->db->update($table,$data);

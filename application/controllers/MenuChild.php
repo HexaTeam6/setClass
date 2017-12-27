@@ -8,6 +8,7 @@ class MenuChild extends CI_Controller{
         parent::__construct();
         $this->load->model('Menu_child_model');
         $this->load->model('Menu_header_model');
+        $this->load->model('Logs_model');
     }
 
     public function index()
@@ -15,6 +16,8 @@ class MenuChild extends CI_Controller{
         if(isset($_SESSION['kode_user'])){
             $data['data'] = $this->Menu_child_model->tampil_data()->result();
             $data['menu_header'] = $this->Menu_header_model->tampil_data()->result();
+            $data['notif'] = $this->Logs_model->getNotification()->result();
+            $data['new'] = $this->Logs_model->newNotification()->num_rows();
             $this->load->view('menu/pengaturan/menu_child', $data);
         }
         else{

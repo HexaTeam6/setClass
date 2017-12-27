@@ -12,7 +12,11 @@
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
 <div id="main-wrapper">
-    <?php $this->load->view('partials/_header'); ?>
+    <?php
+    $header['notif'] = $notif;
+    $header['new'] = $new;
+    $this->load->view('partials/_header', $header);
+    ?>
 
     <?php $this->load->view('partials/_sidebar'); ?>
     <!-- ============================================================== -->
@@ -117,7 +121,7 @@
                                             <label class="label label-light-info"><?php echo $row->keterangan;?></label>
                                         </td>
                                         <td align=center>
-                                            <?php if ($this->session->userdata("1edit")=="1"){?>
+<!--                                            --><?php //if ($this->session->userdata("1edit")=="1"){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' title data-original-title='Edit'>
                                                         <button class='btn btn-xs btn-rounded btn-warning waves waves-effect waves-light' data-title="Edit" id="btnEdit" data-toggle="modal" data-target="#AddModal">
@@ -125,9 +129,9 @@
                                                         </button>
                                                     </span>
                                                 </a>
-                                            <?php }?>
+<!--                                            --><?php //}?>
 
-                                            <?php if ($this->session->userdata("1delete")=="1"){?>
+<!--                                            --><?php //if ($this->session->userdata("1delete")=="1"){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' title='Delete'>
                                                         <button class='btn btn-xs btn-rounded btn-danger waves waves-effect waves-light' id="btnDelete">
@@ -135,7 +139,7 @@
                                                         </button>
                                                     </span>
                                                 </a>
-                                            <?php }?>
+<!--                                            --><?php //}?>
                                         </td>
                                     </tr>
                                     <?php

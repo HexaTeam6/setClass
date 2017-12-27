@@ -12,7 +12,11 @@
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
 <div id="main-wrapper">
-    <?php $this->load->view('partials/_header'); ?>
+    <?php
+    $header['notif'] = $notif;
+    $header['new'] = $new;
+    $this->load->view('partials/_header', $header);
+    ?>
 
     <?php $this->load->view('partials/_sidebar'); ?>
     <!-- ============================================================== -->

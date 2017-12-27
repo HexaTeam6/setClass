@@ -59,7 +59,11 @@
                     <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="#"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
                                 class="mdi mdi-alert-circle"></i>
-                        <div class="notify"><span class="heartbit"></span> <span class="point"></span></div>
+                        <?php
+                        if ($new == 0){
+                            echo '<div class="notify"><span class="heartbit"></span> <span class="point"></span></div>';
+                        }
+                        ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right mailbox scale-up">
                         <ul>
@@ -69,34 +73,21 @@
                             <li>
                                 <div class="message-center">
                                     <!-- Message -->
-                                    <a href="#">
-                                        <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
+                                    <?php foreach ($notif as $row):?>
+                                    <a href="<?php echo site_url('/').$row->link; ?>">
+                                        <div class="btn btn-danger btn-circle"><i class="<?php echo $row->icon; ?>"></i></div>
                                         <div class="mail-contnet">
-                                            <h5>Luanch Admin</h5> <span
-                                                    class="mail-desc">Just see the my new admin!</span> <span
-                                                    class="time">9:30 AM</span></div>
+                                            <h5><?php echo $row->nama?></h5>
+                                            <span class="mail-desc"><?php echo $row->message?></span>
+                                            <span class="time">
+                                                <?php
+                                                    $notif_created = get_timeago(strtotime($row->created_at));
+                                                    echo $notif_created;
+                                                ?>
+                                            </span>
+                                        </div>
                                     </a>
-                                    <!-- Message -->
-                                    <a href="#">
-                                        <div class="btn btn-success btn-circle"><i class="ti-calendar"></i></div>
-                                        <div class="mail-contnet">
-                                            <h5>Event today</h5> <span class="mail-desc">Just a reminder that you have event</span>
-                                            <span class="time">9:10 AM</span></div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="#">
-                                        <div class="btn btn-info btn-circle"><i class="ti-settings"></i></div>
-                                        <div class="mail-contnet">
-                                            <h5>Settings</h5> <span class="mail-desc">You can customize this template as you want</span>
-                                            <span class="time">9:08 AM</span></div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="#">
-                                        <div class="btn btn-primary btn-circle"><i class="ti-user"></i></div>
-                                        <div class="mail-contnet">
-                                            <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span>
-                                            <span class="time">9:02 AM</span></div>
-                                    </a>
+                                    <?php endforeach;?>
                                 </div>
                             </li>
                             <li>
@@ -115,9 +106,9 @@
                 <!-- ============================================================== -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                                src="<?php echo base_url('/assets/img/userProfile/').$_SESSION['foto'] ?>" alt="user"
-                                class="profile-pic"/></a>
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="<?php echo base_url('/assets/img/userProfile/').$_SESSION['foto'] ?>" alt="user"
+                             class="profile-pic" style="width: 30px; height: 30px;"/></a>
                     <div class="dropdown-menu dropdown-menu-right scale-up">
                         <ul class="dropdown-user">
                             <li>
@@ -127,17 +118,17 @@
                                                 alt="user"></div>
                                     <div class="u-text">
                                         <h4><?php echo $_SESSION['nama']; ?></h4>
-                                        <p class="text-muted"><?php echo $_SESSION['email']; ?></p><a href="profile.html"
-                                                                                                     class="btn btn-rounded btn-danger btn-sm">View
-                                            Profile</a></div>
+                                        <p class="text-muted"><?php echo $_SESSION['email']; ?></p>
+                                        <a href="<?php echo site_url('/UserProfile')?>" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                    </div>
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
                             <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
                             <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+<!--                            <li role="separator" class="divider"></li>-->
+<!--                            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>-->
                             <li role="separator" class="divider"></li>
                             <li><a href="<?php echo site_url('Auth/logout')?>"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>

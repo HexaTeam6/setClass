@@ -13,7 +13,11 @@
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
 <div id="main-wrapper">
-    <?php $this->load->view('partials/_header'); ?>
+    <?php
+    $header['notif'] = $notif;
+    $header['new'] = $new;
+    $this->load->view('partials/_header', $header);
+    ?>
 
     <?php $this->load->view('partials/_sidebar'); ?>
     <!-- ============================================================== -->
@@ -94,7 +98,7 @@
                                         <div class="el-card-avatar el-overlay-1"
                                              style="width: 150px; border-radius: 100%">
                                             <img src="<?php echo base_url('/assets/img/userProfile/') . $user->foto ?>"
-                                                 style="width: 150px; border-radius: 100%" alt="user">
+                                                 style="width: 150px; height: 150px; border-radius: 100%" alt="user">
                                             <div class="el-overlay" style="width: 150px; border-radius: 100%">
                                                 <ul class="el-info">
                                                     <li><i id="uploadImage" style="cursor: pointer;"
@@ -134,39 +138,16 @@
                     <div class="card">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs profile-tab" role="tablist">
-                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#home" role="tab">Riwayat</a>
+                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#profile" role="tab">Profil</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profil</a>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#riwayat" role="tab">Riwayat</a>
                             </li>
                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#settings" role="tab">Pengaturan</a>
                             </li>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div class="tab-pane active" id="home" role="tabpanel">
-                                <div class="card-body">
-                                    <div class="profiletimeline">
-                                        <div class="sl-item">
-                                            <div class="sl-right">
-                                                <div>
-                                                    <span class="sl-date">5 minutes ago</span>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                        Accusamus accusantium alias amet architecto commodi, ducimus id
-                                                        illo, nostrum repellendus, similique tempora totam voluptatem
-                                                        voluptatum! Cupiditate deserunt esse magni nesciunt.
-                                                        Suscipit?</p>
-                                                    <button class="btn btn-success btn-rounded waves waves-effect waves-light"
-                                                            type="button">asdasd
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--second tab-->
-                            <div class="tab-pane" id="profile" role="tabpanel">
+                            <div class="tab-pane active" id="profile" role="tabpanel">
                                 <div class="card-body">
                                     <div class="col-md-12" align="center" style="margin-bottom: 10px">
                                         <label class="label label-info">Profil User</label>
@@ -259,6 +240,31 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--second tab-->
+                            <div class="tab-pane" id="riwayat" role="tabpanel">
+                                <div class="card-body">
+                                    <?php foreach ($logs as $log):?>
+                                        <div class="profiletimeline">
+                                            <div class="sl-item">
+                                                <div class="sl-right">
+                                                <span class="sl-date">
+                                                    <i class="fa fa-clock-o"></i>
+                                                    <?php
+                                                    $log_created = get_timeago(strtotime($log->created_at));
+                                                    echo $log_created; ?>
+                                                </span>
+                                                    <p style="margin-bottom: 0;"><?php echo $log->message; ?></p>
+                                                    <a class="btn btn-xs btn-success waves waves-effect waves-light"
+                                                       href="<?php echo site_url('/').$log->link; ?>">Lihat
+                                                    </a>
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endforeach;?>
+                                </div>
+                            </div>
+                            <!--Third tab-->
                             <div class="tab-pane" id="settings" role="tabpanel">
                                 <div class="card-body">
                                     <form class="form-horizontal form-material" method="post" action="<?php echo site_url('UserProfile/update')?>">
@@ -370,37 +376,6 @@
 
 <!--Dropify JS, InputMask Js, SweetAlert JS-->
 <?php $this->load->view('partials/_javascripts'); ?>
-<?php
-function get_timeago( $ptime )
-{
-    $estimate_time = time() - $ptime;
-
-    if( $estimate_time < 1 )
-    {
-        return 'beberapa saat yang lalu';
-    }
-
-    $condition = array(
-        12 * 30 * 24 * 60 * 60  =>  'tahun',
-        30 * 24 * 60 * 60       =>  'bulan',
-        24 * 60 * 60            =>  'hari',
-        60 * 60                 =>  'jam',
-        60                      =>  'menit',
-        1                       =>  'detik'
-    );
-
-    foreach( $condition as $secs => $str )
-    {
-        $d = $estimate_time / $secs;
-
-        if( $d >= 1 )
-        {
-            $r = round( $d );
-            return $r . ' ' . $str . ' lalu';
-        }
-    }
-}
-?>
 <script>
     $(function () {
 
