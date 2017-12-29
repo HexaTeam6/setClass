@@ -15,8 +15,12 @@ class UserProfile extends CI_Controller{
         if(isset($_SESSION['kode_user'])){
             $data['data'] = $this->User_model->tampil_data()->result();
             $data['logs'] = $this->Logs_model->getRiwayat()->result();
+
+            //Notification
             $data['notif'] = $this->Logs_model->getNotification()->result();
-            $data['new'] = $this->Logs_model->newNotification()->num_rows();
+            $data['new'] = $this->Logs_model->newNotification()->result();
+            $data['mark'] = $this->Logs_model->newNotification()->num_rows();
+
             $this->load->view('menu/pengaturan/user_profile', $data);
         }
         else{
@@ -43,13 +47,13 @@ class UserProfile extends CI_Controller{
         $dataLogin = array(
             'nama' => $nama
         );
-        $logs = array(
-            'kode_user' => $_SESSION['kode_user'],
-            'kode_kelas' => $_SESSION['kode_kelas'],
-            'message' => 'Informasi profil telah diperbarui',
-            'link' => 'UserProfile',
-            'icon' => 'ti-user'
-        );
+//        $logs = array(
+//            'kode_user' => $_SESSION['kode_user'],
+//            'kode_kelas' => $_SESSION['kode_kelas'],
+//            'message' => 'Informasi profil telah diperbarui',
+//            'link' => 'UserProfile',
+//            'icon' => 'ti-user'
+//        );
 
         switch ($_SESSION['kode_akses']){
             case '2' : $this->User_model->update_data('NIP' ,'master_wali_kelas', $_SESSION['kode_user'], $dataUser);
@@ -62,7 +66,7 @@ class UserProfile extends CI_Controller{
         }
 
         $this->User_model->update_data('kode_user' ,'master_login', $_SESSION['kode_user'], $dataLogin);
-        $this->Logs_model->input_data('logs', $logs);
+//        $this->Logs_model->input_data('logs', $logs);
         $this->session->set_userdata("nama",$nama);
         $this->session->set_flashdata('msg', 'Berhasil diupdate!');
 
@@ -94,13 +98,13 @@ class UserProfile extends CI_Controller{
             'foto' => $file_name
         );
 
-        $logs = array(
-            'kode_user' => $_SESSION['kode_user'],
-            'kode_kelas' => $_SESSION['kode_kelas'],
-            'message' => 'Foto profil telah diperbarui',
-            'link' => 'UserProfile',
-            'icon' => 'ti-user'
-        );
+//        $logs = array(
+//            'kode_user' => $_SESSION['kode_user'],
+//            'kode_kelas' => $_SESSION['kode_kelas'],
+//            'message' => 'Foto profil telah diperbarui',
+//            'link' => 'UserProfile',
+//            'icon' => 'ti-user'
+//        );
 
         switch ($_SESSION['kode_akses']){
             case '2' : $this->User_model->update_data('NIP' ,'master_wali_kelas', $_SESSION['kode_user'], $data);
@@ -112,7 +116,7 @@ class UserProfile extends CI_Controller{
             default : '';
         }
         $this->User_model->update_data('kode_user' ,'master_login', $_SESSION['kode_user'], $data);
-        $this->Logs_model->input_data('logs', $logs);
+//        $this->Logs_model->input_data('logs', $logs);
 
         $this->session->set_userdata("foto",$file_name);
 

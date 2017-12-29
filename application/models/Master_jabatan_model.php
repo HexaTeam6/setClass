@@ -14,14 +14,14 @@ class Master_jabatan_model extends CI_Model{
             return $this->db->query("
             SELECT *
 		    FROM master_jabatan
-		    ORDER BY kode_jabatan DESC");
+		    ORDER BY id DESC");
         }else{
             return $this->db->query("
             SELECT *
 		    FROM master_jabatan
 		    WHERE kode_kelas = '".$_SESSION['kode_kelas']."'
 		    AND kode_jabatan NOT IN(1,2)
-		    ORDER BY kode_jabatan DESC");
+		    ORDER BY id DESC");
         }
     }
 

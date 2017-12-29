@@ -14,8 +14,12 @@ class MenuLevel extends CI_Controller {
     {
         if(isset($_SESSION['kode_user'])){
             $data['data'] = $this->Menu_level_model->tampil_data()->result();
+
+            //Notification
             $data['notif'] = $this->Logs_model->getNotification()->result();
-            $data['new'] = $this->Logs_model->newNotification()->num_rows();
+            $data['new'] = $this->Logs_model->newNotification()->result();
+            $data['mark'] = $this->Logs_model->newNotification()->num_rows();
+
             $this->load->view('menu/pengaturan/menu_level_view',$data);
         }
         else{
@@ -27,9 +31,13 @@ class MenuLevel extends CI_Controller {
         //$this->output->enable_profiler(TRUE);
         if(isset($_SESSION['kode_user'])){
             $data['data'] = $this->Menu_level_model->get_data($kode_akses)->result();
-            $data['notif'] = $this->Logs_model->getNotification()->result();
-            $data['new'] = $this->Logs_model->newNotification()->num_rows();
             $data['kode_akses'] = $kode_akses;
+
+            //Notification
+            $data['notif'] = $this->Logs_model->getNotification()->result();
+            $data['new'] = $this->Logs_model->newNotification()->result();
+            $data['mark'] = $this->Logs_model->newNotification()->num_rows();
+
             $this->load->view('menu/pengaturan/menu_level_edit', $data);
         }
         else{

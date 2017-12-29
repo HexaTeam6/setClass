@@ -14,8 +14,12 @@ class MasterJabatan extends CI_Controller{
     {
         if(isset($_SESSION['kode_user'])){
             $data['data'] = $this->Master_jabatan_model->tampil_data()->result();
+
+            //Notification
             $data['notif'] = $this->Logs_model->getNotification()->result();
-            $data['new'] = $this->Logs_model->newNotification()->num_rows();
+            $data['new'] = $this->Logs_model->newNotification()->result();
+            $data['mark'] = $this->Logs_model->newNotification()->num_rows();
+
             $this->load->view('menu/master/master_jabatan', $data);
         }
         else{
@@ -39,8 +43,9 @@ class MasterJabatan extends CI_Controller{
             'kode_user' => $_SESSION['kode_user'],
             'kode_kelas' => $_SESSION['kode_kelas'],
             'message' => 'Telah menambahkan jabatan '.$jabatan.' baru',
-            'link' => 'MasterJabatan',
-            'icon' => 'ti-ruler-alt'
+            'link' => 'Logs/getNewLogs/MasterJabatan',
+            'icon' => 'ti-ruler-alt',
+            'color' => 'success'
         );
 
         $this->Master_jabatan_model->input_data('master_jabatan', $data);
@@ -67,13 +72,14 @@ class MasterJabatan extends CI_Controller{
             'kode_user' => $_SESSION['kode_user'],
             'kode_kelas' => $_SESSION['kode_kelas'],
             'message' => 'Telah mengedit jabatan '.$jabatan,
-            'link' => 'MasterJabatan',
-            'icon' => 'ti-ruler-alt'
+            'link' => 'Logs/getNewLogs/MasterJabatan',
+            'icon' => 'ti-ruler-alt',
+            'color' => 'warning'
         );
 
         $this->Master_jabatan_model->update_data('master_jabatan', $id, $data);
         $this->Logs_model->input_data('logs', $logs);
-        $this->session->set_flashdata('msg', 'Berhasil disimpan!');
+        $this->session->set_flashdata('msg', 'Berhasil diupdate!');
 
         redirect(site_url().'/MasterJabatan');
     }
@@ -86,8 +92,9 @@ class MasterJabatan extends CI_Controller{
             'kode_user' => $_SESSION['kode_user'],
             'kode_kelas' => $_SESSION['kode_kelas'],
             'message' => 'Telah menghapus jabatan '.$jabatan,
-            'link' => 'MasterJabatan',
-            'icon' => 'ti-ruler-alt'
+            'link' => 'Logs/getNewLogs/MasterJabatan',
+            'icon' => 'ti-ruler-alt',
+            'color' => 'danger'
         );
 
         $this->Master_jabatan_model->delete_data('master_jabatan', $id);

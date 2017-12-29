@@ -12,19 +12,76 @@ class Logs_model extends CI_Model{
         return $this->db->query("SELECT * FROM logs WHERE kode_user = ".$_SESSION['kode_user']." ORDER BY created_at DESC LIMIT 0,5");
     }
 
-    function getNotification(){
-        return $this->db->query("SELECT l.*, ml.nama 
+    function allNotification(){
+
+        //get if new notification is available
+        $row = $this->newNotification()->num_rows();
+
+        //check new notif
+        if ($row > 0){
+            $sql = $this->idNewLogs();
+
+            return $this->db->query("SELECT l.*, ml.nama 
                                   FROM logs l, master_login ml
                                   WHERE l.kode_user = ml.kode_user
-                                  ORDER BY created_at DESC");
+                                  AND l.kode_kelas = ?
+                                  AND l.kode_user NOT IN (?)
+                                  AND l.id NOT IN (".$sql.")
+                                  ORDER BY created_at DESC", array($_SESSION['kode_kelas'], $_SESSION['kode_user']));
+        }else{
+            return $this->db->query("SELECT l.*, ml.nama 
+                                  FROM logs l, master_login ml
+                                  WHERE l.kode_user = ml.kode_user
+                                  AND l.kode_kelas = ?
+                                  AND l.kode_user NOT IN (?)
+                                  ORDER BY created_at DESC", array($_SESSION['kode_kelas'], $_SESSION['kode_user']));
+        }
+    }
+
+    function getNotification(){
+
+        //get if new notification is available
+        $row = $this->newNotification()->num_rows();
+
+        //check new notif
+        if ($row > 0){
+            $sql = $this->idNewLogs();
+
+            return $this->db->query("SELECT l.*, ml.nama 
+                                  FROM logs l, master_login ml
+                                  WHERE l.kode_user = ml.kode_user
+                                  AND l.kode_kelas = ?
+                                  AND l.kode_user NOT IN (?)
+                                  AND l.id NOT IN (".$sql.")
+                                  ORDER BY created_at DESC
+                                  LIMIT 0,5", array($_SESSION['kode_kelas'], $_SESSION['kode_user']));
+        }else{
+            return $this->db->query("SELECT l.*, ml.nama 
+                                  FROM logs l, master_login ml
+                                  WHERE l.kode_user = ml.kode_user
+                                  AND l.kode_kelas = ?
+                                  AND l.kode_user NOT IN (?)
+                                  ORDER BY created_at DESC
+                                  LIMIT 0,5", array($_SESSION['kode_kelas'], $_SESSION['kode_user']));
+        }
     }
 
     function newNotification(){
-        return $this->db->query("SELECT ld.* 
-                                  FROM logs_detail ld, logs l
-                                  WHERE ld.id_logs = l.id
-                                  AND ld.kode_user = ?
-                                  AND ld.kode_kelas = ?", array($_SESSION['kode_user'], $_SESSION['kode_kelas']));
+        return $this->db->query("SELECT l.*, ml.nama
+                                  FROM `logs` l, master_login ml
+                                  WHERE l.id NOT IN (SELECT id_logs FROM logs_detail WHERE kode_user = ?)
+                                  AND l.kode_user = ml.kode_user
+                                  AND l.kode_user NOT IN (?)
+                                  AND l.kode_kelas = ?
+                                  ORDER BY l.created_at DESC ", array($_SESSION['kode_user'], $_SESSION['kode_user'], $_SESSION['kode_kelas']));
+    }
+
+    function idNewLogs(){
+        return $sql = "SELECT id
+                        FROM `logs`
+                        WHERE id NOT IN (SELECT id_logs FROM logs_detail WHERE kode_user = ".$_SESSION['kode_user'].")
+                        AND kode_user NOT IN (".$_SESSION['kode_user'].")
+                        AND kode_kelas = '".$_SESSION['kode_kelas']."'";
     }
 
     function input_data($table,$data){

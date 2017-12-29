@@ -15,6 +15,7 @@
     <?php
     $header['notif'] = $notif;
     $header['new'] = $new;
+    $header['mark'] = $mark;
     $this->load->view('partials/_header', $header);
     ?>
 

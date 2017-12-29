@@ -60,7 +60,7 @@
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
                                 class="mdi mdi-alert-circle"></i>
                         <?php
-                        if ($new == 0){
+                        if ($mark > 0){
                             echo '<div class="notify"><span class="heartbit"></span> <span class="point"></span></div>';
                         }
                         ?>
@@ -68,18 +68,40 @@
                     <div class="dropdown-menu dropdown-menu-right mailbox scale-up">
                         <ul>
                             <li>
-                                <div class="drop-title">Notifications</div>
+                                <div class="drop-title">Pemberitahuan</div>
                             </li>
                             <li>
                                 <div class="message-center">
+                                    <!--new message-->
+                                    <?php foreach ($new as $row):?>
+                                        <a style="background-color: #f2f4f8"
+                                           href="<?php echo site_url('/').$row->link.'/'.$row->id; ?>">
+                                            <div class="btn btn-<?php echo $row->color?> btn-circle">
+                                                <i class="<?php echo $row->icon; ?>"></i>
+                                            </div>
+                                            <div class="mail-contnet">
+                                                <h5><?php echo $row->nama?></h5>
+                                                <span class="mail-desc"><?php echo $row->message?></span>
+                                                <span class="time">
+                                                    <i class="mdi mdi-clock"></i>
+                                                    <?php
+                                                    $notif_created = get_timeago(strtotime($row->created_at));
+                                                    echo $notif_created;
+                                                    ?> <label class="label label-inverse" style=" font-size: 10px; cursor: pointer">Baru</label>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    <?php endforeach;?>
+
                                     <!-- Message -->
                                     <?php foreach ($notif as $row):?>
                                     <a href="<?php echo site_url('/').$row->link; ?>">
-                                        <div class="btn btn-danger btn-circle"><i class="<?php echo $row->icon; ?>"></i></div>
+                                        <div class="btn btn-<?php echo $row->color?> btn-circle"><i class="<?php echo $row->icon; ?>"></i></div>
                                         <div class="mail-contnet">
                                             <h5><?php echo $row->nama?></h5>
                                             <span class="mail-desc"><?php echo $row->message?></span>
                                             <span class="time">
+                                                <i class="mdi mdi-clock"></i>
                                                 <?php
                                                     $notif_created = get_timeago(strtotime($row->created_at));
                                                     echo $notif_created;
@@ -91,8 +113,10 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all
-                                        notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                <a class="nav-link text-center" href="<?php echo site_url('/Logs')?>">
+                                    <strong>Lihat semua pemberitahuan</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -119,7 +143,7 @@
                                     <div class="u-text">
                                         <h4><?php echo $_SESSION['nama']; ?></h4>
                                         <p class="text-muted"><?php echo $_SESSION['email']; ?></p>
-                                        <a href="<?php echo site_url('/UserProfile')?>" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                        <a href="<?php echo site_url('/UserProfile')?>" class="btn btn-rounded btn-danger btn-sm">Lihat Profil</a>
                                     </div>
                                 </div>
                             </li>
@@ -130,7 +154,7 @@
 <!--                            <li role="separator" class="divider"></li>-->
 <!--                            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>-->
                             <li role="separator" class="divider"></li>
-                            <li><a href="<?php echo site_url('Auth/logout')?>"><i class="fa fa-power-off"></i> Logout</a></li>
+                            <li><a href="<?php echo site_url('Auth/logout')?>"><i class="fa fa-power-off"></i> Keluar</a></li>
                         </ul>
                     </div>
                 </li>

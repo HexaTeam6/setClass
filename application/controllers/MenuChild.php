@@ -16,8 +16,12 @@ class MenuChild extends CI_Controller{
         if(isset($_SESSION['kode_user'])){
             $data['data'] = $this->Menu_child_model->tampil_data()->result();
             $data['menu_header'] = $this->Menu_header_model->tampil_data()->result();
+
+            //Notification
             $data['notif'] = $this->Logs_model->getNotification()->result();
-            $data['new'] = $this->Logs_model->newNotification()->num_rows();
+            $data['new'] = $this->Logs_model->newNotification()->result();
+            $data['mark'] = $this->Logs_model->newNotification()->num_rows();
+
             $this->load->view('menu/pengaturan/menu_child', $data);
         }
         else{

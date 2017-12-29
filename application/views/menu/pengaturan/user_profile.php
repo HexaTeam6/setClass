@@ -16,6 +16,7 @@
     <?php
     $header['notif'] = $notif;
     $header['new'] = $new;
+    $header['mark'] = $mark;
     $this->load->view('partials/_header', $header);
     ?>
 
@@ -119,9 +120,7 @@
                                 </div>
                             </center>
                         </div>
-                        <div>
-                            <hr>
-                        </div>
+                        <hr size="12" width="100%" style="margin: 0px 0px">
                         <div class="card-body">
                             <small class="text-muted">Email</small>
                             <h6><?php echo $user->email?></h6>
@@ -192,15 +191,18 @@
                                         <div class="col-md-3">
                                             <small class="text-muted col-md-12">Mendaftar Pada</small>
                                             <br>
-                                            <label class="col-md-12"><?php echo
-                                                date_format(date_create($user->created_at),'d-m-Y') ?></label>
+                                            <label class="col-md-12">
+                                                <i class="mdi mdi-calendar-today"></i>
+                                                <?php echo date_format(date_create($user->created_at),'d-m-Y') ?>
+                                            </label>
                                         </div>
 
                                         <div class="col-md-6">
                                             <small class="text-muted col-md-12">Terakhir diupdate</small>
                                             <br>
-                                            <label class="col-md-12"><?php
-                                                $timeago = get_timeago(strtotime($user->updated_at ));
+                                            <label class="col-md-12">
+                                                <i class="mdi mdi-clock"></i>
+                                                <?php $timeago = get_timeago(strtotime($user->updated_at ));
                                                 echo $timeago; ?></label>
                                         </div>
                                     </div>

@@ -12,8 +12,12 @@ class Home extends CI_Controller {
     public function index()
     {
         if(isset($_SESSION['kode_user'])){
+
+            //Notification
             $data['notif'] = $this->Logs_model->getNotification()->result();
-            $data['new'] = $this->Logs_model->newNotification()->num_rows();
+            $data['new'] = $this->Logs_model->newNotification()->result();
+            $data['mark'] = $this->Logs_model->newNotification()->num_rows();
+
 			$this->load->view('home', $data);
 		}
 		else{

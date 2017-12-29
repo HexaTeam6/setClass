@@ -35,17 +35,16 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 col-8 align-self-center">
-                    <h3 class="text-themecolor m-b-0 m-t-0">Menu Child</h3>
+                    <h3 class="text-themecolor m-b-0 m-t-0">Pemberitahuan</h3>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Pengaturan</li>
+                        <li class="breadcrumb-item active">Pemberitahuan</li>
                     </ol>
                 </div>
             </div>
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-
 
             <!-- ============================================================== -->
             <!-- Start Page Content -->
@@ -54,49 +53,75 @@
                 <div class="card-body">
                     <div class="table-responsive m-t">
                         <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
-                            <table id="datatable" class="table table-bordered table-striped">
+                            <table id="datatable" class="table table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>No.</th>
-                                    <th>Hak Akses</th>
+                                    <th>Status</th>
+                                    <th>Dari</th>
                                     <th>Keterangan</th>
-                                    <th>Action</th>
+                                    <th>Link</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php
-                                $no = 1;
-                                foreach ($data as $row):
-                                    ?>
-                                    <tr>
-
-                                        <td class="no"><?php echo $no;?></td>
-
-                                        <td class="hak_akses">
-                                            <?php echo $row->hak_akses;?>
-                                            <input type="hidden" id="kode_akses" value="<?php echo $row->kode_akses;?>">
+                                <?php foreach ($new as $row): ?>
+                                    <tr bgcolor="#f2f4f8">
+                                        <td class="status" align="center">
+                                            <label class="label label-inverse">Baru</label>
                                         </td>
-
+                                        <td class="user">
+                                            <input type="hidden" id="kode_user" value="<?php echo $row->kode_user ?>">
+                                            <?php echo $row->nama; ?>
+                                        </td>
                                         <td class="keterangan">
-                                            <label class="label label-light-info"><?php echo $row->keterangan;?></label>
+                                            <?php echo $row->message; ?><br>
+                                            <span class="time">
+                                                <label class="label label-light-warning">
+                                                    <i class="mdi mdi-clock" style="font-style: normal">
+                                                        <?php echo get_timeago(strtotime($row->created_at)) ?>
+                                                    </i>
+                                                </label>
+                                            </span>
                                         </td>
-
-                                        <td align=center>
-<!--                                            --><?php //if ($this->session->userdata("5edit")=="1"){?>
-                                            <a href='<?php echo site_url("/MenuLevel/setting/").$row->kode_akses;?>'>
-                                                <span data-placement='top' data-toggle='tooltip' title='Setting'>
-                                                    <button class='btn btn-xs btn-rounded btn-warning waves waves-effect waves-light' id="btnSetting">
-                                                        <i class='fa fa-cog'></i>
-                                                    </button>
+                                        <td align="center">
+                                            <a class="btn btn-info" href="<?php echo $row->link.'/'.$row->id ?>">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-paper-plane-o"></i>
                                                 </span>
+                                                Lihat
                                             </a>
-<!--                                            --><?php //}?>
                                         </td>
                                     </tr>
-                                    <?php
-                                    $no+=1;
-                                endforeach
-                                ?>
+                                <?php endforeach ?>
+
+                                <?php foreach ($data as $row): ?>
+                                    <tr>
+                                        <td class="status" align="center">
+                                            <label class="label label-primary">Dilihat</label>
+                                        </td>
+                                        <td class="user">
+                                            <input type="hidden" id="kode_user" value="<?php echo $row->kode_user ?>">
+                                            <?php echo $row->nama; ?>
+                                        </td>
+                                        <td class="keterangan">
+                                            <?php echo $row->message; ?><br>
+                                            <span class="time">
+                                                <label class="label label-light-warning">
+                                                    <i class="mdi mdi-clock" style="font-style: normal">
+                                                        <?php echo get_timeago(strtotime($row->created_at)) ?>
+                                                    </i>
+                                                </label>
+                                            </span>
+                                        </td>
+                                        <td align="center">
+                                            <a class="btn btn-info" href="<?php echo $row->link.'/'.$row->id ?>">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-paper-plane-o"></i>
+                                                </span>
+                                                Lihat
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
                                 </tbody>
                             </table>
                         </div>
@@ -135,17 +160,6 @@
             "autoWidth": false,
             "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
         });
-
-        <?php if (isset($_SESSION['msg'])) {?>
-        swal({
-            position: 'center',
-            type: 'success',
-            title: "<?php echo $_SESSION['msg'];?>",
-            showConfirmButton: false,
-            timer: 1500
-        });
-        <?php }?>
-
     });
 </script>
 </body>
