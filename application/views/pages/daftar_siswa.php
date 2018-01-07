@@ -41,21 +41,19 @@
                         <div class="card wizard-content">
                             <div class="card-body">
                                 <h2 class="card-title">Sign Up</h2>
-                                <h6 class="card-subtitle">Daftar sebagai Wali Kelas</h6>
-                                <form action="<?php echo site_url('Daftar/insert') ?>"
+                                <h6 class="card-subtitle">Daftar sebagai Siswa</h6>
+                                <form action="<?php echo site_url('DaftarSiswa/insert') ?>"
                                       class="validation-wizard wizard-circle" method="post" id="form" enctype="multipart/form-data">
                                     <!-- Step 1 -->
                                     <h6>Data pribadi</h6>
                                     <section>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group" id="formGroupNip">
-                                                    <label for="wnip">NIP</label>
-<!--                                                    <div class="control">-->
-                                                        <input minlength="12" type="text" class="form-control"
-                                                               id="wnip" name="nip" required>
-                                                        <div class="help-block" id="alertNip"></div>
-<!--                                                    </div>-->
+                                                <div class="form-group" id="formGroupNis">
+                                                    <label for="wnis">NIS</label>
+                                                        <input minlength="9" type="text" class="form-control"
+                                                               id="wnis" name="nis" required>
+                                                        <div class="help-block" id="alertNis"></div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -98,6 +96,14 @@
 
                                         <div class="row">
                                             <div class="col-md-6">
+                                                <div class="form-group" id="formGroupNik">
+                                                    <label for="wnik">NIK</label>
+                                                    <input minlength="16" type="text" class="form-control"
+                                                           id="wnik" name="nik" required>
+                                                    <div class="help-block" id="alertNik"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <div class="form-group" id="formGroupEmail">
                                                     <label for="wemail"> Email</label>
                                                     <input type="email" class="form-control"
@@ -105,6 +111,9 @@
                                                     <div class="help-block" id="alertEmail"></div>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="wjenisKelamin"> Jenis Kelamin</label>
@@ -117,9 +126,6 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="wtempatLahir"> Kota Kelahiran</label>
@@ -127,6 +133,9 @@
                                                            id="wtempatLahir" name="tempatLahir" required>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="wtanggalLahir">Tanggal Lahir</label>
@@ -134,9 +143,6 @@
                                                            name="tanggalLahir" required>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="walamat">Alamat : </label>
@@ -144,6 +150,9 @@
                                                            id="walamat" name="alamat" required>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="wtelepon">Nomor Telepon</label>
@@ -165,86 +174,76 @@
                                     <h6>Data Kelas</h6>
                                     <section>
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label for="wkodeKelas">Kode Kelas</label>
                                                     <input type="text" class="form-control" id="wkodeKelas"
-                                                           name="kodeKelas" required readonly>
+                                                           name="kodeKelas" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-5">
                                                 <div class="form-group" style="padding-top: 34px;">
                                                     <button type="button"
                                                             class="btn btn-success waves-effect waves-light"
-                                                            id="generate">Generate
+                                                            id="cariKelas">
+                                                        <span class="btn-label">
+                                                            <i class="fa fa-search"></i>
+                                                        </span>
+                                                        Cari
                                                     </button>
                                                     <label style="float: right;" class="label label-light-warning">
-                                                        Jangan sebarkan<br> kode kelas ini secara bebas</label>
+                                                        Masukkan kode kelas <br>untuk bergabung ke dalam kelas</label>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="wnamaSekolah">Nama Sekolah</label>
-                                                    <input type="text" class="form-control required"
-                                                           id="wnamaSekolah" name="namaSekolah">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="walamatSekolah">Alamat Sekolah</label>
-                                                    <input type="text" class="form-control required" id="walamatSekolah"
-                                                           name="alamatSekolah">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <label id="notFound" class="label label-light-danger" style="font-size: 16px">
+                                            <i class="fa fa-close"></i>  Kode kelas tidak ditemukan.
+                                        </label>
 
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="wteleponSekolah">Nomor Telepon Sekolah</label>
-                                                    <input type="text" class="form-control required"
-                                                           id="wteleponSekolah" name="teleponSekolah">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="wkelas"> Kelas</label>
-                                                    <select class="selectpicker form-control required" id="wkelas"
-                                                            name="kelas">
-                                                        <option></option>
-                                                        <optgroup label="Sekolah Dasar">
-                                                            <option value="1 SD">Kelas 1 SD</option>
-                                                            <option value="2 SD">Kelas 2 SD</option>
-                                                            <option value="3 SD">Kelas 3 SD</option>
-                                                            <option value="4 SD">Kelas 4 SD</option>
-                                                            <option value="5 SD">Kelas 5 SD</option>
-                                                            <option value="6 SD">Kelas 6 SD</option>
-                                                        </optgroup>
-                                                        <optgroup label="Sekolah Menengah Pertama">
-                                                            <option value="1 SMP">Kelas 1 SMP</option>
-                                                            <option value="2 SMP">Kelas 2 SMP</option>
-                                                            <option value="3 SMP">Kelas 3 SMP</option>
-                                                        </optgroup>
-                                                        <optgroup label="Sekolah Menengah Atas">
-                                                            <option value="1 SMA/SMK">Kelas 1 SMA/SMK</option>
-                                                            <option value="2 SMA/SMK">Kelas 2 SMA/SMK</option>
-                                                            <option value="3 SMA/SMK">Kelas 3 SMA/SMK</option>
-                                                        </optgroup>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div id="kelasInfo">
+                                            <hr size="100%">
 
-                                        <div class="row" id="jurusan">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="wjurusan">Jurusan</label>
-                                                    <input type="text" class="form-control" id="wjurusan"
-                                                           name="jurusan">
-                                                </div>
+                                            <div class="col-md-12" align="center" style="margin-top: 10px">
+                                                <label class="label label-primary">Profil Kelas</label>
+                                            </div>
+
+                                            <div>
+                                                <label class="col-md-3 font-weight-bold float-left">Wali Kelas</label>
+                                                <label class="col-md-6" id="labelNamaWali"></label>
+                                            </div>
+
+                                            <div>
+                                                <label class="col-md-3 font-weight-bold float-left">NIP</label>
+                                                <label class="col-md-6" id="labelNip"></label>
+                                            </div>
+
+                                            <div>
+                                                <label class="col-md-3 font-weight-bold float-left">Nama Sekolah</label>
+                                                <label class="col-md-6" id="labelNama"></label>
+                                            </div>
+
+                                            <div>
+                                                <label class="col-md-3 font-weight-bold float-left">Alamat Sekolah</label>
+                                                <label class="col-md-6" id="labelAlamat"></label>
+                                            </div>
+
+                                            <div>
+                                                <label class="col-md-3 font-weight-bold float-left">Telepon</label>
+                                                <label class="col-md-6" id="labelTelepon"></label>
+                                            </div>
+
+                                            <div>
+                                                <label class="col-md-3 font-weight-bold float-left">Kelas</label>
+                                                <label class="col-md-2" id="labelKelas"></label>
+                                                <label class="label label-light-warning" id="labelJurusan"></label>
+                                            </div>
+
+                                            <div align="center">
+                                                <button id="gunakanKode" type="button"
+                                                        class="btn btn-primary btn-rounded waves waves-effect waves-light">
+                                                    Pilih Kelas
+                                                </button>
                                             </div>
                                         </div>
                                     </section>
@@ -270,7 +269,10 @@
 <script>
     $(document).ready(function () {
         $('#jurusan').hide();
+        $('#kelasInfo').hide();
+        $('#notFound').hide();
         $('.selectpicker').selectpicker();
+        $('a[href^="#finish"]').hide();
 
         $('.selectpicker').change(function () {
             if ($('.selectpicker').val() == '1 SMA/SMK' || $('.selectpicker').val() == '2 SMA/SMK' || $('.selectpicker').val() == '3 SMA/SMK') {
@@ -285,14 +287,41 @@
         });
 
 //        Generate Kode Kelas with ajax
-        $('#generate').click(function () {
+        $('#cariKelas').click(function () {
+            var kode = $('#wkodeKelas').val();
+            if (kode == '') kode = 'notFound';
             $.ajax({
-                url: "<?php echo site_url("/Daftar/generateClass");?>",
+                url: "<?php echo site_url("/DaftarSiswa/getClass/");?>"+kode,
                 success: function (result) {
-                    $("#wkodeKelas").val(result);
-                    $("#generate").removeClass("btn-success").addClass("btn-disabled").attr("disabled", true).attr("style", "cursor:not-allowed");
+//                    console.log(result);
+                    if (result != "false"){
+
+                        var data = result;
+                        data = data.split(':');
+
+                        $('#labelNamaWali').text(data[0]);
+                        $('#labelNip').text(data[1]);
+                        $('#labelNama').text(data[2]);
+                        $('#labelAlamat').text(data[3]);
+                        $('#labelTelepon').text(data[4]);
+                        $('#labelKelas').text(data[5]);
+                        $('#labelJurusan').text(data[6]);
+                        $("#kelasInfo").show();
+                        $("#notFound").hide();
+                    }else{
+                        $("#notFound").show();
+                        $("#kelasInfo").hide();
+                        $('a[href^="#finish"]').hide();
+                    }
                 }
             });
+        });
+
+        $('#gunakanKode').click(function () {
+            $('#wkodeKelas').attr("readonly", true);
+            $('#gunakanKode').attr("disabled", true).attr("style", "cursor:not-allowed");
+            $('#cariKelas').attr("disabled", true).attr("style", "cursor:not-allowed");
+            $('a[href^="#finish"]').show();
         });
 
 //        validation in submit
@@ -318,58 +347,56 @@
         });
 
         //Masking
-        $("#wnip").inputmask("9{1,12}");
+        $("#wnis").inputmask("9{1,9}");
+        $("#wnik").inputmask("9{1,16}");
         $("#wtelepon").inputmask("+628-9{1,3}-9{1,3}-9{1,4}");
-        $("#wteleponSekolah").inputmask("+031-9{1,3}-9{1,3}-9{1,4}");
 //        $("#wemail").inputmask("a{1,20}@a{1,20}.a{3}[.{2}]");
 
-        //check NIP
-        $('#wnip').blur(function () {
-            var nip = $('#wnip').val();
-//            console.log(nip);
-//            console.log("<?php //echo site_url("/Daftar/checkUserInfo/");?>//" + nip);
-            if (!nip==""){
+        //check NIS
+        $('#wnis').blur(function () {
+            var nis = $('#wnis').val();
+//            console.log(nis);
+//            console.log("<?php //echo site_url("/DaftarSiswa/checkUserInfo/");?>//" + nis);
+            if (!nis==""){
                 $.ajax({
-                    url: "<?php echo site_url("/Daftar/checkUserInfo/");?>" + nip,
+                    url: "<?php echo site_url("/DaftarSiswa/checkUserInfo/");?>" + nis,
                     success: function (result) {
-                        console.log(result);
+//                        console.log(result);
                         if (result == "true"){
 //                            console.log("200 OK");
-                            $('#formGroupNip').removeClass("validate");
-                            $('#formGroupNip').addClass("has-danger");
-                            $('#wnip').addClass("form-control-danger");
-                            $('#alertNip').append("<ul role='alert'><li style='margin-left: -40px;' class='label label-light-danger'>&blacksquare; NIP telah digunakan</li></ul>");
-
+                            $('#formGroupNis').removeClass("validate");
+                            $('#formGroupNis').addClass("has-danger");
+                            $('#wnis').addClass("form-control-danger");
+                            $('#alertNis').append("<ul role='alert'><li style='margin-left: -40px;' class='label label-light-danger'>&blacksquare; NIS telah digunakan</li></ul>");
                         }else {
-                            $('#wnip').removeClass("form-control-danger");
-                            $('#formGroupNip').removeClass("has-danger");
+                            $('#wnis').removeClass("form-control-danger");
+                            $('#formGroupNis').removeClass("has-danger");
                         }
                     }
                 });
             }else {
-                $('#wnip').removeClass("form-control-danger");
-                $('#formGroupNip').removeClass("has-danger");
+                $('#wnis').removeClass("form-control-danger");
+                $('#formGroupNis').removeClass("has-danger");
             }
         });
 
         //check Email
         $('#wemail').blur(function () {
             var email = $('#wemail').val();
-            console.log(email);
+//            console.log(email);
             email = email.replace("@", "-at-");
-            console.log("<?php echo site_url("/Daftar/checkUserEmail/");?>" + email);
+//            console.log("<?php //echo site_url("/Daftar/checkUserEmail/");?>//" + email);
             if (!email==""){
                 $.ajax({
                     url: "<?php echo site_url("/Daftar/checkUserEmail/");?>" + email,
                     success: function (result) {
-                        console.log(result);
+//                        console.log(result);
                         if (result == "true"){
 //                            console.log("200 OK");
                             $('#formGroupEmail').removeClass("validate");
                             $('#formGroupEmail').addClass("has-danger");
                             $('#wemail').addClass("form-control-danger");
                             $('#alertEmail').append("<ul role='alert'><li style='margin-left: -40px;' class='label label-light-danger'>&blacksquare; Email telah digunakan</li></ul>");
-
                         }else {
                             $('#wemail').removeClass("form-control-danger");
                             $('#formGroupEmail').removeClass("has-danger");
@@ -382,6 +409,33 @@
             }
         });
 
+        //check NIK
+        $('#wnik').blur(function () {
+            var nik = $('#wnik').val();
+//            console.log(nik);
+//            console.log("<?php //echo site_url("/DaftarSiswa/checkUserNik/");?>//" + nik);
+            if (!nik==""){
+                $.ajax({
+                    url: "<?php echo site_url("/DaftarSiswa/checkUserNik/");?>" + nik,
+                    success: function (result) {
+//                        console.log(result);
+                        if (result == "true"){
+//                            console.log("200 OK");
+                            $('#formGroupNik').removeClass("validate");
+                            $('#formGroupNik').addClass("has-danger");
+                            $('#wnik').addClass("form-control-danger");
+                            $('#alertNik').append("<ul role='alert'><li style='margin-left: -40px;' class='label label-light-danger'>&blacksquare; NIK telah digunakan</li></ul>");
+                        }else {
+                            $('#wnik').removeClass("form-control-danger");
+                            $('#formGroupNik').removeClass("has-danger");
+                        }
+                    }
+                });
+            }else {
+                $('#wnik').removeClass("form-control-danger");
+                $('#formGroupNik').removeClass("has-danger");
+            }
+        });
 
         //File Upload
         $('.dropify').dropify({

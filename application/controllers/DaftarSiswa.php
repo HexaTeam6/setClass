@@ -1,18 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Daftar extends CI_Controller {
+class DaftarSiswa extends CI_Controller {
 
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Daftar_model');
         $this->load->model('User_model');
+        $this->load->model('Logs_model');
     }
 
     public function index()
     {
-        $this->load->view('pages/daftar');
+        $this->load->view('pages/daftar_siswa');
     }
 
     public function insert()
@@ -22,9 +23,10 @@ class Daftar extends CI_Controller {
 
         //$this->output->enable_profiler(TRUE);
 //        $fileName = date("d-m-Y H:i:s")."_".@$_FILES['foto']['name'];
-       $kode_user = $this->input->post('nip');
+       $kode_user = $this->input->post('nis');
        $nama = $this->input->post('nama');
        $password = $this->input->post('password');
+       $nik = $this->input->post('nik');
        $email = $this->input->post('email');
        $jenisKelamin = $this->input->post('jenisKelamin');
        $tempatLahir = $this->input->post('tempatLahir');
@@ -32,44 +34,27 @@ class Daftar extends CI_Controller {
        $alamat = $this->input->post('alamat');
        $telepon = $this->input->post('telepon');
        $kode_kelas = $this->input->post('kodeKelas');
-       $namaSekolah = $this->input->post('namaSekolah');
-       $alamatSekolah = $this->input->post('alamatSekolah');
-       $teleponSekolah = $this->input->post('teleponSekolah');
-       $kelas = $this->input->post('kelas');
-       $jurusan = $this->input->post('jurusan');
 
-        $dataJabatanWali = array(
-            'akses_jabatan' => 2,
-            'kode_kelas' => $kode_kelas,
-            'jabatan' => 'Wali Kelas',
-            'keterangan' => 'Wali Kelas'
-        );
-        $dataJabatanAnggota = array(
-            'akses_jabatan' => 6,
-            'kode_kelas' => $kode_kelas,
-            'jabatan' => 'Anggota',
-            'keterangan' => 'Anggota kelas'
-        );
-        $this->Daftar_model->input_data('master_jabatan', $dataJabatanAnggota);
-        $this->Daftar_model->input_data('master_jabatan', $dataJabatanWali);
-        $kode_jabatan = $this->db->insert_id();
+       //get kode jabatan where access is anggota
+       $kode_jabatan = $this->User_model->getJabatan($kode_kelas)->row()->kode_jabatan;
 
        $dataLogin = array(
            'kode_user' => $kode_user,
-           'kode_akses' => '2',
+           'kode_akses' => '3',
            'kode_kelas' => $kode_kelas,
            'kode_jabatan' => $kode_jabatan,
            'email' => $email,
            'nama' => $nama,
            'password' => md5($password),
-           'status' => 'Confirmed',
+           'status' => 'Unconfirmed',
            'foto' => $foto
        );
-       $dataWaliKelas = array(
-           'NIP' => $kode_user,
+       $dataSiswa = array(
+           'NIS' => $kode_user,
            'kode_kelas' => $kode_kelas,
-           'kode_akses' => '2',
+           'kode_akses' => '3',
            'email' => $email,
+           'nik' => $nik,
            'nama' => $nama,
            'jenis_kelamin' => $jenisKelamin,
            'tempat_lahir' => $tempatLahir,
@@ -78,19 +63,18 @@ class Daftar extends CI_Controller {
            'no_telp' => $telepon,
            'foto' => $foto
        );
-       $dataKelas = array(
-           'kode_kelas' => $kode_kelas,
-           'nama_sekolah' => $namaSekolah,
-           'alamat_sekolah' => $alamatSekolah,
-           'telp_sekolah' => $teleponSekolah,
-           'kelas' => $kelas,
-           'jurusan' => $jurusan
-       );
+        $logs = array(
+            'kode_user' => $kode_user,
+            'kode_kelas' => $kode_kelas,
+            'message' => 'Telah bergabung ke kelas.',
+            'link' => 'MasterSiswa',
+            'icon' => 'mdi-account-multiple-plus',
+            'color' => 'success'
+        );
 
-
-       $this->Daftar_model->input_data('master_kelas', $dataKelas);
-       $this->Daftar_model->input_data('master_wali_kelas', $dataWaliKelas);
+       $this->Daftar_model->input_data('master_siswa', $dataSiswa);
        $this->Daftar_model->input_data('master_login', $dataLogin);
+       $this->Logs_model->input_data('logs', $logs);
        redirect(site_url() . '/Daftar/show/'. $kode_user);
     }
 
@@ -101,16 +85,36 @@ class Daftar extends CI_Controller {
         $this->load->view('pages/success_page', $data);
     }
 
-    public function generateClass()
+    public function getClass($kode_kelas)
     {
-        $kode = str_split(strtoupper(md5(uniqid(rand(),true))), 10);
-        $kode = $kode[0];
-        echo $kode;
+        $cek = $this->User_model->getClass($kode_kelas)->num_rows();
+
+        if ($cek > 0){
+            $result = $this->User_model->getClass($kode_kelas)->result();
+            foreach ($result as $row){
+                $data = $row->nama.':'.$row->NIP.':'.$row->nama_sekolah.':'.$row->alamat_sekolah.':'.$row->telp_sekolah.':'.$row->kelas.':'.$row->jurusan;
+            }
+            echo $data;
+        }else{
+            echo "false";
+        }
     }
 
     public function checkUserInfo($kode_user)
     {
         $query = $this->User_model->selectUserInfo($kode_user);
+        if (count($query->result()) > 0){
+//            return true;
+            echo "true";
+        }else{
+//            return false;
+            echo "false";
+        }
+    }
+
+    public function checkUserNik($nik)
+    {
+        $query = $this->User_model->cekNik($nik);
         if (count($query->result()) > 0){
 //            return true;
             echo "true";

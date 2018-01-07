@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Master_jabatan_model extends CI_Model{
+class Master_ruang_model extends CI_Model{
 
     public function __construct()
     {
@@ -13,15 +13,14 @@ class Master_jabatan_model extends CI_Model{
         {
             return $this->db->query("
             SELECT *
-		    FROM master_jabatan
-		    ORDER BY kode_jabatan DESC");
+		    FROM master_ruang
+		    ORDER BY kode_ruang DESC");
         }else{
             return $this->db->query("
             SELECT *
-		    FROM master_jabatan
+		    FROM master_ruang
 		    WHERE kode_kelas = '".$_SESSION['kode_kelas']."'
-		    AND akses_jabatan NOT IN(1,2)
-		    ORDER BY kode_jabatan DESC");
+		    ORDER BY kode_ruang DESC");
         }
     }
 
@@ -30,17 +29,17 @@ class Master_jabatan_model extends CI_Model{
         return $this->db->insert($table,$data);
     }
     function update_data($table,$where,$data){
-        $this->db->where('kode_jabatan',$where);
+        $this->db->where('kode_ruang',$where);
         $this->db->update($table,$data);
         return true;
     }
     function delete_data($table, $where)
     {
-        $this->db->where('kode_jabatan', $where);
+        $this->db->where('kode_ruang', $where);
         $this->db->delete($table);
     }
     function inactive_data($table,$where,$data){
-        $this->db->where('kode_jabatan',$where);
+        $this->db->where('kode_ruang',$where);
         $this->db->update($table,$data);
         return true;
     }

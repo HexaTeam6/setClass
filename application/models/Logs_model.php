@@ -21,17 +21,19 @@ class Logs_model extends CI_Model{
         if ($row > 0){
             $sql = $this->idNewLogs();
 
-            return $this->db->query("SELECT l.*, ml.nama 
-                                  FROM logs l, master_login ml
+            return $this->db->query("SELECT l.*, ml.nama, mj.jabatan
+                                  FROM logs l, master_login ml, master_jabatan mj
                                   WHERE l.kode_user = ml.kode_user
+                                  AND ml.kode_jabatan = mj.kode_jabatan
                                   AND l.kode_kelas = ?
                                   AND l.kode_user NOT IN (?)
                                   AND l.id NOT IN (".$sql.")
                                   ORDER BY created_at DESC", array($_SESSION['kode_kelas'], $_SESSION['kode_user']));
         }else{
-            return $this->db->query("SELECT l.*, ml.nama 
-                                  FROM logs l, master_login ml
+            return $this->db->query("SELECT l.*, ml.nama, mj.jabatan
+                                  FROM logs l, master_login ml, master_jabatan mj
                                   WHERE l.kode_user = ml.kode_user
+                                  AND ml.kode_jabatan = mj.kode_jabatan
                                   AND l.kode_kelas = ?
                                   AND l.kode_user NOT IN (?)
                                   ORDER BY created_at DESC", array($_SESSION['kode_kelas'], $_SESSION['kode_user']));
@@ -47,18 +49,20 @@ class Logs_model extends CI_Model{
         if ($row > 0){
             $sql = $this->idNewLogs();
 
-            return $this->db->query("SELECT l.*, ml.nama 
-                                  FROM logs l, master_login ml
+            return $this->db->query("SELECT l.*, ml.nama, mj.jabatan 
+                                  FROM logs l, master_login ml, master_jabatan mj
                                   WHERE l.kode_user = ml.kode_user
+                                  AND ml.kode_jabatan = mj.kode_jabatan
                                   AND l.kode_kelas = ?
                                   AND l.kode_user NOT IN (?)
                                   AND l.id NOT IN (".$sql.")
                                   ORDER BY created_at DESC
                                   LIMIT 0,5", array($_SESSION['kode_kelas'], $_SESSION['kode_user']));
         }else{
-            return $this->db->query("SELECT l.*, ml.nama 
-                                  FROM logs l, master_login ml
+            return $this->db->query("SELECT l.*, ml.nama, mj.jabatan
+                                  FROM logs l, master_login ml, master_jabatan mj
                                   WHERE l.kode_user = ml.kode_user
+                                  AND ml.kode_jabatan = mj.kode_jabatan
                                   AND l.kode_kelas = ?
                                   AND l.kode_user NOT IN (?)
                                   ORDER BY created_at DESC
@@ -67,10 +71,11 @@ class Logs_model extends CI_Model{
     }
 
     function newNotification(){
-        return $this->db->query("SELECT l.*, ml.nama
-                                  FROM `logs` l, master_login ml
+        return $this->db->query("SELECT l.*, ml.nama, mj.jabatan
+                                  FROM `logs` l, master_login ml, master_jabatan mj
                                   WHERE l.id NOT IN (SELECT id_logs FROM logs_detail WHERE kode_user = ?)
                                   AND l.kode_user = ml.kode_user
+                                  AND ml.kode_jabatan = mj.kode_jabatan
                                   AND l.kode_user NOT IN (?)
                                   AND l.kode_kelas = ?
                                   ORDER BY l.created_at DESC ", array($_SESSION['kode_user'], $_SESSION['kode_user'], $_SESSION['kode_kelas']));

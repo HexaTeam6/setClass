@@ -35,10 +35,10 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 col-8 align-self-center">
-                    <h3 class="text-themecolor m-b-0 m-t-0">Menu Header</h3>
+                    <h3 class="text-themecolor m-b-0 m-t-0">Master Matapelajaran</h3>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Pengaturan</li>
+                        <li class="breadcrumb-item active">Master</li>
                     </ol>
                 </div>
             </div>
@@ -57,52 +57,23 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                         aria-hidden="true">&times;</span></button>
                         </div>
+
                         <form method="post" id="form">
                             <div class="modal-body">
+
                                 <div class="form-group">
-                                    <label for="wnama" class="control-label">Nama Menu:</label>
-                                    <input type="text" class="form-control" id="wnama" name="nama" required>
+                                    <label for="wnamaMatapelajaran" class="control-label">Mataplejaran:</label>
+                                    <input type="text" class="form-control" id="wnamaMatapelajaran" name="namaMatapelajaran" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="wicon" class="control-label">Icon:</label>
-                                    <select class="selectpicker form-control required"
-                                            name="icon" id="wicon">
-                                        <option></option>
-                                        <optgroup label="Icon List">
-                                            <option value="fa fa-book"
-                                                    data-content="<i class='fa fa-book'></i>  <span class='label label-light-success'>fa-book<span>"></option>
-                                            <option value="fa fa-calendar"
-                                                    data-content="<i class='fa fa-calendar'></i>  <span class='label label-light-success'>fa-calendar<span>"></option>
-                                            <option value="fa fa-envelope"
-                                                    data-content="<i class='fa fa-envelope'></i>  <span class='label label-light-success'>fa-envelope<span>"></option>
-                                            <option value="fa fa-folder"
-                                                    data-content="<i class='fa fa-folder'></i>  <span class='label label-light-success'>fa-folder<span>"></option>
-                                            <option value="fa fa-gear"
-                                                    data-content="<i class='fa fa-gear'></i>  <span class='label label-light-success'>fa-gear<span>"></option>
-                                            <option value="fa fa-chain"
-                                                    data-content="<i class='fa fa-chain'></i>  <span class='label label-light-success'>fa-chain<span>"></option>
-                                            <option value="fa fa-wrench"
-                                                    data-content="<i class='fa fa-wrench'></i>  <span class='label label-light-success'>fa-wrench<span>"></option>
-                                            <option value="fa fa-user"
-                                                    data-content="<i class='fa fa-user'></i>  <span class='label label-light-success'>fa-user<span>"></option>
-                                            <option value="fa fa-pencil"
-                                                    data-content="<i class='fa fa-pencil'></i>  <span class='label label-light-success'>fa-pencil<span>"></option>
-                                            <option value="fa fa-bell"
-                                                    data-content="<i class='fa fa-bell'></i>  <span class='label label-light-success'>fa-bell<span>"></option>
-                                            <option value="fa fa-plus-square"
-                                                    data-content="<i class='fa fa-plus-square'></i>  <span class='label label-light-success'>fa-plus-square<span>"></option>
-                                            <option value="fa fa-archive"
-                                                    data-content="<i class='fa fa-archive'></i>  <span class='label label-light-success'>fa-archive<span>"></option>
-                                        </optgroup>
-                                    </select>
-                                </div>
+
                             </div>
                             <div class="modal-footer">
-                                <input type="hidden" id="kode_menu_header" name="kode">
+                                <input type="hidden" id="kode_matapelajaran" name="kode_matapelajaran">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -117,7 +88,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive m-t">
-                        <?php if ($_SESSION['4insert'] == 1){?>
+                        <?php if ($_SESSION['14insert'] == 1){?>
                             <button id="btnAdd" class="btn btn-info waves-effect waves-light" type="button" data-toggle="modal" data-target="#AddModal">
                                 <span class="btn-label">
                                     <i class="fa fa-plus"></i>
@@ -130,8 +101,8 @@
                                 <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Menu Header</th>
-                                    <th>Icon</th>
+                                    <th>Kode Kelas</th>
+                                    <th>Matapelajaran</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -143,15 +114,15 @@
                                     <tr>
 
                                         <td class="no"><?php echo $no;?></td>
-                                        <td class="menu_header">
-                                            <?php echo $row->menu_header;?>
-                                            <input type="hidden" id="kode_menu_header" value="<?php echo $row->kode_menu_header;?>">
+                                        <td class="kode_kelas">
+                                            <label class="label label-light-warning"><?php echo $row->kode_kelas;?></label>
                                         </td>
-                                        <td>
-                                            <?php echo '<i class="'.$row->icon.'">    <label class="label label-success" id="mIcon">'.$row->icon.'</label></i>'?>
+                                        <td class="matapelajaran">
+                                            <?php echo $row->nama_matapelajaran;?>
+                                            <input type="hidden" id="kode_matapelajaran" value="<?php echo $row->kode_matapelajaran;?>">
                                         </td>
                                         <td align=center>
-                                            <?php if ($_SESSION['4edit'] == 1){?>
+                                            <?php if ($_SESSION['14edit'] == 1){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' title data-original-title='Edit'>
                                                         <button class='btn btn-xs btn-rounded btn-warning waves waves-effect waves-light' data-title="Edit" id="btnEdit" data-toggle="modal" data-target="#AddModal">
@@ -161,7 +132,7 @@
                                                 </a>
                                             <?php }?>
 
-                                            <?php if ($_SESSION['4delete'] == 1){?>
+                                            <?php if ($_SESSION['14delete'] == 1){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' title='Delete'>
                                                         <button class='btn btn-xs btn-rounded btn-danger waves waves-effect waves-light' id="btnDelete">
@@ -226,28 +197,26 @@
         <?php }?>
 
         $('#btnAdd').click(function () {
-            $('#form').attr('action', "<?php echo site_url('/MenuHeader/insert')?>");
-            $("#kode_menu_header").val('');
-            $("#wnama").val('');
+            $('#form').attr('action', "<?php echo site_url('/MasterMatapelajaran/insert')?>");
             $('.selectpicker').selectpicker('val', '');
+            $("#wnamaMatapelajaran").val('');
         });
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
-            $('#form').attr('action', "<?php echo site_url('/MenuHeader/update')?>");
+            $('#form').attr('action', "<?php echo site_url('/MasterMatapelajaran/update')?>");
             var $item = $(this).closest("tr");
-            $("#kode_menu_header").val($item.find("input[id$='kode_menu_header']:hidden:first").val());
-            $("#wnama").val($.trim($item.find(".menu_header").text()));
-            $('.selectpicker').selectpicker('val', $.trim($item.find("#mIcon").text()));
+            $('#kode_matapelajaran').val($item.find("input[id$='kode_matapelajaran']:hidden:first").val());
+            $("#wnamaMatapelajaran").val($.trim($item.find(".matapelajaran").text()));
         });
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {
             var $item = $(this).closest("tr");
-            var kode = $item.find("input[id$='kode_menu_header']:hidden:first").val();
-            var nama = $.trim($item.find(".menu_header").text());
+            var kode = $item.find("input[id$='kode_matapelajaran']:hidden:first").val();
+            var nama = $.trim($item.find(".matapelajaran").text());
 
             swal({
                     title: "Apakah yakin akan dihapus?",
-                    text: "Menu Header dengan nama " + nama,
+                    text: "Hapus matapelajaran " + nama,
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#26C6DA",
@@ -259,7 +228,7 @@
                 function(isConfirm){
                     if (isConfirm) {
                         $.ajax({
-                            url: "<?php echo site_url("/MenuHeader/delete/");?>" + kode,
+                            url: "<?php echo site_url("/MasterMatapelajaran/delete/");?>" + kode + "/" + nama,
                             success: function (result) {
                                 window.location.href = result;
                             }

@@ -100,13 +100,18 @@
 //        console.log($('#loginform').serialize());
         var username = $('#username').val();
         var password = $('#password').val();
-//        console.log("<?php //echo site_url("/Auth/login/");?>//" + username + "/" + password);
+        if ($('#checkbox-signup').is(':checked')){
+            var remember = $('#checkbox-signup').val();
+        }else {
+            var remember = '';
+        }
+        console.log("<?php echo site_url("/Auth/login/");?>" + username + "/" + password + "/" + remember);
         $.ajax({
             url: "<?php echo site_url("/Auth/login/");?>",
             dataType: 'text',
             type: "POST",
             contentType: 'application/x-www-form-urlencoded',
-            data: {"username": username, "password": password},
+            data: {"username": username, "password": password, "remember": remember},
             success: function (result) {
                 if (result == "false"){
                     console.log(result);

@@ -65,7 +65,7 @@
                                 <div class="col-md-12">
                                     <label for="input-file-now">Foto Profil</label>
                                     <input type="file" id="input-file-now" name="foto" class="dropify"
-                                           data-allowed-file-extensions="jpg png" required>
+                                           data-allowed-file-extensions="jpg png jpeg" required>
                                 </div>
 
                             </div>
@@ -114,8 +114,11 @@
                                 <h6 class="card-subtitle"><?php echo $user->jabatan?></h6>
                                 <label class="label label-light-info" data-placement='top' data-toggle="tooltip" data-title="Kode Kelas"><?php echo $user->kode_kelas?></label>
                                 <div class="row text-center justify-content-md-center" data-placement="top" data-toggle="tooltip" data-title="Jumlah Murid">
-                                    <div class="col-4"><a href="javascript:void(0)" class="link"><i
-                                                    class="icon-people"></i> <font class="font-medium">254</font></a>
+                                    <div class="col-4">
+                                        <a href="<?php echo site_url('/MasterSiswa')?>" class="link">
+                                            <i class="icon-people"></i>
+                                            <font class="font-medium"><?php echo $user->jumlahSiswa?></font>
+                                        </a>
                                     </div>
                                 </div>
                             </center>
@@ -153,9 +156,16 @@
                                     </div>
 
                                     <div>
-                                        <label class="col-md-3 font-weight-bold float-left">NIP</label>
+                                        <label class="col-md-3 font-weight-bold float-left"><?php echo ($_SESSION['kode_akses'] == 2 ? 'NIP' : 'NIS')?></label>
                                         <label class="col-md-6"><?php echo $user->kode_user ?></label>
                                     </div>
+
+                                    <?php if ($_SESSION['kode_akses'] == 3){
+                                        echo '<div>
+                                                <label class="col-md-3 font-weight-bold float-left">NIK</label>
+                                                <label class="col-md-6">'.$user->NIK.'</label>
+                                              </div>';
+                                    }?>
 
                                     <div>
                                         <label class="col-md-3 font-weight-bold float-left">Nama</label>
@@ -257,7 +267,7 @@
                                                 </span>
                                                     <p style="margin-bottom: 0;"><?php echo $log->message; ?></p>
                                                     <a class="btn btn-xs btn-success waves waves-effect waves-light"
-                                                       href="<?php echo site_url('/').$log->link; ?>">Lihat
+                                                       href="<?php echo site_url('/').str_replace('Logs/getNewLogs/', '', $log->link); ?>">Lihat
                                                     </a>
                                                     <hr>
                                                 </div>
@@ -392,7 +402,7 @@
         <?php }?>
 
         $("#wtelp").inputmask("+628-9{1,3}-9{1,3}-9{1,4}");
-        $("#wjenisKelamin").val($('#jenis_kelamin').val())
+        $("#wjenisKelamin").val($('#jenis_kelamin').val());
 
         $('.dropify').dropify({
             messages: {

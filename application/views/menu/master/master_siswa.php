@@ -35,10 +35,10 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 col-8 align-self-center">
-                    <h3 class="text-themecolor m-b-0 m-t-0">Menu Header</h3>
+                    <h3 class="text-themecolor m-b-0 m-t-0">Master Siswa</h3>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Pengaturan</li>
+                        <li class="breadcrumb-item active">Master</li>
                     </ol>
                 </div>
             </div>
@@ -57,52 +57,45 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                         aria-hidden="true">&times;</span></button>
                         </div>
-                        <form method="post" id="form">
+
+                        <form method="post" id="form" action="<?php echo site_url('/MasterSiswa/update')?>">
                             <div class="modal-body">
+
                                 <div class="form-group">
-                                    <label for="wnama" class="control-label">Nama Menu:</label>
-                                    <input type="text" class="form-control" id="wnama" name="nama" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="wicon" class="control-label">Icon:</label>
+                                    <label for="waksesjabatan" class="control-label">Dasar Jabatan:</label>
                                     <select class="selectpicker form-control required"
-                                            name="icon" id="wicon">
+                                            name="aksesJabatan" id="waksesjabatan" required>
                                         <option></option>
-                                        <optgroup label="Icon List">
-                                            <option value="fa fa-book"
-                                                    data-content="<i class='fa fa-book'></i>  <span class='label label-light-success'>fa-book<span>"></option>
-                                            <option value="fa fa-calendar"
-                                                    data-content="<i class='fa fa-calendar'></i>  <span class='label label-light-success'>fa-calendar<span>"></option>
-                                            <option value="fa fa-envelope"
-                                                    data-content="<i class='fa fa-envelope'></i>  <span class='label label-light-success'>fa-envelope<span>"></option>
-                                            <option value="fa fa-folder"
-                                                    data-content="<i class='fa fa-folder'></i>  <span class='label label-light-success'>fa-folder<span>"></option>
-                                            <option value="fa fa-gear"
-                                                    data-content="<i class='fa fa-gear'></i>  <span class='label label-light-success'>fa-gear<span>"></option>
-                                            <option value="fa fa-chain"
-                                                    data-content="<i class='fa fa-chain'></i>  <span class='label label-light-success'>fa-chain<span>"></option>
-                                            <option value="fa fa-wrench"
-                                                    data-content="<i class='fa fa-wrench'></i>  <span class='label label-light-success'>fa-wrench<span>"></option>
-                                            <option value="fa fa-user"
-                                                    data-content="<i class='fa fa-user'></i>  <span class='label label-light-success'>fa-user<span>"></option>
-                                            <option value="fa fa-pencil"
-                                                    data-content="<i class='fa fa-pencil'></i>  <span class='label label-light-success'>fa-pencil<span>"></option>
-                                            <option value="fa fa-bell"
-                                                    data-content="<i class='fa fa-bell'></i>  <span class='label label-light-success'>fa-bell<span>"></option>
-                                            <option value="fa fa-plus-square"
-                                                    data-content="<i class='fa fa-plus-square'></i>  <span class='label label-light-success'>fa-plus-square<span>"></option>
-                                            <option value="fa fa-archive"
-                                                    data-content="<i class='fa fa-archive'></i>  <span class='label label-light-success'>fa-archive<span>"></option>
+                                        <optgroup label="Jabatan List">
+                                                <option value="3">Ketua Kelas</option>
+                                                <option value="4">Sekertaris</option>
+                                                <option value="5">Bendahara</option>
+                                                <option value="6">Anggota</option>
                                         </optgroup>
                                     </select>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="wjabatan" class="control-label">Jabatan:</label>
+                                    <select class="selectpicker form-control required"
+                                            name="jabatan" id="wjabatan" required>
+                                        <option></option>
+                                        <optgroup label="Jabatan List" id="jabatanList">
+                                            <option value="3">Ketua Kelas</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+
                             </div>
                             <div class="modal-footer">
-                                <input type="hidden" id="kode_menu_header" name="kode">
+                                <input type="hidden" id="kodeJabatan" name="kode_jabatan" required>
+                                <input type="hidden" id="nama" name="nama" required>
+                                <input type="hidden" id="nis" name="nis" required>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -117,21 +110,23 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive m-t">
-                        <?php if ($_SESSION['4insert'] == 1){?>
-                            <button id="btnAdd" class="btn btn-info waves-effect waves-light" type="button" data-toggle="modal" data-target="#AddModal">
-                                <span class="btn-label">
-                                    <i class="fa fa-plus"></i>
-                                </span>
-                                Tambah Data
-                            </button>
-                        <?php }?>
+<!--                        --><?php //if ($_SESSION['13insert'] == 1){?>
+<!--                            <button id="btnAdd" class="btn btn-info waves-effect waves-light" type="button" data-toggle="modal" data-target="#AddModal">-->
+<!--                                <span class="btn-label">-->
+<!--                                    <i class="fa fa-plus"></i>-->
+<!--                                </span>-->
+<!--                                Tambah Data-->
+<!--                            </button>-->
+<!--                        --><?php //}?>
                         <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
                             <table id="datatable" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Menu Header</th>
-                                    <th>Icon</th>
+                                    <th>Nama</th>
+                                    <th>Jabatan</th>
+                                    <th>Telepon</th>
+                                    <th>Keterangan</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -143,15 +138,43 @@
                                     <tr>
 
                                         <td class="no"><?php echo $no;?></td>
-                                        <td class="menu_header">
-                                            <?php echo $row->menu_header;?>
-                                            <input type="hidden" id="kode_menu_header" value="<?php echo $row->kode_menu_header;?>">
+                                        <td class="nama">
+                                            <input type="hidden" id="nis" value="<?php echo $row->NIS?>">
+                                            <input type="hidden" id="kode_jabatan" value="<?php echo $row->kode_jabatan?>">
+                                            <input type="hidden" id="akses_jabatan" value="<?php echo $row->akses_jabatan?>">
+                                            <?php echo $row->nama;?><br>
                                         </td>
-                                        <td>
-                                            <?php echo '<i class="'.$row->icon.'">    <label class="label label-success" id="mIcon">'.$row->icon.'</label></i>'?>
+                                        <td class="jabatan">
+                                            <label class="label label-inverse"><?php echo $row->jabatan;?></label>
+                                        </td>
+                                        <td class="telepon">
+                                            <?php echo $row->no_telp;?>
+                                        </td>
+                                        <td class="keterangan">
+                                            Bergabung
+                                            <label class="label label-light-warning">
+                                                <?php $userCreated = get_timeago(strtotime($row->created_at));
+                                                echo $userCreated;?>
+                                            </label>
                                         </td>
                                         <td align=center>
-                                            <?php if ($_SESSION['4edit'] == 1){?>
+                                            <?php if ($row->status == 'Unconfirmed' && $_SESSION['kode_akses'] == 2){?>
+                                            <a href='<?php echo site_url('/MasterSiswa/confirm/').$row->NIS.'/'.$row->nama?>'>
+                                                <button data-toggle="tooltip" title="Konfirmasi"
+                                                        class="btn btn-xs btn-rounded btn-primary waves waves-effect waves-light" id="btnConfirm">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+                                            </a>
+                                            <?php }?>
+
+                                            <a href='<?php echo site_url('/MasterSiswa/preview/').$row->NIS?>'>
+                                                <button data-toggle="tooltip" title="Lihat"
+                                                        class="btn btn-xs btn-rounded btn-info waves waves-effect waves-light" id="btnPreview">
+                                                    <i class="fa fa-paper-plane"></i>
+                                                </button>
+                                            </a>
+
+                                            <?php if ($_SESSION['17edit'] == 1){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' title data-original-title='Edit'>
                                                         <button class='btn btn-xs btn-rounded btn-warning waves waves-effect waves-light' data-title="Edit" id="btnEdit" data-toggle="modal" data-target="#AddModal">
@@ -161,7 +184,7 @@
                                                 </a>
                                             <?php }?>
 
-                                            <?php if ($_SESSION['4delete'] == 1){?>
+                                            <?php if ($_SESSION['17delete'] == 1){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' title='Delete'>
                                                         <button class='btn btn-xs btn-rounded btn-danger waves waves-effect waves-light' id="btnDelete">
@@ -225,29 +248,67 @@
         });
         <?php }?>
 
-        $('#btnAdd').click(function () {
-            $('#form').attr('action', "<?php echo site_url('/MenuHeader/insert')?>");
-            $("#kode_menu_header").val('');
-            $("#wnama").val('');
-            $('.selectpicker').selectpicker('val', '');
-        });
+        //get jabatan from db and set it to Combobox
+        function refreshJabatanComboBox(akses_jabatan, _callback) {
+            $.ajax({
+                url: "<?php echo site_url('/MasterSiswa/getJabatan/')?>" + akses_jabatan,
+                success: function (result) {
+                    result = JSON.parse(result)
+//                    console.log(result);
+
+                    $('#jabatanList').empty();
+                    for (var i = 0; i < result.length; i++){
+                        $('#jabatanList').append("<option value='"+ result[i].jabatan +"'>"+ result[i].jabatan +"</option>");
+                    }
+                    $('#wjabatan').selectpicker('refresh');
+
+                    _callback();
+                }
+            })
+        }
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
-            $('#form').attr('action', "<?php echo site_url('/MenuHeader/update')?>");
             var $item = $(this).closest("tr");
-            $("#kode_menu_header").val($item.find("input[id$='kode_menu_header']:hidden:first").val());
-            $("#wnama").val($.trim($item.find(".menu_header").text()));
-            $('.selectpicker').selectpicker('val', $.trim($item.find("#mIcon").text()));
+            var akses_jabatan = $item.find("input[id$='akses_jabatan']:hidden:first").val();
+
+            refreshJabatanComboBox(akses_jabatan, function () {
+                $('#waksesjabatan').selectpicker('val', $item.find("input[id$='akses_jabatan']:hidden:first").val());
+                $('#wjabatan').selectpicker('val', $.trim($item.find(".jabatan").text()));
+                $('#kodeJabatan').val($item.find("input[id$='kode_jabatan']:hidden:first").val());
+                $('#nama').val($.trim($item.find(".nama").text()));
+                $('#nis').val($item.find("input[id$='nis']:hidden:first").val());
+            });
+        });
+
+        $('#waksesjabatan').change(function () {
+            var akses_jabatan = $('#waksesjabatan').val();
+            refreshJabatanComboBox(akses_jabatan, function () {
+
+            });
+        });
+
+        $('#wjabatan').change(function () {
+            var akses_jabatan = $('#waksesjabatan').val();
+            var jabatan = $('#wjabatan').val();
+
+            $.ajax({
+                url: "<?php echo site_url('/MasterSiswa/getKodeJabatan/')?>" + akses_jabatan + "/" + jabatan,
+                success: function (result) {
+                    result = JSON.parse(result);
+
+                    $('#kodeJabatan').val(result[0].kode_jabatan);
+                }
+            });
         });
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {
             var $item = $(this).closest("tr");
-            var kode = $item.find("input[id$='kode_menu_header']:hidden:first").val();
-            var nama = $.trim($item.find(".menu_header").text());
+            var kode = $item.find("input[id$='nis']:hidden:first").val();
+            var nama = $.trim($item.find(".nama").text());
 
             swal({
                     title: "Apakah yakin akan dihapus?",
-                    text: "Menu Header dengan nama " + nama,
+                    text: "Siswa dengan nama " + nama + " akan dihapus dari anggota kelas",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#26C6DA",
@@ -259,7 +320,7 @@
                 function(isConfirm){
                     if (isConfirm) {
                         $.ajax({
-                            url: "<?php echo site_url("/MenuHeader/delete/");?>" + kode,
+                            url: "<?php echo site_url("/MasterSiswa/delete/");?>" + kode + "/" + nama,
                             success: function (result) {
                                 window.location.href = result;
                             }

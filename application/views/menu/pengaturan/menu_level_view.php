@@ -82,7 +82,7 @@
                                         </td>
 
                                         <td align=center>
-<!--                                            --><?php //if ($this->session->userdata("5edit")=="1"){?>
+                                            <?php if ($_SESSION['11edit'] == 1){?>
                                             <a href='<?php echo site_url("/MenuLevel/setting/").$row->kode_akses;?>'>
                                                 <span data-placement='top' data-toggle='tooltip' title='Setting'>
                                                     <button class='btn btn-xs btn-rounded btn-warning waves waves-effect waves-light' id="btnSetting">
@@ -90,7 +90,7 @@
                                                     </button>
                                                 </span>
                                             </a>
-<!--                                            --><?php //}?>
+                                            <?php }?>
                                         </td>
                                     </tr>
                                     <?php

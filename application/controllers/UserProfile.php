@@ -58,9 +58,9 @@ class UserProfile extends CI_Controller{
         switch ($_SESSION['kode_akses']){
             case '2' : $this->User_model->update_data('NIP' ,'master_wali_kelas', $_SESSION['kode_user'], $dataUser);
             break;
-            case '3' : $this->User_jabatan_model->update_data('NIS' ,'master_siswa', $_SESSION['kode_user'], $dataUser);
+            case '3' : $this->User_model->update_data('NIS' ,'master_siswa', $_SESSION['kode_user'], $dataUser);
             break;
-            case '4' : $this->User_jabatan_model->update_data('NIK' ,'master_ortu', $_SESSION['kode_user'], $dataUser);
+            case '4' : $this->User_model->update_data('NIK' ,'master_ortu', $_SESSION['kode_user'], $dataUser);
             break;
             default : '';
         }
@@ -83,7 +83,7 @@ class UserProfile extends CI_Controller{
         }
 
         $config['upload_path'] = './assets/img/userProfile/';
-        $config['allowed_types'] = 'jpg|png';
+        $config['allowed_types'] = 'jpg|png|jpeg';
         $config['encrypt_name'] = TRUE;
 
         $this->load->library('upload', $config);
@@ -109,9 +109,9 @@ class UserProfile extends CI_Controller{
         switch ($_SESSION['kode_akses']){
             case '2' : $this->User_model->update_data('NIP' ,'master_wali_kelas', $_SESSION['kode_user'], $data);
                 break;
-            case '3' : $this->User_jabatan_model->update_data('NIS' ,'master_siswa', $_SESSION['kode_user'], $data);
+            case '3' : $this->User_model->update_data('NIS' ,'master_siswa', $_SESSION['kode_user'], $data);
                 break;
-            case '4' : $this->User_jabatan_model->update_data('NIK' ,'master_ortu', $_SESSION['kode_user'], $data);
+            case '4' : $this->User_model->update_data('NIK' ,'master_ortu', $_SESSION['kode_user'], $data);
                 break;
             default : '';
         }

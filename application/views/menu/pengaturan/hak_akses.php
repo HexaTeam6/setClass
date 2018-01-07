@@ -90,12 +90,14 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive m-t">
-                        <button id="btnAdd" class="btn btn-info waves-effect waves-light" type="button" data-toggle="modal" data-target="#AddModal">
-                            <span class="btn-label">
-                                <i class="fa fa-plus"></i>
-                            </span>
-                            Tambah Data
-                        </button>
+                        <?php if ($_SESSION['9insert'] == 1){?>
+                            <button id="btnAdd" class="btn btn-info waves-effect waves-light" type="button" data-toggle="modal" data-target="#AddModal">
+                                <span class="btn-label">
+                                    <i class="fa fa-plus"></i>
+                                </span>
+                                Tambah Data
+                            </button>
+                        <?php }?>
                         <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
                             <table id="datatable" class="table table-bordered table-striped">
                                 <thead>
@@ -122,7 +124,7 @@
                                             <label class="label label-light-info"><?php echo $row->keterangan;?></label>
                                         </td>
                                         <td align=center>
-<!--                                            --><?php //if ($this->session->userdata("1edit")=="1"){?>
+                                            <?php if ($_SESSION['9edit'] == 1){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' title data-original-title='Edit'>
                                                         <button class='btn btn-xs btn-rounded btn-warning waves waves-effect waves-light' data-title="Edit" id="btnEdit" data-toggle="modal" data-target="#AddModal">
@@ -130,9 +132,9 @@
                                                         </button>
                                                     </span>
                                                 </a>
-<!--                                            --><?php //}?>
+                                            <?php }?>
 
-<!--                                            --><?php //if ($this->session->userdata("1delete")=="1"){?>
+                                            <?php if ($_SESSION['9delete'] == 1){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' title='Delete'>
                                                         <button class='btn btn-xs btn-rounded btn-danger waves waves-effect waves-light' id="btnDelete">
@@ -140,7 +142,7 @@
                                                         </button>
                                                     </span>
                                                 </a>
-<!--                                            --><?php //}?>
+                                            <?php }?>
                                         </td>
                                     </tr>
                                     <?php

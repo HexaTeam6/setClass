@@ -64,7 +64,7 @@
                                 <div class="form-group">
                                     <label for="wjabatan" class="control-label">Dasar Jabatan:</label>
                                     <select class="selectpicker form-control required"
-                                            name="kode" id="wjabatan">
+                                            name="aksesJabatan" id="wjabatan" required>
                                         <option></option>
                                         <optgroup label="Jabatan List">
                                                 <option value="3">Ketua Kelas</option>
@@ -87,7 +87,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <input type="hidden" id="id" name="id">
+                                <input type="hidden" id="kode_jabatan" name="kode_jabatan">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
@@ -107,12 +107,14 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive m-t">
-                        <button id="btnAdd" class="btn btn-info waves-effect waves-light" type="button" data-toggle="modal" data-target="#AddModal">
-                            <span class="btn-label">
-                                <i class="fa fa-plus"></i>
-                            </span>
-                            Tambah Data
-                        </button>
+                        <?php if ($_SESSION['13insert'] == 1){?>
+                            <button id="btnAdd" class="btn btn-info waves-effect waves-light" type="button" data-toggle="modal" data-target="#AddModal">
+                                <span class="btn-label">
+                                    <i class="fa fa-plus"></i>
+                                </span>
+                                Tambah Data
+                            </button>
+                        <?php }?>
                         <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
                             <table id="datatable" class="table table-bordered table-striped">
                                 <thead>
@@ -138,13 +140,13 @@
                                         <td class="jabatan">
                                             <?php echo $row->jabatan;?>
                                             <input type="hidden" id="kode_jabatan" value="<?php echo $row->kode_jabatan;?>">
-                                            <input type="hidden" id="id" value="<?php echo $row->id;?>">
+                                            <input type="hidden" id="akses_jabatan" value="<?php echo $row->akses_jabatan;?>">
                                         </td>
                                         <td>
                                             <?php echo '<label class="label label-light-danger" id="keterangan">'.$row->keterangan.'</label></i>'?>
                                         </td>
                                         <td align=center>
-<!--                                            --><?php //if ($this->session->userdata("1edit")=="1"){?>
+                                            <?php if ($_SESSION['13edit'] == 1 && $row->akses_jabatan != 6){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' title data-original-title='Edit'>
                                                         <button class='btn btn-xs btn-rounded btn-warning waves waves-effect waves-light' data-title="Edit" id="btnEdit" data-toggle="modal" data-target="#AddModal">
@@ -152,9 +154,9 @@
                                                         </button>
                                                     </span>
                                                 </a>
-<!--                                            --><?php //}?>
+                                            <?php }?>
 
-<!--                                            --><?php //if ($this->session->userdata("1delete")=="1"){?>
+                                            <?php if ($_SESSION['13delete'] == 1 && $row->akses_jabatan != 6){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' title='Delete'>
                                                         <button class='btn btn-xs btn-rounded btn-danger waves waves-effect waves-light' id="btnDelete">
@@ -162,7 +164,7 @@
                                                         </button>
                                                     </span>
                                                 </a>
-<!--                                            --><?php //}?>
+                                            <?php }?>
                                         </td>
                                     </tr>
                                     <?php
@@ -228,15 +230,15 @@
         $('#datatable').on('click', '[id^=btnEdit]', function() {
             $('#form').attr('action', "<?php echo site_url('/MasterJabatan/update')?>");
             var $item = $(this).closest("tr");
-            $('.selectpicker').selectpicker('val', $item.find("input[id$='kode_jabatan']:hidden:first").val());
-            $('#id').val($item.find("input[id$='id']:hidden:first").val());
+            $('.selectpicker').selectpicker('val', $item.find("input[id$='akses_jabatan']:hidden:first").val());
+            $('#kode_jabatan').val($item.find("input[id$='kode_jabatan']:hidden:first").val());
             $("#wnamaJabatan").val($.trim($item.find(".jabatan").text()));
             $("#wketerangan").val($.trim($item.find("#keterangan").text()));
         });
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {
             var $item = $(this).closest("tr");
-            var kode = $item.find("input[id$='id']:hidden:first").val();
+            var kode = $item.find("input[id$='kode_jabatan']:hidden:first").val();
             var nama = $.trim($item.find(".jabatan").text());
 
             swal({

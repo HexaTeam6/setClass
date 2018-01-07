@@ -1,26 +1,26 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class MasterJabatan extends CI_Controller{
+class MasterRuang extends CI_Controller{
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Master_jabatan_model');
+        $this->load->model('Master_ruang_model');
         $this->load->model('Logs_model');
     }
 
     public function index()
     {
         if(isset($_SESSION['kode_user'])){
-            $data['data'] = $this->Master_jabatan_model->tampil_data()->result();
+            $data['data'] = $this->Master_ruang_model->tampil_data()->result();
 
             //Notification
             $data['notif'] = $this->Logs_model->getNotification()->result();
             $data['new'] = $this->Logs_model->newNotification()->result();
             $data['mark'] = $this->Logs_model->newNotification()->num_rows();
 
-            $this->load->view('menu/master/master_jabatan', $data);
+            $this->load->view('menu/master/master_ruang', $data);
         }
         else{
             redirect(site_url().'/Auth/logout');
@@ -29,79 +29,71 @@ class MasterJabatan extends CI_Controller{
 
     public function insert()
     {
-        $akses_jabatan = $this->input->post('aksesJabatan');
         $kode_kelas = $_SESSION['kode_kelas'];
-        $jabatan = $this->input->post('jabatan');
-        $keterangan = $this->input->post('keterangan');
+        $nama_ruang = $this->input->post('namaRuang');
         $data = array(
-            'akses_jabatan' => $akses_jabatan,
             'kode_kelas' => $kode_kelas,
-            'jabatan' => $jabatan,
-            'keterangan' => $keterangan
+            'nama_ruang' => $nama_ruang
         );
         $logs = array(
             'kode_user' => $_SESSION['kode_user'],
             'kode_kelas' => $_SESSION['kode_kelas'],
-            'message' => 'Telah menambahkan jabatan '.$jabatan,
-            'link' => 'MasterJabatan',
-            'icon' => 'mdi-ruler',
+            'message' => 'Telah menambahkan ruang '.$nama_ruang,
+            'link' => 'MasterRuang',
+            'icon' => 'mdi-home-variant',
             'color' => 'success'
         );
 
-        $this->Master_jabatan_model->input_data('master_jabatan', $data);
+        $this->Master_ruang_model->input_data('master_ruang', $data);
         $this->Logs_model->input_data('logs', $logs);
         $this->session->set_flashdata('msg', 'Berhasil disimpan!');
 
-        redirect(site_url().'/MasterJabatan');
+        redirect(site_url().'/MasterRuang');
     }
 
     public function update()
     {
-        $kode_jabatan = $this->input->post('kode_jabatan');
-        $akses_jabatan = $this->input->post('aksesJabatan');
+        $kode_ruang = $this->input->post('kode_ruang');
         $kode_kelas = $_SESSION['kode_kelas'];
-        $jabatan = $this->input->post('jabatan');
-        $keterangan = $this->input->post('keterangan');
+        $nama_ruang = $this->input->post('namaRuang');
         $data = array(
-            'akses_jabatan' => $akses_jabatan,
             'kode_kelas' => $kode_kelas,
-            'jabatan' => $jabatan,
-            'keterangan' => $keterangan
+            'nama_ruang' => $nama_ruang
         );
         $logs = array(
             'kode_user' => $_SESSION['kode_user'],
             'kode_kelas' => $_SESSION['kode_kelas'],
-            'message' => 'Telah mengedit jabatan '.$jabatan,
-            'link' => 'MasterJabatan',
-            'icon' => 'mdi-ruler',
+            'message' => 'Telah mengedit ruang '.$nama_ruang,
+            'link' => 'MasterRuang',
+            'icon' => 'mdi-home-variant',
             'color' => 'warning'
         );
 
-        $this->Master_jabatan_model->update_data('master_jabatan', $kode_jabatan, $data);
+        $this->Master_ruang_model->update_data('master_ruang', $kode_ruang, $data);
         $this->Logs_model->input_data('logs', $logs);
         $this->session->set_flashdata('msg', 'Berhasil diupdate!');
 
-        redirect(site_url().'/MasterJabatan');
+        redirect(site_url().'/MasterRuang');
     }
 
-    public function delete($id,$jabatan)
+    public function delete($id,$nama_ruang)
     {
-        $jabatan = str_replace('%20', ' ', $jabatan);
+        $nama_ruang = str_replace('%20', ' ', $nama_ruang);
 
         $logs = array(
             'kode_user' => $_SESSION['kode_user'],
             'kode_kelas' => $_SESSION['kode_kelas'],
-            'message' => 'Telah menghapus jabatan '.$jabatan,
-            'link' => 'MasterJabatan',
-            'icon' => 'mdi-ruler',
+            'message' => 'Telah menghapus ruang '.$nama_ruang,
+            'link' => 'MasterRuang',
+            'icon' => 'mdi-home-variant',
             'color' => 'danger'
         );
 
-        $this->Master_jabatan_model->delete_data('master_jabatan', $id);
+        $this->Master_ruang_model->delete_data('master_ruang', $id);
         $this->Logs_model->input_data('logs', $logs);
         $this->session->set_flashdata('msg', 'Berhasil dihapus!');
 
-        echo site_url('MasterJabatan');
+        echo site_url('MasterRuang');
     }
 
 }

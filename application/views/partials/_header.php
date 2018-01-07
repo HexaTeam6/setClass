@@ -75,12 +75,14 @@
                                     <!--new message-->
                                     <?php foreach ($new as $row):?>
                                         <a style="background-color: #f2f4f8"
-                                           href="<?php echo site_url('/').$row->link.'/'.$row->id; ?>">
+                                           href="<?php echo site_url('/Logs/getNewLogs/').$row->link.'/'.$row->id; ?>">
                                             <div class="btn btn-<?php echo $row->color?> btn-circle">
-                                                <i class="<?php echo $row->icon; ?>"></i>
+                                                <i class="mdi <?php echo $row->icon; ?>"></i>
                                             </div>
                                             <div class="mail-contnet">
-                                                <h5><?php echo $row->nama?></h5>
+                                                <h5 data-placement='right' data-toggle="tooltip" data-title="<?php echo $row->jabatan?>">
+                                                    <?php echo $row->nama?>
+                                                </h5>
                                                 <span class="mail-desc"><?php echo $row->message?></span>
                                                 <span class="time">
                                                     <i class="mdi mdi-clock"></i>
@@ -96,9 +98,13 @@
                                     <!-- Message -->
                                     <?php foreach ($notif as $row):?>
                                     <a href="<?php echo site_url('/').$row->link; ?>">
-                                        <div class="btn btn-<?php echo $row->color?> btn-circle"><i class="<?php echo $row->icon; ?>"></i></div>
+                                        <div class="btn btn-<?php echo $row->color?> btn-circle">
+                                            <i class="mdi <?php echo $row->icon; ?>"></i>
+                                        </div>
                                         <div class="mail-contnet">
-                                            <h5><?php echo $row->nama?></h5>
+                                            <h5 data-placement='right' data-toggle="tooltip" data-title="<?php echo $row->jabatan?>">
+                                                <?php echo $row->nama?>
+                                            </h5>
                                             <span class="mail-desc"><?php echo $row->message?></span>
                                             <span class="time">
                                                 <i class="mdi mdi-clock"></i>
@@ -137,13 +143,23 @@
                         <ul class="dropdown-user">
                             <li>
                                 <div class="dw-user-box">
-                                    <div class="u-img"><img
-                                                src="<?php echo base_url('/assets/img/userProfile/').$_SESSION['foto'] ?>"
-                                                alt="user"></div>
+                                    <div class="u-img">
+                                        <img src="<?php echo base_url('/assets/img/userProfile/').$_SESSION['foto'] ?>" alt="user">
+                                    </div>
                                     <div class="u-text">
+                                        <label class="label label-light-danger"><?php echo $_SESSION['jabatan']?></label>
                                         <h4><?php echo $_SESSION['nama']; ?></h4>
                                         <p class="text-muted"><?php echo $_SESSION['email']; ?></p>
-                                        <a href="<?php echo site_url('/UserProfile')?>" class="btn btn-rounded btn-danger btn-sm">Lihat Profil</a>
+                                        <?php if ($_SESSION['kode_akses'] == 1){
+                                            echo '<a href="'.site_url('/BackupDatabase/backup').'" class="btn btn-danger">
+                                            <span class="btn-label"><i class="mdi mdi-database"></i></span>
+                                            Backup Database
+                                            </a>';
+                                        }else{
+                                            echo '<a href="'.site_url('/UserProfile').'" class="btn btn-rounded btn-danger btn-sm">
+                                            Lihat Profil
+                                            </a>';
+                                        }?>
                                     </div>
                                 </div>
                             </li>

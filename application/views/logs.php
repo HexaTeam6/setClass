@@ -58,7 +58,7 @@
                                 <tr>
                                     <th>Status</th>
                                     <th>Dari</th>
-                                    <th>Keterangan</th>
+                                    <th width="45%">Keterangan</th>
                                     <th>Link</th>
                                 </tr>
                                 </thead>
@@ -70,7 +70,7 @@
                                         </td>
                                         <td class="user">
                                             <input type="hidden" id="kode_user" value="<?php echo $row->kode_user ?>">
-                                            <?php echo $row->nama; ?>
+                                            <label class="label label-light-danger"><?php echo $row->jabatan?></label> <?php echo $row->nama; ?>
                                         </td>
                                         <td class="keterangan">
                                             <?php echo $row->message; ?><br>
@@ -83,7 +83,7 @@
                                             </span>
                                         </td>
                                         <td align="center">
-                                            <a class="btn btn-info" href="<?php echo $row->link.'/'.$row->id ?>">
+                                            <a class="btn btn-info" href="<?php echo site_url('/Logs/getNewLogs/').$row->link.'/'.$row->id; ?>">
                                                 <span class="btn-label">
                                                     <i class="fa fa-paper-plane-o"></i>
                                                 </span>
@@ -100,7 +100,7 @@
                                         </td>
                                         <td class="user">
                                             <input type="hidden" id="kode_user" value="<?php echo $row->kode_user ?>">
-                                            <?php echo $row->nama; ?>
+                                            <label class="label label-light-danger"><?php echo $row->jabatan?></label> <?php echo $row->nama; ?>
                                         </td>
                                         <td class="keterangan">
                                             <?php echo $row->message; ?><br>
@@ -113,7 +113,7 @@
                                             </span>
                                         </td>
                                         <td align="center">
-                                            <a class="btn btn-info" href="<?php echo $row->link.'/'.$row->id ?>">
+                                            <a class="btn btn-info" href="<?php echo site_url('/').$row->link ?>">
                                                 <span class="btn-label">
                                                     <i class="fa fa-paper-plane-o"></i>
                                                 </span>

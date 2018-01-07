@@ -44,7 +44,17 @@
                         <td align="left"><?php echo $row->kode_kelas; ?></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><span class="label label-light-warning">Sebarkan <b>kode kelas</b> tersebut hanya pada anggota kelas anda.</span>
+                        <td width="30%"><b>Status akun </b></td>
+                        <td align="left"><i
+                                    class="<?php echo ($row->status == "Confirmed" ? "text-info" : "text-danger")?> font-weight-bold">
+                                    <?php echo $row->status; ?></i></td>
+                    </tr>
+                    <tr style="padding-top: 20px">
+                        <?php echo ($row->status == "Unconfirmed" ? "<td colspan=\"2\"><span class=\"label label-light-danger\">Tunggu agar akun anda dikonfirmasi <b>Wali Kelas</b> untuk melakukan login.</span>" : "")?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><span class="label label-light-warning"><b>!</b> Sebarkan <b>kode kelas</b> tersebut hanya pada anggota kelas anda.</span>
                         </td>
                     </tr>
                 <?php endforeach;?>
