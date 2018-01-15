@@ -124,7 +124,7 @@
                                         <td align=center>
                                             <?php if ($_SESSION['14edit'] == 1){?>
                                                 <a href='#'>
-                                                    <span data-placement='top' data-toggle='tooltip' title data-original-title='Edit'>
+                                                    <span data-placement='top' data-toggle='tooltip' data-original-title='Edit'>
                                                         <button class='btn btn-xs btn-rounded btn-warning waves waves-effect waves-light' data-title="Edit" id="btnEdit" data-toggle="modal" data-target="#AddModal">
                                                             <span class='fa fa-pencil'></span>
                                                         </button>

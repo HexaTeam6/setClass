@@ -6,6 +6,8 @@
 <meta name="author" content="">
 <!-- Favicon icon -->
 <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('/assets/img/flaticon.png')?>">
+<!-- Poppins Font CSS -->
+<link href="<?php echo base_url('/assets/css/css.css') ?>" rel="stylesheet">
 <!-- Bootstrap Core CSS -->
 <link href="<?php echo base_url('/assets/materialPro/plugins/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
 <!--Toast CSS-->
@@ -13,7 +15,7 @@
 <!-- Custom CSS -->
 <link href="<?php echo base_url('/assets/materialPro/css/style.css') ?>" rel="stylesheet">
 <!-- You can change the theme colors from here -->
-<link href="<?php echo base_url('/assets/materialPro/css/colors/blue.css') ?>" id="theme" rel="stylesheet">
+<link href="<?php echo base_url('/assets/materialPro/css/colors/blue-dark.css') ?>" id="theme" rel="stylesheet">
 <!-- Wizard Step CSS -->
 <link href="<?php echo base_url('/assets/materialPro/plugins/wizard/steps.css') ?>" rel="stylesheet">
 <!--SweetAlerts CSS -->
@@ -23,4 +25,4 @@
 <!--Bootstrap Select CSS-->
 <link href="<?php echo base_url('/assets/materialPro/plugins/bootstrap-select/bootstrap-select.min.css') ?>" rel="stylesheet">
 <!--Dropify CSS-->
-<link href="<?php echo base_url('/assets/materialPro/plugins/dropify/dist/css/dropify.min.css') ?>" rel="stylesheet">
+<link href="<?php echo base_url('/assets/materialPro/plugins/dropify/dist/css/dropify.min.css') ?>" rel="stylesheet" />

@@ -33,12 +33,17 @@ class Logs extends CI_Controller {
             'kode_user' => $_SESSION['kode_user'],
             'kode_kelas' => $_SESSION['kode_kelas'],
         );
-//        $dataLogs = array(
-//            'link' => $link
-//        );
+
+        if (substr_count($link, 'LihatInformasi') !== false){
+            $link = str_replace('-', '/', $link);
+            $dataLogs = array(
+                'link' => $link
+            );
+
+            $this->Logs_model->update_data('logs', $id, $dataLogs);
+        }
 
         $this->Logs_model->input_data('logs_detail', $dataDetail);
-//        $this->Logs_model->update_data('logs', $id, $dataLogs);
 
         redirect(site_url().'/'.$link);
     }
