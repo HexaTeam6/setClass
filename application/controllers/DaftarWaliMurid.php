@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class DaftarSiswa extends CI_Controller {
+class DaftarWaliMurid extends CI_Controller {
 
     public function __construct()
     {
@@ -13,7 +13,7 @@ class DaftarSiswa extends CI_Controller {
 
     public function index()
     {
-        $this->load->view('pages/daftar_siswa');
+        $this->load->view('pages/daftar_wali_murid');
     }
 
     public function insert()
@@ -23,10 +23,9 @@ class DaftarSiswa extends CI_Controller {
 
         //$this->output->enable_profiler(TRUE);
 //        $fileName = date("d-m-Y H:i:s")."_".@$_FILES['foto']['name'];
-       $kode_user = $this->input->post('nis');
+       $kode_user = $this->input->post('nik');
        $nama = $this->input->post('nama');
        $password = $this->input->post('password');
-       $nik = $this->input->post('nik');
        $email = $this->input->post('email');
        $jenisKelamin = $this->input->post('jenisKelamin');
        $tempatLahir = $this->input->post('tempatLahir');
@@ -34,13 +33,14 @@ class DaftarSiswa extends CI_Controller {
        $alamat = $this->input->post('alamat');
        $telepon = $this->input->post('telepon');
        $kode_kelas = $this->input->post('kodeKelas');
+       $nik_siswa = $this->input->post('nikAnak');
+       $hubungan_dengan_siswa= $this->input->post('hubunganSiswa');
 
-       //get kode jabatan where access is anggota
-       $kode_jabatan = $this->User_model->getJabatan($kode_kelas)->row()->kode_jabatan;
+        $kode_jabatan = $this->User_model->getJabatan($kode_kelas, 7)->row()->kode_jabatan;
 
        $dataLogin = array(
            'kode_user' => $kode_user,
-           'kode_akses' => '3',
+           'kode_akses' => '4',
            'kode_kelas' => $kode_kelas,
            'kode_jabatan' => $kode_jabatan,
            'email' => $email,
@@ -49,50 +49,44 @@ class DaftarSiswa extends CI_Controller {
            'status' => 'Unconfirmed',
            'foto' => $foto
        );
-       $dataSiswa = array(
-           'NIS' => $kode_user,
+       $dataWaliMurid = array(
+           'NIK' => $kode_user,
+           'NIK_siswa' => $nik_siswa,
            'kode_kelas' => $kode_kelas,
-           'kode_akses' => '3',
+           'kode_akses' => '4',
            'email' => $email,
-           'nik' => $nik,
            'nama' => $nama,
            'jenis_kelamin' => $jenisKelamin,
            'tempat_lahir' => $tempatLahir,
            'tanggal_lahir' => $tanggalLahir,
            'alamat' => $alamat,
            'no_telp' => $telepon,
+           'hubungan_dengan_siswa' => $hubungan_dengan_siswa,
            'foto' => $foto
        );
         $logs = array(
             'kode_user' => $kode_user,
             'kode_kelas' => $kode_kelas,
             'message' => 'Telah bergabung ke kelas.',
-            'link' => 'MasterSiswa',
+            'link' => 'MasterWaliMurid',
             'icon' => 'mdi-account-multiple-plus',
             'color' => 'success'
         );
 
-       $this->Daftar_model->input_data('master_siswa', $dataSiswa);
+       $this->Daftar_model->input_data('master_wali_murid', $dataWaliMurid);
        $this->Daftar_model->input_data('master_login', $dataLogin);
        $this->Logs_model->input_data('logs', $logs);
        redirect(site_url() . '/Daftar/show/'. $kode_user);
     }
 
-    public function show($kode_user)
+    public function getStudent($nik_anak)
     {
-        $data['user'] = $this->User_model->selectUserInfo($kode_user)->result();
-//        print_r($data);
-        $this->load->view('pages/success_page', $data);
-    }
-
-    public function getClass($kode_kelas)
-    {
-        $cek = $this->User_model->getClass($kode_kelas)->num_rows();
+        $cek = $this->User_model->cekNik($nik_anak)->num_rows();
 
         if ($cek > 0){
-            $result = $this->User_model->getClass($kode_kelas)->result();
+            $result = $this->User_model->getStudent($nik_anak)->result();
             foreach ($result as $row){
-                $data = $row->nama.':'.$row->NIP.':'.$row->nama_sekolah.':'.$row->alamat_sekolah.':'.$row->telp_sekolah.':'.$row->kelas.':'.$row->jurusan;
+                $data = $row->NIK.':'.$row->nama.':'.$row->tempat_lahir.', '.$row->tanggal_lahir.':'.$row->jenis_kelamin.':'.$row->nama_sekolah.':'.$row->kelas.':'.$row->jurusan.':'.$row->kode_kelas;
             }
             echo $data;
         }else{
@@ -103,19 +97,8 @@ class DaftarSiswa extends CI_Controller {
     public function checkUserInfo($kode_user)
     {
         $query = $this->User_model->selectUserInfo($kode_user);
-        if (count($query->result()) > 0){
-//            return true;
-            echo "true";
-        }else{
-//            return false;
-            echo "false";
-        }
-    }
-
-    public function checkUserNik($nik)
-    {
-        $query = $this->User_model->cekNik($nik);
-        if (count($query->result()) > 0){
+        $query2 = $this->User_model->cekNik($kode_user);
+        if (count($query->result()) > 0 || count($query2->result()) > 0){
 //            return true;
             echo "true";
         }else{

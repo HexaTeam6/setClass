@@ -29,6 +29,8 @@ class MasterSiswa extends CI_Controller{
 
     public function confirm($nis, $nama)
     {
+        $nama = str_replace('%20', ' ', $nama);
+
         $data = array(
             'status' => 'Confirmed'
         );

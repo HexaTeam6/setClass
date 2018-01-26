@@ -5,7 +5,7 @@
     <?php $this->load->view('partials/_css'); ?>
 </head>
 
-<body class="fix-header card-no-border">
+<body class="fix-sidebar fix-header card-no-border">
 <?php $this->load->view('partials/_preloader'); ?>
 
 <!-- ============================================================== -->
@@ -146,7 +146,7 @@
                                             <?php echo '<label class="label label-light-danger" id="keterangan">'.$row->keterangan.'</label></i>'?>
                                         </td>
                                         <td align=center>
-                                            <?php if ($_SESSION['13edit'] == 1 && $row->akses_jabatan != 6){?>
+                                            <?php if ($_SESSION['13edit'] == 1 && $row->akses_jabatan != 6 && $row->akses_jabatan != 6){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' data-original-title='Edit'>
                                                         <button class='btn btn-xs btn-rounded btn-warning waves waves-effect waves-light' data-title="Edit" id="btnEdit" data-toggle="modal" data-target="#AddModal">
@@ -156,7 +156,7 @@
                                                 </a>
                                             <?php }?>
 
-                                            <?php if ($_SESSION['13delete'] == 1 && $row->akses_jabatan != 6){?>
+                                            <?php if ($_SESSION['13delete'] == 1 && $row->akses_jabatan != 6 && $row->akses_jabatan != 7){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' title='Delete'>
                                                         <button class='btn btn-xs btn-rounded btn-danger waves waves-effect waves-light' id="btnDelete">

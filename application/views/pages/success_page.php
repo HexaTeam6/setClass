@@ -36,8 +36,8 @@
                         <td align="left"><?php echo $row->email; ?></td>
                     </tr>
                     <tr>
-                        <td width="30%"><b>Jabatan </b></td>
-                        <td align="left"><?php echo $row->jabatan; ?></td>
+                        <td width="30%"><b>Akses </b></td>
+                        <td align="left"><?php echo $row->hak_akses; ?></td>
                     </tr>
                     <tr>
                         <td width="30%"><b>Kode Kelas </b></td>

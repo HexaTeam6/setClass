@@ -7,7 +7,7 @@
 
 </head>
 
-<body class="fix-header card-no-border">
+<body class="fix-sidebar fix-header card-no-border">
 <?php $this->load->view('partials/_preloader'); ?>
 
 <!-- ============================================================== -->

@@ -40,8 +40,10 @@
                     <div class="col-12">
                         <div class="card wizard-content">
                             <div class="card-body">
-                                <h2 class="card-title">Sign Up</h2>
-                                <h6 class="card-subtitle">Daftar sebagai Wali Kelas</h6>
+                                <center>
+                                    <h2 class="card-title">Formulir Pendaftaran</h2>
+                                    <h6 class="card-subtitle">Daftar sebagai Wali Kelas</h6>
+                                </center>
                                 <form action="<?php echo site_url('Daftar/insert') ?>"
                                       class="validation-wizard wizard-circle" method="post" id="form" enctype="multipart/form-data">
                                     <!-- Step 1 -->
@@ -108,7 +110,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="wjenisKelamin"> Jenis Kelamin</label>
-                                                    <select class="custom-select form-control"
+                                                    <select class="selectpicker form-control"
                                                             id="wjenisKelamin"
                                                             name="jenisKelamin" required>
                                                         <option value="">Pilih Jenis Kelamin</option>

@@ -11,7 +11,7 @@
 <script src="<?php echo base_url('/assets/materialPro/js/waves.js') ?>"></script>
 <!--Menu sidebar -->
 <script src="<?php echo base_url('/assets/materialPro/js/sidebarmenu.js') ?>"></script>
-<!--stickey kit -->
+<!--sticky kit -->
 <script src="<?php echo base_url('/assets/materialPro/plugins/sticky-kit-master/dist/sticky-kit.min.js') ?>"></script>
 <script src="<?php echo base_url('/assets/materialPro/plugins/sparkline/jquery.sparkline.min.js') ?>"></script>
 <!--Custom JavaScript -->
@@ -36,3 +36,8 @@
 <script src="<?php echo base_url('/assets/materialPro/plugins/toast-master/js/jquery.toast.js') ?>"></script>
 <!--Datatables JS-->
 <script src="<?php echo base_url('/assets/materialPro/plugins/datatables/jquery.dataTables.min.js') ?>"></script>
+<!--Magnific Popup-->
+<script src="<?php echo base_url('/assets/materialPro/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js') ?>"></script>
+<script src="<?php echo base_url('/assets/materialPro/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js') ?>"></script>
+<!--Style Switcher-->
+<script src="<?php echo base_url('/assets/materialPro/plugins/styleswitcher/jQuery.style.switcher.js') ?>"></script>

@@ -36,7 +36,7 @@ class DaftarSiswa extends CI_Controller {
        $kode_kelas = $this->input->post('kodeKelas');
 
        //get kode jabatan where access is anggota
-       $kode_jabatan = $this->User_model->getJabatan($kode_kelas)->row()->kode_jabatan;
+       $kode_jabatan = $this->User_model->getJabatan($kode_kelas, 6)->row()->kode_jabatan;
 
        $dataLogin = array(
            'kode_user' => $kode_user,
@@ -76,13 +76,6 @@ class DaftarSiswa extends CI_Controller {
        $this->Daftar_model->input_data('master_login', $dataLogin);
        $this->Logs_model->input_data('logs', $logs);
        redirect(site_url() . '/Daftar/show/'. $kode_user);
-    }
-
-    public function show($kode_user)
-    {
-        $data['user'] = $this->User_model->selectUserInfo($kode_user)->result();
-//        print_r($data);
-        $this->load->view('pages/success_page', $data);
     }
 
     public function getClass($kode_kelas)

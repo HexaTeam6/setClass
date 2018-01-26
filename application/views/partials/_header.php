@@ -1,13 +1,13 @@
 <!-- ============================================================== -->
 <!-- Topbar header - style you can find in pages.scss -->
 <!-- ============================================================== -->
-<header class="topbar">
+<header class="topbar" style="position: fixed; top: 0px; width: 100%;">
     <nav class="navbar top-navbar navbar-expand-md navbar-light">
         <!-- ============================================================== -->
         <!-- Logo -->
         <!-- ============================================================== -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="<?php echo site_url('Home')?>">
+            <a class="navbar-brand" href="<?php echo site_url()?>">
                 <!-- Logo icon -->
                 <b>
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -178,6 +178,7 @@
         </div>
     </nav>
 </header>
+<div style="position: relative; width: 1349px; height: 70px; display: block; vertical-align: baseline; float: none;"></div>
 <!-- ============================================================== -->
 <!-- End Topbar header -->
 <!-- ============================================================== -->

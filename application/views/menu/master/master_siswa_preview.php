@@ -6,7 +6,7 @@
     <?php $this->load->view('partials/_css'); ?>
 </head>
 
-<body class="fix-header card-no-border">
+<body class="fix-sidebar fix-header card-no-border">
 <?php $this->load->view('partials/_preloader'); ?>
 
 <!-- ============================================================== -->
@@ -57,14 +57,23 @@
                         <div class="card">
                             <div class="card-body">
                                 <center class="m-t-30">
-                                    <div class="el-element-overlay">
-                                        <img src="<?php echo base_url('/assets/img/userProfile/') . $user->foto ?>"
-                                             style="width: 150px; height: 150px; border-radius: 100%" alt="user">
+                                    <div class="el-element-overlay" style="width: 150px; height: 150px; border-radius: 100%">
+                                        <div class="el-card-item">
+                                            <div class="el-card-avatar el-overlay-1" style="border-radius: 100%;">
+                                                <img src="<?php echo base_url('/assets/img/userProfile/') . $user->foto ?>"
+                                                     style="width: 150px; height: 150px; border-radius: 100%" alt="user">
+                                                <div class="el-overlay">
+                                                    <ul class="el-info">
+                                                        <li><a class="btn default btn-outline image-popup-vertical-fit" href="<?php echo base_url('/assets/img/userProfile/') . $user->foto ?>"><i class="icon-magnifier"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <h4 class="card-title m-t-10"><?php echo $user->nama?></h4>
                                     <h6 class="card-subtitle"><?php echo $user->jabatan?></h6>
                                     <label class="label label-light-info" data-placement='top' data-toggle="tooltip" data-title="Kode Kelas"><?php echo $user->kode_kelas?></label>
-                                    <div class="row text-center justify-content-md-center" data-placement="top" data-toggle="tooltip" data-title="Jumlah Murid">
+                                    <div class="row text-center justify-content-md-center" data-placement="top" data-toggle="tooltip" data-title="Jumlah Anggota Kelas">
                                         <div class="col-4">
                                             <a href=<?php echo site_url('/MasterSiswa')?> class="link">
                                                 <i class="icon-people"></i>

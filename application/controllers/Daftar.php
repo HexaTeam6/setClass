@@ -50,7 +50,14 @@ class Daftar extends CI_Controller {
             'jabatan' => 'Anggota',
             'keterangan' => 'Anggota kelas'
         );
+        $dataJabatanWaliMurid= array(
+            'akses_jabatan' => 7,
+            'kode_kelas' => $kode_kelas,
+            'jabatan' => 'Wali Murid',
+            'keterangan' => 'Wali Murid'
+        );
         $this->Daftar_model->input_data('master_jabatan', $dataJabatanAnggota);
+        $this->Daftar_model->input_data('master_jabatan', $dataJabatanWaliMurid);
         $this->Daftar_model->input_data('master_jabatan', $dataJabatanWali);
         $kode_jabatan = $this->db->insert_id();
 

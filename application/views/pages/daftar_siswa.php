@@ -40,8 +40,10 @@
                     <div class="col-12">
                         <div class="card wizard-content">
                             <div class="card-body">
-                                <h2 class="card-title">Sign Up</h2>
-                                <h6 class="card-subtitle">Daftar sebagai Siswa</h6>
+                                <center>
+                                    <h2 class="card-title">Formulir Pendaftaran</h2>
+                                    <h6 class="card-subtitle">Daftar sebagai Siswa</h6>
+                                </center>
                                 <form action="<?php echo site_url('DaftarSiswa/insert') ?>"
                                       class="validation-wizard wizard-circle" method="post" id="form" enctype="multipart/form-data">
                                     <!-- Step 1 -->
@@ -117,7 +119,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="wjenisKelamin"> Jenis Kelamin</label>
-                                                    <select class="custom-select form-control"
+                                                    <select class="selectpicker form-control"
                                                             id="wjenisKelamin"
                                                             name="jenisKelamin" required>
                                                         <option value="">Pilih Jenis Kelamin</option>
@@ -181,7 +183,7 @@
                                                            name="kodeKelas" required>
                                                 </div>
                                             </div>
-                                            <div class="col-md-5">
+                                            <div class="col-md-2">
                                                 <div class="form-group" style="padding-top: 34px;">
                                                     <button type="button"
                                                             class="btn btn-success waves-effect waves-light"
@@ -191,9 +193,11 @@
                                                         </span>
                                                         Cari
                                                     </button>
-                                                    <label style="float: right;" class="label label-light-warning">
-                                                        Masukkan kode kelas <br>untuk bergabung ke dalam kelas</label>
                                                 </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="label label-light-warning" style="margin-top: 34px;">
+                                                    Masukkan kode kelas <br>untuk bergabung ke dalam kelas</label>
                                             </div>
                                         </div>
 

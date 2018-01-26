@@ -22,7 +22,7 @@ Author: Themedesigner
 Email: niravjoshi87@gmail.com
 File: scss
 */
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+@import url(../../css/css.css);
 /*Theme Colors*/
 /*bootstrap Color*/
 /*Light colors*/
@@ -36,7 +36,7 @@ File: scss
 @import url(../scss/icons/themify-icons/themify-icons.css);
 @import url(../scss/icons/flag-icon-css/flag-icon.min.css);
 @import url(../scss/icons/material-design-iconic-font/css/materialdesignicons.min.css);
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+@import url(../../css/css.css);
 @import url(spinners.css);
 @import url(animate.css);
 .preloader {

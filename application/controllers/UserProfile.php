@@ -60,7 +60,7 @@ class UserProfile extends CI_Controller{
             break;
             case '3' : $this->User_model->update_data('NIS' ,'master_siswa', $_SESSION['kode_user'], $dataUser);
             break;
-            case '4' : $this->User_model->update_data('NIK' ,'master_ortu', $_SESSION['kode_user'], $dataUser);
+            case '4' : $this->User_model->update_data('NIK' ,'master_wali_murid', $_SESSION['kode_user'], $dataUser);
             break;
             default : '';
         }
@@ -111,7 +111,7 @@ class UserProfile extends CI_Controller{
                 break;
             case '3' : $this->User_model->update_data('NIS' ,'master_siswa', $_SESSION['kode_user'], $data);
                 break;
-            case '4' : $this->User_model->update_data('NIK' ,'master_ortu', $_SESSION['kode_user'], $data);
+            case '4' : $this->User_model->update_data('NIK' ,'master_wali_murid', $_SESSION['kode_user'], $data);
                 break;
             default : '';
         }

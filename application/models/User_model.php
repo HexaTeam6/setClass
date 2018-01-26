@@ -5,26 +5,37 @@ class User_model extends CI_Model
 {
     function tampil_data(){
         if ($_SESSION['kode_akses'] == 2){
-            $sql = "SELECT DISTINCT 
+            $sql = "SELECT 
                 ml.kode_user, 
                 mwk.*,
                 mk.nama_sekolah, mk.alamat_sekolah, mk.telp_sekolah, mk.kelas, mk.jurusan, 
                 mj.jabatan,
                 (SELECT count(nis) FROM master_siswa WHERE kode_kelas = ?) as jumlahSiswa
-                FROM master_login ml, master_wali_kelas mwk, master_jabatan mj, master_kelas mk, master_siswa ms
+                FROM master_login ml, master_wali_kelas mwk, master_jabatan mj, master_kelas mk
                 WHERE ml.kode_user = ?
                 AND ml.kode_user = mwk.NIP
                 AND ml.kode_kelas = mk.kode_kelas
                 AND ml.kode_jabatan = mj.kode_jabatan";
-        }else{
-            $sql = "SELECT DISTINCT 
+        }else if($_SESSION['kode_akses'] == 3){
+            $sql = "SELECT 
                 ml.kode_user, 
                 ms.*, (SELECT count(nis) FROM master_siswa WHERE kode_kelas = ?) as jumlahSiswa,
                 mk.nama_sekolah, mk.alamat_sekolah, mk.telp_sekolah, mk.kelas, mk.jurusan, 
                 mj.jabatan
                 FROM master_login ml, master_siswa ms, master_jabatan mj, master_kelas mk
-                WHERE ml.kode_user=?
+                WHERE ml.kode_user = ?
                 AND ml.kode_user = ms.NIS
+                AND ml.kode_kelas = mk.kode_kelas
+                AND ml.kode_jabatan = mj.kode_jabatan";
+        }else{
+            $sql = "SELECT 
+                ml.kode_user, 
+                mwm.*, (SELECT count(nis) FROM master_siswa WHERE kode_kelas = ?) as jumlahSiswa,
+                mk.nama_sekolah, mk.alamat_sekolah, mk.telp_sekolah, mk.kelas, mk.jurusan, 
+                mj.jabatan
+                FROM master_login ml, master_wali_murid mwm, master_jabatan mj, master_kelas mk
+                WHERE ml.kode_user = ?
+                AND ml.kode_user = mwm.NIK
                 AND ml.kode_kelas = mk.kode_kelas
                 AND ml.kode_jabatan = mj.kode_jabatan";
         }
@@ -40,10 +51,10 @@ class User_model extends CI_Model
     }
 
     function selectUserInfo($kode_user){
-        $sql = "SELECT ml.*, mj.jabatan 
-                FROM master_login ml, master_jabatan mj
+        $sql = "SELECT ml.*, ha.hak_akses 
+                FROM master_login ml, menu_hak_akses ha
                 WHERE ml.kode_user=?
-                AND ml.kode_jabatan = mj.kode_jabatan";
+                AND ml.kode_akses = ha.kode_akses";
         $result = $this->db->query($sql, array($kode_user));
         return $result;
     }
@@ -63,10 +74,17 @@ class User_model extends CI_Model
                                  AND mk.kode_kelas = mwk.kode_kelas", array($kode_kelas));
     }
 
-    function getJabatan($kode_kelas){
+    function getStudent($nik){
+        return $this->db->query("SELECT ms.*, mk.nama_sekolah, mk.kelas, mk.jurusan, mk.kode_kelas
+                                 FROM master_siswa ms, master_kelas mk
+                                 WHERE ms.NIK = ?
+                                 AND ms.kode_kelas = mk.kode_kelas", array($nik));
+    }
+
+    function getJabatan($kode_kelas, $akses){
         return $this->db->query("SELECT kode_jabatan FROM master_jabatan 
                                  WHERE kode_kelas = ?
-                                 AND akses_jabatan = 6", array($kode_kelas));
+                                 AND akses_jabatan = ?", array($kode_kelas, $akses));
     }
 
     function getLogin($kode_user, $password)

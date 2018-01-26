@@ -5,7 +5,7 @@
     <?php $this->load->view('partials/_css'); ?>
 </head>
 
-<body class="fix-header card-no-border">
+<body class="fix-sidebar fix-header card-no-border">
 <?php $this->load->view('partials/_preloader'); ?>
 
 <!-- ============================================================== -->
@@ -58,7 +58,13 @@
                                     <img width="50px" height="50px" style="max-width: 50px" src="<?php echo base_url('/assets/img/userProfile/').$row->foto?>" alt="user" class="img-circle">
                                 </div>
                                 <div class="sl-right">
-                                    <div><b><?php echo $row->nama?></b>  <label class="label label-inverse"><?php echo $row->jabatan?></label> <br>
+                                    <div><b><?php echo $row->nama?></b>  <label class="label label-inverse"><?php echo $row->jabatan?></label>
+                                        <?php if ($row->kode_user == $_SESSION['kode_user']){?>
+                                            <a href="<?php echo site_url('DataInformasi/edit/').$row->id_informasi?>" style="float: right">
+                                               <span class="sl-date text-warning"><i class="fa fa-pencil"></i> Edit</span>
+                                            </a>
+                                        <?php }?>
+                                        <br>
                                         <span class="sl-date">Untuk <?php switch ($row->akses_jabatan){
                                                 case 3: echo 'Ketua Kelas';
                                                     break;
@@ -71,7 +77,22 @@
                                                 default: echo 'tidak ditentukan';
                                             }?> - <?php echo get_timeago(strtotime($row->created_at))?></span>
                                         <p class="m-t-10"><?php echo $row->isi_informasi?></p>
-                                        <img style="max-width: 90%" src="<?php echo base_url('/assets/img/informasi/').$row->gambar;?>" alt="">
+                                        <?php if ($row->gambar != ''){?>
+                                            <div class="el-element-overlay" style="max-width: 90%">
+                                                <div class="el-card-item">
+                                                    <div class="el-card-avatar el-overlay-1">
+                                                        <center>
+                                                            <img style="max-width: 90%" src="<?php echo base_url('/assets/img/informasi/').$row->gambar;?>">
+                                                        </center>
+                                                        <div class="el-overlay">
+                                                            <ul class="el-info">
+                                                                <li><a class="btn default btn-outline image-popup-vertical-fit" href="<?php echo base_url('/assets/img/informasi/').$row->gambar;?>"><i class="icon-magnifier"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php }?>
                                     </div>
 <!--                                    <div class="like-comm m-t-20">-->
 <!--                                        <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-comments"></i> 2 comment</a>-->

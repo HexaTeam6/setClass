@@ -6,7 +6,7 @@
     <?php $this->load->view('partials/_css'); ?>
 </head>
 
-<body class="fix-header card-no-border">
+<body class="fix-sidebar fix-header card-no-border">
 <?php $this->load->view('partials/_preloader'); ?>
 
 <!-- ============================================================== -->
@@ -156,7 +156,16 @@
                                     </div>
 
                                     <div>
-                                        <label class="col-md-3 font-weight-bold float-left"><?php echo ($_SESSION['kode_akses'] == 2 ? 'NIP' : 'NIS')?></label>
+                                        <label class="col-md-3 font-weight-bold float-left">
+                                            <?php switch ($_SESSION['kode_akses']){
+                                                case 2 : echo 'NIP';
+                                                break;
+                                                case 3 : echo 'NIS';
+                                                break;
+                                                case 4 : echo 'NIK';
+                                                break;
+                                                default : echo '';
+                                            }?></label>
                                         <label class="col-md-6"><?php echo $user->kode_user ?></label>
                                     </div>
 
