@@ -36,7 +36,7 @@ class DaftarWaliMurid extends CI_Controller {
        $nik_siswa = $this->input->post('nikAnak');
        $hubungan_dengan_siswa= $this->input->post('hubunganSiswa');
 
-        $kode_jabatan = $this->User_model->getJabatan($kode_kelas, 7)->row()->kode_jabatan;
+        $kode_jabatan = $this->User_model->getJabatan($kode_kelas, 7)->row('kode_jabatan');
 
        $dataLogin = array(
            'kode_user' => $kode_user,

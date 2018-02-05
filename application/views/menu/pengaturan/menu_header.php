@@ -93,6 +93,8 @@
                                                     data-content="<i class='fa fa-plus-square'></i>  <span class='label label-light-success'>fa-plus-square<span>"></option>
                                             <option value="fa fa-archive"
                                                     data-content="<i class='fa fa-archive'></i>  <span class='label label-light-success'>fa-archive<span>"></option>
+                                            <option value="fa fa-money"
+                                                    data-content="<i class='fa fa-money'></i>  <span class='label label-light-success'>fa-money<span>"></option>
                                         </optgroup>
                                     </select>
                                 </div>
@@ -230,6 +232,7 @@
             $("#kode_menu_header").val('');
             $("#wnama").val('');
             $('.selectpicker').selectpicker('val', '');
+            $('.modal-title').text('Tambah Data');
         });
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
@@ -238,6 +241,7 @@
             $("#kode_menu_header").val($item.find("input[id$='kode_menu_header']:hidden:first").val());
             $("#wnama").val($.trim($item.find(".menu_header").text()));
             $('.selectpicker').selectpicker('val', $.trim($item.find("#mIcon").text()));
+            $('.modal-title').text('Edit Data');
         });
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {

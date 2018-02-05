@@ -28,3 +28,5 @@
 <link href="<?php echo base_url('/assets/materialPro/plugins/bootstrap-select/bootstrap-select.min.css') ?>" rel="stylesheet">
 <!--Dropify CSS-->
 <link href="<?php echo base_url('/assets/materialPro/plugins/dropify/dist/css/dropify.min.css') ?>" rel="stylesheet" />
+<!--Select2 CSS-->
+<link href="<?php echo base_url('/assets/materialPro/plugins/select2/dist/css/select2.min.css') ?>" rel="stylesheet" />

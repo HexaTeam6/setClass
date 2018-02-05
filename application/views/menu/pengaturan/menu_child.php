@@ -223,6 +223,7 @@
             $("#wnama").val('');
             $('.selectpicker').selectpicker('val', '');
             $("#wfilePhp").val('');
+            $('.modal-title').text('Tambah Data');
         });
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
@@ -232,6 +233,7 @@
             $("#wnama").val($.trim($item.find(".menu_child").text()));
             $('.selectpicker').selectpicker('val', $item.find("input[id$='kode_menu_header']:hidden:first").val());
             $("#wfilePhp").val($.trim($item.find("#file_php").text()));
+            $('.modal-title').text('Edit Data');
         });
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {

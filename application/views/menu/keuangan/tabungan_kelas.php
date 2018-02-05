@@ -35,10 +35,10 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 col-8 align-self-center">
-                    <h3 class="text-themecolor m-b-0 m-t-0">Master Jabatan</h3>
+                    <h3 class="text-themecolor m-b-0 m-t-0">Tabungan Kelas</h3>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Master</li>
+                        <li class="breadcrumb-item active">Keuangan</li>
                     </ol>
                 </div>
             </div>
@@ -49,7 +49,7 @@
             <!-- ============================================================== -->
             <!-- Modal -->
             <!-- ============================================================== -->
-            <div class="modal fade" id="AddModal" tabindex="-1" role="dialog">
+            <div class="modal fade" id="AddModal" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -62,32 +62,27 @@
                             <div class="modal-body">
 
                                 <div class="form-group">
-                                    <label for="wjabatan" class="control-label">Dasar Jabatan:</label>
-                                    <select class="selectpicker form-control required"
-                                            name="aksesJabatan" id="wjabatan" required>
+                                    <label for="wsiswa">Dari</label>
+                                    <select style="width:100%;" class="select2 form-control" id="wsiswa"
+                                            name="siswa" required>
                                         <option></option>
-                                        <optgroup label="Jabatan List">
-                                                <option value="3">Ketua Kelas</option>
-                                                <option value="4">Sekertaris</option>
-                                                <option value="5">Bendahara</option>
-                                                <option value="6">Anggota</option>
+                                        <optgroup label="Anggota Kelas">
+                                            <?php foreach ($siswa as $row):?>
+                                            <option value="<?php echo $row->NIS?>"><?php echo $row->nama?></option>
+                                            <?php endforeach;?>
                                         </optgroup>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="wnamaJabatan" class="control-label">Jabatan:</label>
-                                    <input type="text" class="form-control" id="wnamaJabatan" name="jabatan" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="wketerangan" class="control-label">Keterangan:</label>
-                                    <textarea class="form-control" name="keterangan" id="wketerangan" rows="3"></textarea>
+                                    <label for="wnominal" class="control-label">Nominal</label>
+                                    <input type="text" name="nominal" id="wnominal" class="form-control" required>
                                 </div>
 
                             </div>
                             <div class="modal-footer">
-                                <input type="hidden" id="kode_jabatan" name="kode_jabatan">
+                                <input type="hidden" id="kode_tabungan" name="kode_tabungan">
+                                <input type="hidden" id="namaSiswa" name="namaSiswa">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
@@ -104,10 +99,75 @@
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-info">
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="round round-lg align-self-center round-info"><i class="ti-wallet"></i></div>
+                                <div class="m-l-10 align-self-center">
+                                    <h4 class="m-b-0 moneyChart" style="color: white;">
+                                        <?php if ($_SESSION['kode_akses'] == 4){
+                                            echo ($tabunganAnak != '')? $tabunganAnak : '0';
+                                            echo '</h4>
+                                                    <h6 class="m-b-0 font-light" style="color:white;">Tabungan anak</h6>';
+                                        }else{
+                                            echo ($tabunganPribadi != '')? $tabunganPribadi : '0';
+                                            echo '</h4>
+                                                    <h6 class="m-b-0 font-light" style="color:white;">Tabungan anda</h6>';
+                                        } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-warning">
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="round round-lg align-self-center round-warning"><i class="mdi mdi-cash-multiple"></i></div>
+                                <div class="m-l-10 align-self-center">
+                                    <h4 class="m-b-0 moneyChart" style="color: white;"><?php echo ($tabunganKelas != '')? $tabunganKelas : '0'?></h4>
+                                    <h6 class="m-b-0 font-light" style="color: white;">Total tabungan</h6></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!--                <div class="col-lg-3 col-md-6">-->
+<!--                    <div class="card card-primary">-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="d-flex flex-row">-->
+<!--                                <div class="round round-lg align-self-center round-primary"><i class="mdi mdi-package-down"></i></div>-->
+<!--                                <div class="m-l-10 align-self-center">-->
+<!--                                    <h4 class="m-b-0 moneyChart" style="color: white;">$1795</h4>-->
+<!--                                    <h6 class="m-b-0 font-light" style="color: white;">Pemasukan</h6></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                -->
+<!--                <div class="col-lg-3 col-md-6">-->
+<!--                    <div class="card card-danger">-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="d-flex flex-row">-->
+<!--                                <div class="round round-lg align-self-center round-danger"><i class="mdi mdi-package-up"></i></div>-->
+<!--                                <div class="m-l-10 align-self-center">-->
+<!--                                    <h4 class="m-b-0 moneyChart" style="color: white;">$687</h4>-->
+<!--                                    <h6 class="m-b-0 font-light" style="color: white;">Pengeluaran</h6></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+            </div>
+
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive m-t">
-                        <?php if ($_SESSION['13insert'] == 1){?>
+                        <?php if ($_SESSION['22insert'] == 1 && ($_SESSION['akses_jabatan'] == 2 || $_SESSION['akses_jabatan'] == 5)){?>
                             <button id="btnAdd" class="btn btn-info waves-effect waves-light" type="button" data-toggle="modal" data-target="#AddModal">
                                 <span class="btn-label">
                                     <i class="fa fa-plus"></i>
@@ -120,8 +180,10 @@
                                 <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kode Kelas</th>
-                                    <th>Jabatan</th>
+                                    <th>Kode Tabungan</th>
+                                    <th>Nama</th>
+                                    <th>Penerima</th>
+                                    <th>Nominal</th>
                                     <th>Keterangan</th>
                                     <th>Action</th>
                                 </tr>
@@ -134,19 +196,36 @@
                                     <tr>
 
                                         <td class="no"><?php echo $no;?></td>
-                                        <td class="kode_kelas">
-                                            <label class="label label-light-warning"><?php echo $row->kode_kelas;?></label>
+                                        <td class="kode_tabungan">
+                                            <label class="label label-inverse"><?php echo $row->kode_tabungan;?></label>
                                         </td>
-                                        <td class="jabatan">
-                                            <?php echo $row->jabatan;?>
-                                            <input type="hidden" id="kode_jabatan" value="<?php echo $row->kode_jabatan;?>">
-                                            <input type="hidden" id="akses_jabatan" value="<?php echo $row->akses_jabatan;?>">
+                                        <td class="nama">
+                                            <input type="hidden" id="kodeUser" value="<?php echo $row->kode_user;?>">
+                                            <label class="label label-primary"><?php echo $row->nama;?></label>
+                                        </td>
+                                        <td class="penerima">
+                                            <label data-toggle="tooltip" data-title="<?php echo $row->jabatan?>"
+                                                   class="label label-info"><?php echo $row->nama_penerima;?></label>
                                         </td>
                                         <td>
-                                            <?php echo '<label class="label label-light-danger" id="keterangan">'.$row->keterangan.'</label></i>'?>
+                                            Rp <label class="nominal"><?php echo $row->nominal;?></label>
+                                        </td>
+                                        <td class="keterangan">
+                                            <span class="col-md-3">
+                                                <label class="label label-light-success">
+                                                    <i class="mdi mdi-clock"></i>
+                                                    <?php echo 'Diterima '.date('d-m-Y', strtotime($row->created_at)).'<br>'.get_timeago(strtotime($row->created_at));?>
+                                                </label>
+                                            </span>
+<!--                                            <span class="col-md-3">-->
+<!--                                                <label class="label label-light-warning">-->
+<!--                                                    <i class="mdi mdi-clock"></i>-->
+<!--                                                    --><?php //echo ' Diperbarui '.get_timeago(strtotime($row->updated_at));?>
+<!--                                                </label>-->
+<!--                                            </span>-->
                                         </td>
                                         <td align=center>
-                                            <?php if ($_SESSION['13edit'] == 1 && $row->akses_jabatan != 6 && $row->akses_jabatan != 6){?>
+                                            <?php if ($_SESSION['22edit'] == 1 && ($_SESSION['akses_jabatan'] == 2 || $_SESSION['akses_jabatan'] == 5)){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' data-original-title='Edit'>
                                                         <button class='btn btn-xs btn-rounded btn-warning waves waves-effect waves-light' data-title="Edit" id="btnEdit" data-toggle="modal" data-target="#AddModal">
@@ -156,7 +235,7 @@
                                                 </a>
                                             <?php }?>
 
-                                            <?php if ($_SESSION['13delete'] == 1 && $row->akses_jabatan != 6 && $row->akses_jabatan != 7){?>
+                                            <?php if ($_SESSION['22delete'] == 1 && ($_SESSION['akses_jabatan'] == 2 || $_SESSION['akses_jabatan'] == 5)){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' title='Delete'>
                                                         <button class='btn btn-xs btn-rounded btn-danger waves waves-effect waves-light' id="btnDelete">
@@ -196,10 +275,41 @@
 <!-- End Wrapper -->
 <!-- ============================================================== -->
 
-
+<!--Select2 JS-->
 <?php $this->load->view('partials/_javascripts'); ?>
 <script>
     $(function () {
+        $('.select2').select2();
+        $("#wnominal").inputmask('decimal', {
+            digits: 2,
+            placeholder: "0",
+            digitsOptional: false,
+            radixPoint: ".",
+            groupSeparator: ",",
+            min: 1000,
+            autoGroup: true
+        });
+        $(".nominal").inputmask('decimal', {
+            digits: 2,
+            digitsOptional: false,
+            radixPoint: ".",
+            groupSeparator: ",",
+            autoGroup: true
+        });
+        $(".moneyChart").inputmask('decimal', {
+            digits: 2,
+            digitsOptional: false,
+            radixPoint: ".",
+            groupSeparator: ",",
+            autoGroup: true,
+            prefix: "Rp "
+        });
+        $('#wsiswa').change(function () {
+            console.log('test');
+            $('#namaSiswa').val($('#wsiswa option:selected').text());
+        });
+
+
         $('#datatable').DataTable({
             "paging": true,
             "lengthChange": true,
@@ -221,31 +331,32 @@
         <?php }?>
 
         $('#btnAdd').click(function () {
-            $('#form').attr('action', "<?php echo site_url('/MasterJabatan/insert')?>");
-            $('.selectpicker').selectpicker('val', '');
-            $("#wnamaJabatan").val('');
-            $("#wketerangan").val('');
+            $('#form').attr('action', "<?php echo site_url('/TabunganKelas/insert')?>");
+            $('#wsiswa').val('').trigger('change.select2');
+            $("#namaSiswa").val('');
+            $("#kode_tabungan").val('');
+            $("#wnominal").val('');
             $('.modal-title').text('Tambah Data');
         });
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
-            $('#form').attr('action', "<?php echo site_url('/MasterJabatan/update')?>");
+            $('#form').attr('action', "<?php echo site_url('/TabunganKelas/update')?>");
             var $item = $(this).closest("tr");
-            $('.selectpicker').selectpicker('val', $item.find("input[id$='akses_jabatan']:hidden:first").val());
-            $('#kode_jabatan').val($item.find("input[id$='kode_jabatan']:hidden:first").val());
-            $("#wnamaJabatan").val($.trim($item.find(".jabatan").text()));
-            $("#wketerangan").val($.trim($item.find("#keterangan").text()));
+            $('#wsiswa').val($item.find("input[id$='kodeUser']:hidden:first").val()).trigger('change.select2');
+            $("#namaSiswa").val($.trim($item.find(".nama").text()));
+            $("#kode_tabungan").val($.trim($item.find(".kode_tabungan").text()));
+            $("#wnominal").val($.trim($item.find(".nominal").text()));
             $('.modal-title').text('Edit Data');
         });
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {
             var $item = $(this).closest("tr");
-            var kode = $item.find("input[id$='kode_jabatan']:hidden:first").val();
-            var nama = $.trim($item.find(".jabatan").text());
+            var kode = $.trim($item.find(".kode_tabungan").text());
+            var nama = $.trim($item.find(".nama").text());
 
             swal({
                     title: "Apakah yakin akan dihapus?",
-                    text: "Data dengan jabatan " + nama,
+                    text: "Hapus transaksi " + kode,
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#26C6DA",
@@ -256,8 +367,10 @@
                 },
                 function(isConfirm){
                     if (isConfirm) {
+                        kode = kode.replace(/\//g, '-');
+//                        alert(kode);
                         $.ajax({
-                            url: "<?php echo site_url("/MasterJabatan/delete/");?>" + kode + "/" + nama,
+                            url: "<?php echo site_url("/TabunganKelas/delete/");?>" + kode,
                             success: function (result) {
                                 window.location.href = result;
                             }

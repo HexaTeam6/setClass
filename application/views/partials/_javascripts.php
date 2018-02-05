@@ -41,3 +41,7 @@
 <script src="<?php echo base_url('/assets/materialPro/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js') ?>"></script>
 <!--Style Switcher-->
 <script src="<?php echo base_url('/assets/materialPro/plugins/styleswitcher/jQuery.style.switcher.js') ?>"></script>
+<!--Select2 JS-->
+<script src="<?php echo base_url('/assets/materialPro/plugins/select2/dist/js/select2.full.min.js') ?>"></script>
+<!--Jquery InputMask-->
+<script src="<?php echo base_url('/assets/materialPro/plugins/jquery-inputmask/jquery.inputmask.bundle.js') ?>"></script>

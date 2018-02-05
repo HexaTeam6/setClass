@@ -199,6 +199,7 @@
         $('#btnAdd').click(function () {
             $('#form').attr('action', "<?php echo site_url('/MasterRuang/insert')?>");
             $("#wnamaRuang").val('');
+            $('.modal-title').text('Tambah Data');
         });
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
@@ -206,6 +207,7 @@
             var $item = $(this).closest("tr");
             $('#kode_ruang').val($item.find("input[id$='kode_ruang']:hidden:first").val());
             $("#wnamaRuang").val($.trim($item.find(".ruang").text()));
+            $('.modal-title').text('Edit Data');
         });
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {

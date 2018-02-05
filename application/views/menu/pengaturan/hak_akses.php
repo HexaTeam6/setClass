@@ -203,6 +203,7 @@
             $("#kode_hak_akses").val('');
             $("#whakAkses").val('');
             $("#wketerangan").val('');
+            $('.modal-title').text('Tambah Data');
         });
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
@@ -211,6 +212,7 @@
             $("#kode_hak_akses").val($item.find("input[id$='kode_akses']:hidden:first").val());
             $("#whakAkses").val($.trim($item.find(".hak_akses").text()));
             $("#wketerangan").val($.trim($item.find(".keterangan").text()));
+            $('.modal-title').text('Edit Data');
         });
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {

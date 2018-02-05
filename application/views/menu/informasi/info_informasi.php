@@ -116,7 +116,7 @@
                                             <?php }?>
                                         </div>
                                         <b><?php echo $komen->nama?></b> <label class="label label-inverse"><?php echo $komen->jabatan?></label>
-                                        <p class="m-b-5"><?php echo $komen->isi_komentar?></p>
+                                        <p class="m-b-5"><?php echo nl2br($komen->isi_komentar)?></p>
                                         <span class="sl-date"><?php echo get_timeago(strtotime($komen->created_at))?></span>
                                     </div>
                                 </div>

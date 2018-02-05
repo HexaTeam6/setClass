@@ -200,6 +200,7 @@
             $('#form').attr('action', "<?php echo site_url('/MasterMatapelajaran/insert')?>");
             $('.selectpicker').selectpicker('val', '');
             $("#wnamaMatapelajaran").val('');
+            $('.modal-title').text('Tambah Data');
         });
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
@@ -207,6 +208,7 @@
             var $item = $(this).closest("tr");
             $('#kode_matapelajaran').val($item.find("input[id$='kode_matapelajaran']:hidden:first").val());
             $("#wnamaMatapelajaran").val($.trim($item.find(".matapelajaran").text()));
+            $('.modal-title').text('Edit Data');
         });
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {

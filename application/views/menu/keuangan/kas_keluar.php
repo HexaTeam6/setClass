@@ -35,10 +35,10 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 col-8 align-self-center">
-                    <h3 class="text-themecolor m-b-0 m-t-0">Master Jabatan</h3>
+                    <h3 class="text-themecolor m-b-0 m-t-0">Kas Keluar</h3>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Master</li>
+                        <li class="breadcrumb-item active">Keuangan</li>
                     </ol>
                 </div>
             </div>
@@ -49,7 +49,7 @@
             <!-- ============================================================== -->
             <!-- Modal -->
             <!-- ============================================================== -->
-            <div class="modal fade" id="AddModal" tabindex="-1" role="dialog">
+            <div class="modal fade" id="AddModal" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -62,32 +62,18 @@
                             <div class="modal-body">
 
                                 <div class="form-group">
-                                    <label for="wjabatan" class="control-label">Dasar Jabatan:</label>
-                                    <select class="selectpicker form-control required"
-                                            name="aksesJabatan" id="wjabatan" required>
-                                        <option></option>
-                                        <optgroup label="Jabatan List">
-                                                <option value="3">Ketua Kelas</option>
-                                                <option value="4">Sekertaris</option>
-                                                <option value="5">Bendahara</option>
-                                                <option value="6">Anggota</option>
-                                        </optgroup>
-                                    </select>
+                                    <label for="wnominal" class="control-label">Kas yang dikeluarkan</label>
+                                    <input type="text" name="nominal" id="wnominal" class="form-control" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="wnamaJabatan" class="control-label">Jabatan:</label>
-                                    <input type="text" class="form-control" id="wnamaJabatan" name="jabatan" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="wketerangan" class="control-label">Keterangan:</label>
-                                    <textarea class="form-control" name="keterangan" id="wketerangan" rows="3"></textarea>
+                                    <label for="wperihal" class="control-label">Perihal</label>
+                                    <textarea name="perihal" id="wperihal" class="form-control" rows="5" required></textarea>
                                 </div>
 
                             </div>
                             <div class="modal-footer">
-                                <input type="hidden" id="kode_jabatan" name="kode_jabatan">
+                                <input type="text" id="kode_kas_keluar" name="kode_kas_keluar">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
@@ -104,10 +90,75 @@
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-info">
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="round round-lg align-self-center round-info"><i class="ti-wallet"></i></div>
+                                <div class="m-l-10 align-self-center">
+                                    <h4 class="m-b-0 moneyChart" style="color: white;">
+                                        <?php if ($_SESSION['kode_akses'] == 4){
+                                            echo ($kasAnak != '')? $kasAnak : '0';
+                                            echo '</h4>
+                                                    <h6 class="m-b-0 font-light" style="color:white;">Kas anak anda</h6>';
+                                        }else{
+                                            echo ($kasPribadi != '')? $kasPribadi : '0';
+                                            echo '</h4>
+                                                    <h6 class="m-b-0 font-light" style="color:white;">Kas anda</h6>';
+                                        } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-warning">
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="round round-lg align-self-center round-warning"><i class="mdi mdi-cash-multiple"></i></div>
+                                <div class="m-l-10 align-self-center">
+                                    <h4 class="m-b-0 moneyChart" style="color: white;"><?php echo ($kasKelas != '')? $kasKelas : '0'?></h4>
+                                    <h6 class="m-b-0 font-light" style="color: white;">Total kas kelas</h6></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-primary">
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="round round-lg align-self-center round-primary"><i class="mdi mdi-package-down"></i></div>
+                                <div class="m-l-10 align-self-center">
+                                    <h4 class="m-b-0 moneyChart" style="color: white;"><?php echo ($kasMasuk != '')? $kasMasuk : '0'?></h4>
+                                    <h6 class="m-b-0 font-light" style="color: white;">Pemasukan</h6></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card card-danger">
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="round round-lg align-self-center round-danger"><i class="mdi mdi-package-up"></i></div>
+                                <div class="m-l-10 align-self-center">
+                                    <h4 class="m-b-0 moneyChart" style="color: white;"><?php echo ($kasKeluar != '')? $kasKeluar : '0'?></h4>
+                                    <h6 class="m-b-0 font-light" style="color: white;">Pengeluaran</h6></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive m-t">
-                        <?php if ($_SESSION['13insert'] == 1){?>
+                        <?php if ($_SESSION['23insert'] == 1 && ($_SESSION['akses_jabatan'] == 2 || $_SESSION['akses_jabatan'] == 5)){?>
                             <button id="btnAdd" class="btn btn-info waves-effect waves-light" type="button" data-toggle="modal" data-target="#AddModal">
                                 <span class="btn-label">
                                     <i class="fa fa-plus"></i>
@@ -120,8 +171,10 @@
                                 <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kode Kelas</th>
-                                    <th>Jabatan</th>
+                                    <th>Kode Kas Keluar</th>
+                                    <th>Nama</th>
+                                    <th width="13%">Nominal</th>
+                                    <th>Perihal</th>
                                     <th>Keterangan</th>
                                     <th>Action</th>
                                 </tr>
@@ -134,19 +187,35 @@
                                     <tr>
 
                                         <td class="no"><?php echo $no;?></td>
-                                        <td class="kode_kelas">
-                                            <label class="label label-light-warning"><?php echo $row->kode_kelas;?></label>
+                                        <td class="kode_kas_keluar">
+                                            <label class="label label-inverse"><?php echo $row->kode_kas_keluar;?></label>
                                         </td>
-                                        <td class="jabatan">
-                                            <?php echo $row->jabatan;?>
-                                            <input type="hidden" id="kode_jabatan" value="<?php echo $row->kode_jabatan;?>">
-                                            <input type="hidden" id="akses_jabatan" value="<?php echo $row->akses_jabatan;?>">
+                                        <td class="nama">
+                                            <label data-toggle="tooltip" data-title="<?php echo $row->jabatan?>"
+                                                   class="label label-info"><?php echo $row->nama;?></label>
                                         </td>
                                         <td>
-                                            <?php echo '<label class="label label-light-danger" id="keterangan">'.$row->keterangan.'</label></i>'?>
+                                            Rp <label class="nominal"><?php echo $row->nominal;?></label>
+                                        </td>
+                                        <td class="perihal">
+                                            <span class="text-muted" style="font-size: 14px"><?php echo $row->perihal;?></span>
+                                        </td>
+                                        <td class="keterangan">
+                                            <span class="col-md-3">
+                                                <label class="label label-light-success">
+                                                    <i class="mdi mdi-clock"></i>
+                                                    <?php echo 'Pada '.date('d-m-Y', strtotime($row->created_at)).'<br>'.get_timeago(strtotime($row->created_at));?>
+                                                </label>
+                                            </span>
+<!--                                            <span class="col-md-3">-->
+<!--                                                <label class="label label-light-warning">-->
+<!--                                                    <i class="mdi mdi-clock"></i>-->
+<!--                                                    --><?php //echo ' Diperbarui '.get_timeago(strtotime($row->updated_at));?>
+<!--                                                </label>-->
+<!--                                            </span>-->
                                         </td>
                                         <td align=center>
-                                            <?php if ($_SESSION['13edit'] == 1 && $row->akses_jabatan != 6 && $row->akses_jabatan != 6){?>
+                                            <?php if ($_SESSION['23edit'] == 1 && ($_SESSION['akses_jabatan'] == 2 || $_SESSION['akses_jabatan'] == 5)){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' data-original-title='Edit'>
                                                         <button class='btn btn-xs btn-rounded btn-warning waves waves-effect waves-light' data-title="Edit" id="btnEdit" data-toggle="modal" data-target="#AddModal">
@@ -156,7 +225,7 @@
                                                 </a>
                                             <?php }?>
 
-                                            <?php if ($_SESSION['13delete'] == 1 && $row->akses_jabatan != 6 && $row->akses_jabatan != 7){?>
+                                            <?php if ($_SESSION['23delete'] == 1 && ($_SESSION['akses_jabatan'] == 2 || $_SESSION['akses_jabatan'] == 5)){?>
                                                 <a href='#'>
                                                     <span data-placement='top' data-toggle='tooltip' title='Delete'>
                                                         <button class='btn btn-xs btn-rounded btn-danger waves waves-effect waves-light' id="btnDelete">
@@ -196,10 +265,36 @@
 <!-- End Wrapper -->
 <!-- ============================================================== -->
 
-
+<!--Select2 JS-->
 <?php $this->load->view('partials/_javascripts'); ?>
 <script>
     $(function () {
+        $('.select2').select2();
+        $("#wnominal").inputmask('decimal', {
+            digits: 2,
+            placeholder: "0",
+            digitsOptional: false,
+            radixPoint: ".",
+            groupSeparator: ",",
+            max: "<?php echo $kasKelas?>",
+            autoGroup: true
+        });
+        $(".nominal").inputmask('decimal', {
+            digits: 2,
+            digitsOptional: false,
+            radixPoint: ".",
+            groupSeparator: ",",
+            autoGroup: true
+        });
+        $(".moneyChart").inputmask('decimal', {
+            digits: 2,
+            digitsOptional: false,
+            radixPoint: ".",
+            groupSeparator: ",",
+            autoGroup: true,
+            prefix: "Rp "
+        });
+
         $('#datatable').DataTable({
             "paging": true,
             "lengthChange": true,
@@ -221,31 +316,29 @@
         <?php }?>
 
         $('#btnAdd').click(function () {
-            $('#form').attr('action', "<?php echo site_url('/MasterJabatan/insert')?>");
-            $('.selectpicker').selectpicker('val', '');
-            $("#wnamaJabatan").val('');
-            $("#wketerangan").val('');
+            $('#form').attr('action', "<?php echo site_url('/KasKeluar/insert')?>");
+            $("#kode_kas_keluar").val('');
+            $("#wnominal").val('');
+            $("#wperihal").val('');
             $('.modal-title').text('Tambah Data');
         });
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
-            $('#form').attr('action', "<?php echo site_url('/MasterJabatan/update')?>");
+            $('#form').attr('action', "<?php echo site_url('/KasKeluar/update')?>");
             var $item = $(this).closest("tr");
-            $('.selectpicker').selectpicker('val', $item.find("input[id$='akses_jabatan']:hidden:first").val());
-            $('#kode_jabatan').val($item.find("input[id$='kode_jabatan']:hidden:first").val());
-            $("#wnamaJabatan").val($.trim($item.find(".jabatan").text()));
-            $("#wketerangan").val($.trim($item.find("#keterangan").text()));
+            $("#kode_kas_keluar").val($.trim($item.find(".kode_kas_keluar").text()));
+            $("#wnominal").val($.trim($item.find(".nominal").text()));
+            $("#wperihal").val($.trim($item.find(".perihal").text()));
             $('.modal-title').text('Edit Data');
         });
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {
             var $item = $(this).closest("tr");
-            var kode = $item.find("input[id$='kode_jabatan']:hidden:first").val();
-            var nama = $.trim($item.find(".jabatan").text());
+            var kode = $.trim($item.find(".kode_kas_keluar").text());
 
             swal({
                     title: "Apakah yakin akan dihapus?",
-                    text: "Data dengan jabatan " + nama,
+                    text: "Hapus transaksi " + kode,
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#26C6DA",
@@ -256,8 +349,10 @@
                 },
                 function(isConfirm){
                     if (isConfirm) {
+                        kode = kode.replace(/\//g, '-');
+//                        alert(kode);
                         $.ajax({
-                            url: "<?php echo site_url("/MasterJabatan/delete/");?>" + kode + "/" + nama,
+                            url: "<?php echo site_url("/KasKeluar/delete/");?>" + kode,
                             success: function (result) {
                                 window.location.href = result;
                             }
