@@ -92,8 +92,10 @@
             <!-- ============================================================== -->
             <div class="row">
 
+                <?php if ($_SESSION['kode_akses'] != 2 && $_SESSION['kode_akses'] != 1){?>
                 <div class="col-lg-3 col-md-6">
-                    <div class="card card-info">
+                    <div class="card card-info" data-toggle="tooltip"
+                         data-title="<?php echo ($_SESSION['kode_akses'] == 4)? 'Total kas yang anak anda bayarkan': 'Total kas yang anda bayarkan'?>">
                         <div class="card-body">
                             <div class="d-flex flex-row">
                                 <div class="round round-lg align-self-center round-info"><i class="ti-wallet"></i></div>
@@ -113,9 +115,11 @@
                         </div>
                     </div>
                 </div>
+                <?php }?>
 
                 <div class="col-lg-3 col-md-6">
-                    <div class="card card-warning">
+                    <div class="card card-warning" data-toggle="tooltip"
+                         data-title="Total kas yang dimiliki kelas">
                         <div class="card-body">
                             <div class="d-flex flex-row">
                                 <div class="round round-lg align-self-center round-warning"><i class="mdi mdi-cash-multiple"></i></div>
@@ -128,7 +132,8 @@
                 </div>
 
                 <div class="col-lg-3 col-md-6">
-                    <div class="card card-primary">
+                    <div class="card card-primary" data-toggle="tooltip"
+                         data-title="Total pemasukkan kelas dari uang kas">
                         <div class="card-body">
                             <div class="d-flex flex-row">
                                 <div class="round round-lg align-self-center round-primary"><i class="mdi mdi-package-down"></i></div>
@@ -141,7 +146,8 @@
                 </div>
 
                 <div class="col-lg-3 col-md-6">
-                    <div class="card card-danger">
+                    <div class="card card-danger" data-toggle="tooltip"
+                         data-title="Total pengeluaran kelas dari uang kas">
                         <div class="card-body">
                             <div class="d-flex flex-row">
                                 <div class="round round-lg align-self-center round-danger"><i class="mdi mdi-package-up"></i></div>
@@ -154,6 +160,7 @@
                 </div>
 
             </div>
+
 
             <div class="card">
                 <div class="card-body">

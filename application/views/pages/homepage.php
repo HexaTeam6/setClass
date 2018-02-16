@@ -27,7 +27,7 @@
         <nav id="nav_f" class="default_color" role="navigation">
             <div class="container">
                 <div class="nav-wrapper">
-                    <div href="#" id="logo-container" class="brand-logo"><img
+                    <div id="logo-container" class="brand-logo"><img
                                 src="<?php echo base_url('/assets/img/setClass.png') ?>" alt="setClass Logo"
                                 width="50px" style="position: relative; margin-bottom: -5px;"/> set<b>C</b>lass
                     </div>

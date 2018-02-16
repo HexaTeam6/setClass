@@ -78,5 +78,20 @@
 
 
 <?php $this->load->view('partials/_javascripts'); ?>
+<script>
+    $(function () {
+
+        <?php if (isset($_SESSION['msg'])) {?>
+        swal({
+            position: 'center',
+            type: 'success',
+            title: "<?php echo $_SESSION['msg'];?>",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        <?php }?>
+
+    });
+</script>
 </body>
 </html>
