@@ -158,6 +158,18 @@
                                 </button>
                             </a>
                         <?php }?>
+                        <div style="position:relative; float: right">
+                            <a href="<?php echo site_url('/AbsensiKelas/excel')?>" id="btnExcel" class="btn btn-info waves-effect waves-light"
+                               style="background: #1F6F43; border: 0px"
+                               data-toggle="tooltip" data-title="Export Excel">
+                                <i class="mdi mdi-file-excel"></i>
+                            </a>
+                            <a href="<?php echo site_url('/AbsensiKelas/pdf')?>" id="btnPdf" class="btn btn-info waves-effect waves-light"
+                               style="background: rgba(238,13,11,0.75); border: 0px"
+                               data-toggle="tooltip" data-title="Export PDF">
+                                <i class="mdi mdi-file-pdf"></i>
+                            </a>
+                        </div>
                         <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
                             <table id="datatable" class="table table-bordered table-striped">
                                 <thead>

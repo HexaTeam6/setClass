@@ -5,14 +5,14 @@
     <!-- Wizard Step, SweetAlert, BootstrapSelect CSS, and Dropify CSS -->
     <?php $this->load->view('partials/_css'); ?>
 
-        <style>
-            .wizard-content .wizard{
-                overflow: visible;
-            }
-            .wizard-content .wizard>.content{
-                overflow: visible;
-            }
-        </style>
+<!--        <style>-->
+<!--            .wizard-content .wizard{-->
+<!--                overflow: visible;-->
+<!--            }-->
+<!--            .wizard-content .wizard>.content{-->
+<!--                overflow: visible;-->
+<!--            }-->
+<!--        </style>-->
 </head>
 
 <body>
@@ -252,10 +252,16 @@
                                     </section>
 
                                 </form>
+                                <center>
+                                    <a href="<?php echo site_url() ?>">
+                                        <button class="btn btn-danger waves waves-effect waves-light">Batalkan</button>
+                                    </a>
+                                </center>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->

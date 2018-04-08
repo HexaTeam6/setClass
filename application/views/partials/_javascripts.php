@@ -45,3 +45,5 @@
 <script src="<?php echo base_url('/assets/materialPro/plugins/select2/dist/js/select2.full.min.js') ?>"></script>
 <!--Jquery InputMask-->
 <script src="<?php echo base_url('/assets/materialPro/plugins/jquery-inputmask/jquery.inputmask.bundle.js') ?>"></script>
+<!--Bootstrap Material Datetimepicker JS-->
+<script src="<?php echo base_url('/assets/materialPro/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') ?>"></script>

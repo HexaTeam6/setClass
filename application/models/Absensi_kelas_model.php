@@ -12,7 +12,14 @@ class Absensi_kelas_model extends CI_Model{
         if ($_SESSION['kode_kelas']==24101999)
         {
             return $this->db->query("
-            SELECT * FROM data_absensi ORDER BY kode_absensi DESC ");
+            SELECT dad.kode_absensi, da.tanggal,
+            SUM(CASE dad.status WHEN 'Sakit' THEN 1 ELSE 0 END) AS sakit,
+            SUM(CASE dad.status WHEN 'Izin' THEN 1 ELSE 0 END) AS izin,
+            SUM(CASE dad.status WHEN 'Masuk' THEN 1 ELSE 0 END) AS masuk,
+            SUM(CASE dad.status WHEN 'Tidak Masuk' THEN 1 ELSE 0 END) AS tidakMasuk
+            FROM data_absensi_detail dad, data_absensi da
+            WHERE dad.kode_absensi = da.kode_absensi
+            GROUP BY kode_absensi ");
         }else{
             return $this->db->query("
             SELECT dad.kode_absensi, da.tanggal,

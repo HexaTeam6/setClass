@@ -15,7 +15,7 @@ class Kas_masuk_model extends CI_Model{
             SELECT km.*, ml.nama AS nama_penerima, ms.nama, mj.jabatan
 		    FROM kas_masuk km, master_login ml, master_siswa ms, master_jabatan mj
 		    WHERE km.penerima = ml.kode_user
-		    AND km.kode_jabatan = mj.kode_jabatan
+		    AND ml.kode_jabatan = mj.kode_jabatan
 		    AND km.kode_user = ms.NIS
 		    ORDER BY created_at DESC");
         }elseif($_SESSION['kode_akses'] == 4){

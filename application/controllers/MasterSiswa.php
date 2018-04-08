@@ -138,5 +138,58 @@ class MasterSiswa extends CI_Controller{
         echo site_url('MasterSiswa');
     }
 
+    public function excel()
+    {
+        require(APPPATH.'third_party/PHPExcel-1.8/Classes/PHPExcel.php');
+        require(APPPATH.'third_party/PHPExcel-1.8/Classes/PHPExcel/Writer/Excel2007.php');
+
+        $excel = new PHPExcel();
+
+        $excel->getProperties()->setCreator('setClass');
+        $excel->getProperties()->setTitle('Data Siswa');
+
+        $excel->setActiveSheetIndex(0);
+
+        $excel->getActiveSheet()->setCellValue('A1','No');
+        $excel->getActiveSheet()->setCellValue('B1','Nama');
+        $excel->getActiveSheet()->setCellValue('C1','Jenis Kelamin');
+        $excel->getActiveSheet()->setCellValue('D1','Email');
+        $excel->getActiveSheet()->setCellValue('E1','Telepon');
+        $excel->getActiveSheet()->setCellValue('F1','Alamat');
+
+        $data = $this->Master_siswa_model->tampil_data()->result();
+        $row = 2;
+        $no = 1;
+        foreach ($data as $val){
+            $excel->getActiveSheet()->setCellValue('A'.$row, $no);
+            $excel->getActiveSheet()->setCellValue('B'.$row, $val->nama);
+            $excel->getActiveSheet()->setCellValue('C'.$row, $val->jenis_kelamin);
+            $excel->getActiveSheet()->setCellValue('D'.$row, $val->email);
+            $excel->getActiveSheet()->setCellValue('E'.$row, $val->no_telp);
+            $excel->getActiveSheet()->setCellValue('F'.$row, $val->alamat);
+
+            $row++;
+            $no++;
+        }
+
+        $filename = 'Data Siswa '.date('d-m-Y-H-i-s').'.xlsx';
+
+        $excel->getActiveSheet()->setTitle("Report-Data Siswa");
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="'.$filename.'"');
+        header('Cache-Control: max-age=0');
+
+        $writer = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+        $writer->save('php://output');
+        exit;
+    }
+
+    public function pdf()
+    {
+        $this->load->library('Pdf');
+        $data['data'] = $this->Master_siswa_model->tampil_data()->result();
+        $this->load->view('prints/Master_siswa_print', $data);
+    }
 }
 ?>

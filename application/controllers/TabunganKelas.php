@@ -113,5 +113,54 @@ class TabunganKelas extends CI_Controller{
         echo site_url('TabunganKelas');
     }
 
+    public function excel()
+    {
+        require(APPPATH.'third_party/PHPExcel-1.8/Classes/PHPExcel.php');
+        require(APPPATH.'third_party/PHPExcel-1.8/Classes/PHPExcel/Writer/Excel2007.php');
+
+        $excel = new PHPExcel();
+
+        $excel->getProperties()->setCreator('setClass');
+        $excel->getProperties()->setTitle('Data Tabungan Kelas');
+
+        $excel->setActiveSheetIndex(0);
+
+        $excel->getActiveSheet()->setCellValue('A1','Kode Tabungan');
+        $excel->getActiveSheet()->setCellValue('B1','Nama');
+        $excel->getActiveSheet()->setCellValue('C1','Penerima');
+        $excel->getActiveSheet()->setCellValue('D1','Nominal');
+        $excel->getActiveSheet()->setCellValue('E1','Keterangan');
+
+        $data = $this->Tabungan_kelas_model->tampil_data()->result();
+        $row = 2;
+        foreach ($data as $val){
+            $excel->getActiveSheet()->setCellValue('A'.$row, $val->kode_tabungan);
+            $excel->getActiveSheet()->setCellValue('B'.$row, $val->nama);
+            $excel->getActiveSheet()->setCellValue('C'.$row, $val->nama_penerima);
+            $excel->getActiveSheet()->setCellValue('D'.$row, $val->nominal);
+            $excel->getActiveSheet()->setCellValue('E'.$row, 'Diterima '.date('d-m-Y', strtotime($val->created_at)).'( '.get_timeago(strtotime($val->created_at)).' )');
+
+            $row++;
+        }
+
+        $filename = 'Data Tabungan '.date('d-m-Y-H-i-s').'.xlsx';
+
+        $excel->getActiveSheet()->setTitle("Report-Data Tabungan");
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="'.$filename.'"');
+        header('Cache-Control: max-age=0');
+
+        $writer = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+        $writer->save('php://output');
+        exit;
+    }
+
+    public function pdf()
+    {
+        $this->load->library('Pdf');
+        $data['data'] = $this->Tabungan_kelas_model->tampil_data()->result();
+        $this->load->view('prints/Tabungan_kelas_print', $data);
+    }
 }
 ?>

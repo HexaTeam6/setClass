@@ -253,6 +253,11 @@
                                     </section>
 
                                 </form>
+                                <center>
+                                    <a href="<?php echo site_url() ?>">
+                                        <button class="btn btn-danger waves waves-effect waves-light">Batalkan</button>
+                                    </a>
+                                </center>
                             </div>
                         </div>
                     </div>

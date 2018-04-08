@@ -24,6 +24,12 @@ class Master_guru_model extends CI_Model{
         }
     }
 
+    function listGuru(){
+        return $this->db->query("SELECT nama_guru, NIP
+                                 FROM master_guru
+                                 WHERE kode_kelas =?", array($_SESSION['kode_kelas']));
+    }
+
     function getGuru($kode_guru){
         return $this->db->query("SELECT *
                                  FROM master_guru

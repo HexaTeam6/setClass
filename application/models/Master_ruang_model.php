@@ -24,6 +24,12 @@ class Master_ruang_model extends CI_Model{
         }
     }
 
+    function listRuang(){
+        return $this->db->query("SELECT kode_ruang, nama_ruang
+                                 FROM master_ruang
+                                 WHERE kode_kelas =?", array($_SESSION['kode_kelas']));
+    }
+
     function input_data($table,$data){
         //$this->output->enable_profiler(TRUE);
         return $this->db->insert($table,$data);

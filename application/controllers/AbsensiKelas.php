@@ -182,5 +182,51 @@ class AbsensiKelas extends CI_Controller{
         echo site_url('AbsensiKelas');
     }
 
+    public function excel()
+    {
+        require(APPPATH.'third_party/PHPExcel-1.8/Classes/PHPExcel.php');
+        require(APPPATH.'third_party/PHPExcel-1.8/Classes/PHPExcel/Writer/Excel2007.php');
+
+        $excel = new PHPExcel();
+
+        $excel->getProperties()->setCreator('setClass');
+        $excel->getProperties()->setTitle('Absensi Kelas');
+
+        $excel->setActiveSheetIndex(0);
+
+        $excel->getActiveSheet()->setCellValue('A1','Kode Absensi');
+        $excel->getActiveSheet()->setCellValue('B1','Tanggal');
+        $excel->getActiveSheet()->setCellValue('C1','Keterangan');
+
+        $data = $this->Absensi_kelas_model->tampil_data()->result();
+        $row = 2;
+        foreach ($data as $val){
+            $excel->getActiveSheet()->setCellValue('A'.$row, $val->kode_absensi);
+            $excel->getActiveSheet()->setCellValue('B'.$row, $val->tanggal);
+            $excel->getActiveSheet()->setCellValue('C'.$row, $val->masuk.' masuk, '.$val->sakit.' sakit, '.$val->izin.' izin, '.$val->tidakMasuk.' tidak masuk');
+
+            $row++;
+        }
+
+        $filename = 'Absensi Kelas '.date('d-m-Y-H-i-s').'.xlsx';
+
+        $excel->getActiveSheet()->setTitle("Report-Absensi Kelas");
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="'.$filename.'"');
+        header('Cache-Control: max-age=0');
+
+        $writer = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+        $writer->save('php://output');
+        exit;
+    }
+
+    public function pdf()
+    {
+        $this->load->library('Pdf');
+        $data['data'] = $this->Absensi_kelas_model->tampil_data()->result();
+        $this->load->view('prints/Absensi_kelas_print', $data);
+    }
+
 }
 ?>

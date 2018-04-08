@@ -24,6 +24,12 @@ class Master_matapelajaran_model extends CI_Model{
         }
     }
 
+    function listMatapelajaran(){
+        return $this->db->query("SELECT kode_matapelajaran, nama_matapelajaran
+                                 FROM master_matapelajaran
+                                 WHERE kode_kelas =?", array($_SESSION['kode_kelas']));
+    }
+
     function input_data($table,$data){
         //$this->output->enable_profiler(TRUE);
         return $this->db->insert($table,$data);
