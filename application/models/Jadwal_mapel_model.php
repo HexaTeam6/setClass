@@ -30,6 +30,18 @@ class Jadwal_mapel_model extends CI_Model{
         }
     }
 
+    function todayJadwal($day){
+        return $this->db->query("
+            SELECT djm.*, mg.nama_guru, mm.nama_matapelajaran, mr.nama_ruang
+		    FROM data_jadwal_mapel djm, master_guru mg, master_matapelajaran mm, master_ruang mr
+		    WHERE djm.NIP = mg.NIP
+		    AND djm.kode_matapelajaran = mm.kode_matapelajaran
+		    AND djm.kode_ruang = mr.kode_ruang
+		    AND djm.kode_kelas = '".$_SESSION['kode_kelas']."'
+		    AND djm.hari = '".$day."'
+		    ORDER BY hari, jam_mulai ASC");
+    }
+
     function input_data($table,$data){
         //$this->output->enable_profiler(TRUE);
         return $this->db->insert($table,$data);

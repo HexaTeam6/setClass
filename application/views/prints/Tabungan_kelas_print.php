@@ -79,7 +79,7 @@ $html = '
 			  <th width="12%"><b>Tanggal</b></th>
               <th width="27%"><b>Kode Tabungan</b></th>
               <th width="25%"><b>Nama</b></th>
-              <th width="25%"><b>Penerima</b></th>
+              <th width="22%"><b>Penerima</b></th>
               <th width="15%"><b>Nominal</b></th>
             </tr>
             </thead>
@@ -93,8 +93,8 @@ $html = '
 						<td width="12%" class="no">'.date('d-m-Y', strtotime($row->created_at)).'</td>
 						<td width="27%" class="kode_tabungan">'.$row->kode_tabungan.'</td>
                         <td width="25%" class="nama">'.$row->nama.'</td>
-                        <td width="25%" class="penerima">'.$row->nama_penerima.'</td>
-                        <td width="15%" class="nominal">Rp '.$row->nominal.'</td>
+                        <td width="22%" class="penerima">'.$row->nama_penerima.'</td>
+                        <td width="15%" class="nominal">Rp '.number_format($row->nominal,2,',','.').'</td>
                     </tr>';
 				}
 
@@ -103,8 +103,8 @@ $html = '
 					<td width="12%" class=""></td>
 					<td width="27%" class=""></td>
 					<td width="25%" class=""></td>
-					<td width="25%" class="total" align=right><b>TOTAL</b></td>
-					<td width="11%" align=right>Rp '.$total.'</td>
+					<td width="22%" class="total" align=right><b>TOTAL</b></td>
+					<td width="14%" align=right>Rp '.number_format($total,2,',','.').'</td>
 				</tr>
             </tbody>
           </table>';

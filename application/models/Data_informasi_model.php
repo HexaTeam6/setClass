@@ -33,6 +33,29 @@ class Data_informasi_model extends CI_Model{
         }
     }
 
+    function infoBaru(){
+        if($_SESSION['kode_akses'] == 2){
+            return $this->db->query("
+                        SELECT di.*, ml.nama, mj.jabatan
+                        FROM data_informasi di, master_login ml, master_jabatan mj
+                        WHERE di.kode_kelas = ?
+                        AND ml.kode_jabatan = mj.kode_jabatan
+                        AND di.kode_user = ml.kode_user
+                        ORDER BY created_at DESC
+                        LIMIT 3", array($_SESSION['kode_kelas']));
+        }else{
+            return $this->db->query("
+                    SELECT di.*, ml.nama, mj.jabatan
+                    FROM data_informasi di, master_login ml, master_jabatan mj
+                    WHERE di.kode_kelas = ?
+                    AND ml.kode_jabatan = mj.kode_jabatan
+                    AND di.akses_jabatan IN (?,0)
+                    AND di.kode_user = ml.kode_user
+                    ORDER BY created_at DESC
+                    LIMIT 3", array($_SESSION['kode_kelas'], $_SESSION['akses_jabatan']));
+        }
+    }
+
     function edit($id){
         return $this->db->query("SELECT * FROM data_informasi WHERE id_informasi = ?", array($id));
     }

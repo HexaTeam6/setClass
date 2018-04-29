@@ -164,9 +164,10 @@
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                            <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                            <?php if($_SESSION['kode_akses'] != 1){?>
+                            <li><a href="<?php echo site_url('/TabunganKelas')?>"><i class="ti-wallet"></i> Tabungan</a></li>
+                            <li><a href="<?php echo site_url('/LihatInformasi')?>"><i class="ti-info"></i> Informasi</a></li>
+                            <?php }?>
 <!--                            <li role="separator" class="divider"></li>-->
 <!--                            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>-->
                             <li role="separator" class="divider"></li>
